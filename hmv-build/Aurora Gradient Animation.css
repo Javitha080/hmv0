@@ -1,0 +1,17 @@
+.aurora-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(120deg, #e74c3c, #f39c12, #8e44ad, #2980b9);
+    background-size: 400% 400%;
+    animation: auroraBG 10s ease infinite;
+  }
+
+  @keyframes auroraBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
