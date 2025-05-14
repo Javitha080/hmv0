@@ -1,0 +1,109 @@
+ /* Glassmorphism Footer Cards */
+ .glassmorphism-footer {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Enhanced Social Icons */
+  .social-icon-footer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-icon-footer:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: white;
+    background: linear-gradient(to right, var(--tw-gradient-stops));
+    --tw-gradient-from: #e74c3c;
+    --tw-gradient-to: #f39c12;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+  }
+
+  .social-icon-footer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .social-icon-footer:hover::after {
+    animation: shimmer 1.5s infinite;
+    opacity: 1;
+  }
+
+  /* Footer Links Animation */
+  .footer-link-item {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .footer-link-item a {
+    color: #d1d5db;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .footer-link-item:hover {
+    transform: translateX(5px);
+  }
+
+  .footer-link-item:hover a {
+    color: white;
+  }
+
+  .footer-link-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(to right, rgba(231, 76, 60, 0.7), rgba(243, 156, 18, 0.7));
+    transition: width 0.3s ease;
+  }
+
+  .footer-link-item:hover a::after {
+    width: 100%;
+  }
+
+  /* Back to Top Button Animation */
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Marquee Animation Control */
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Homagama Maha Vidyalaya - Gallery</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com "></script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css " />
+
+  <!-- Glightbox for Image Modal -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css " />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js "></script>
+
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js "></script>
+
+  <!-- DOMPurify for XSS Protection -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.1/purify.min.js "></script>
+
+  <!-- CSP Meta Tag -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net  https://cdnjs.cloudflare.com ; style-src 'self' https://cdn.jsdelivr.net  https://cdnjs.cloudflare.com ; img-src 'self' data: https://picsum.photos  https://via.placeholder.com ;">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .bento-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform, opacity;
+    }
+
+    .bento-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-header img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 0.7s ease-in-out;
+      loading: lazy;
+    }
+
+    .bento-card:hover .card-header img {
+      transform: scale(1.1);
+    }
+
+    .card-footer {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-caption {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .card-date {
+      font-size: 0.7rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .filter-btn {
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background-color: #ffffff10;
+      backdrop-filter: blur(6px);
+      border: 1px solid #ffffff20;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: linear-gradient(to right, #e63946, #fcb813);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+    }
+
+    .lighting-animation {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(230, 57, 70, 0.1), transparent 60%);
+      z-index: -1;
+      animation: rotateLight 30s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotateLight {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .back-to-home {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(to bottom, #1a1a1a, #2a2a2a);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 50;
+      transition: all 0.3s ease;
+    }
+
+    .back-to-home:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .staff-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .staff-img {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .staff-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .staff-img:hover img {
+      transform: scale(1.1);
+    }
+
+    .staff-details {
+      padding: 1rem;
+    }
+
+    .staff-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .staff-role {
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .staff-social {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .staff-social a {
+      font-size: 0.9rem;
+      color: #e63946;
+      transition: color 0.3s ease;
+    }
+
+    .staff-social a:hover {
+      color: #fcb813;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 50;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: fit-content;
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .comments-section {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .comment-form input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #4a5568;
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    .comment-form button {
+      background: linear-gradient(to right, #e63946, #fcb813);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .comment-list {
+      margin-top: 1rem;
+    }
+
+    .comment {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .reaction-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .reaction-buttons button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 9999px;
+      color: #e63946;
+      cursor: pointer;
+    }
+
+    .reaction-buttons button:hover {
+      background: rgba(230, 57, 70, 0.2);
+    }
+
+    .loader {
+      text-align: center;
+      padding: 2rem;
+      font-weight: bold;
+      color: #e63946;
+    }
+
+    .particles {
+      display: none;
+    }
+
+    .no-js {
+      display: none;
+    }
+
+    [onerror="this.onerror=null;this.src='fallback.jpg'"] {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a[href^="javascript:"] {
+      display: none;
+    }
+
+    .error-message {
+      color: #e63946;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .form-control input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #e63946;
+    }
+
+    .form-control textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #e63946;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .badge-event {
+      background: linear-gradient(135deg, #e63946, #fcb813);
+      color: white;
+    }
+
+    .badge-video {
+      background: linear-gradient(135deg, #9c27b0, #e040fb);
+      color: white;
+    }
+
+    .category-badge:hover {
+      transform: scale(1.1);
+    }
+
+    .decor-top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid #e63946;
+      border-left: 2px solid #e63946;
+      z-index: 10;
+    }
+
+    .decor-bottom-right {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid #e63946;
+      border-right: 2px solid #e63946;
+      z-index: 10;
+    }
+
+    .hover-zoom img {
+      transition: transform 0.7s ease;
+    }
+
+    .hover-zoom:hover img {
+      transform: scale(1.1);
+    }
+
+    .card-tilt {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+      transition: transform 0.3s ease;
+    }
+
+    .card-tilt:hover {
+      transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
+    }
+
+    .social-icon {
+      background: linear-gradient(to right, #e63946, #fcb813);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .school-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .school-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #e63946, #fcb813);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .back-to-home i {
+      font-size: 1.2rem;
+    }
+
+    .staff-section {
+      margin-top: 4rem;
+    }
+
+    .staff-section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .comments-section {
+      margin-top: 1rem;
+    }
+
+    .comment-form {
+      margin-top: 1rem;
+    }
+
+    .comment-form input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #4a5568;
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    .comment-form button {
+      background: linear-gradient(to right, #e63946, #fcb813);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .comment {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .reaction-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .reaction-buttons button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 9999px;
+      color: #e63946;
+      cursor: pointer;
+    }
+
+    .reaction-buttons button:hover {
+      background: rgba(230, 57, 70, 0.2);
+    }
+
+    .error-message {
+      color: #e63946;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .cursor-glow {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-poppins px-4 py-8 relative">
+
+<!-- Lighting Animation -->
+<div class="lighting-animation"></div>
+
+<!-- Back to Home Button -->
+<a href="#" class="back-to-home" aria-label="Back to Home">
+  <i class="fas fa-arrow-left"></i>
+</a>
+
+<!-- Header -->
+<header class="mb-6 relative z-10">
+  <div class="header-wrapper">
+    <div class="flex items-center space-x-3">
+      <img src="https://via.placeholder.com/50 " alt="School Logo" class="school-logo">
+      <h1 class="school-name">Homagama Maha Vidyalaya</h1>
+    </div>
+    <a href="#" class="text-sm text-white/80 hover:text-yellow-300 underline md:hidden">← Back</a>
+  </div>
+</header>
+
+<!-- Filter Buttons -->
+<div class="filter-container mb-6 relative z-10">
+  <button class="filter-btn active" data-category="all">All</button>
+  <button class="filter-btn" data-category="event">Events</button>
+  <button class="filter-btn" data-category="achievement">Achievements</button>
+  <button class="filter-btn" data-category="activity">Activities</button>
+  <button class="filter-btn" data-category="video">Videos</button>
+</div>
+
+<!-- Mobile Filter Dropdown -->
+<select class="mobile-filter-dropdown mb-6 relative z-10">
+  <option value="all">All</option>
+  <option value="event">Events</option>
+  <option value="achievement">Achievements</option>
+  <option value="activity">Activities</option>
+  <option value="video">Videos</option>
+</select>
+
+<!-- Bento Grid Layout -->
+<section id="galleryGrid" class="bento-grid mt-6 relative z-10"></section>
+
+<!-- Custom Modal for Preview -->
+<div id="previewModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closePreview()">&times;</span>
+    <img id="modalImage" src="" alt="Preview" />
+    <div class="comments-section">
+      <h3 class="font-semibold text-sm mb-2">Comments</h3>
+      <div id="commentList" class="comment-list"></div>
+      <form id="commentForm" class="comment-form">
+        <input type="text" id="commentInput" placeholder="Add a comment..." required />
+        <button type="submit">Post</button>
+      </form>
+      <div class="reaction-buttons">
+        <button onclick="addLike()">❤️ Like</button>
+        <span id="likeCount" class="ml-1">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Staff Section -->
+<section id="staffSection" class="staff-section mt-12">
+  <h2 class="text-center gradient-text">Our Leadership</h2>
+  <div id="staffGrid" class="staff-grid"></div>
+  <div id="staffLoader" class="loader text-center">Loading more staff...</div>
+</section>
+
+<!-- Footer -->
+<footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+  &copy; 2025 Homagama Maha Vidyalaya. All rights reserved.
+</footer>
+
+<script>
+  // Gallery Data
+  const galleryData = [
+    { src: "https://picsum.photos/id/1016/600/400 ", category: "event", title: "Annual Day Celebration", caption: "Students enjoying cultural performances", date: "Dec 15, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1019/600/400 ", category: "achievement", title: "Science Olympiad Winners", caption: "Gold medalists receiving awards", date: "Nov 20, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1015/600/400 ", category: "activity", title: "Art Club Exhibition", caption: "Creative masterpieces by students", date: "Oct 10, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1014/600/400 ", category: "event", title: "Sports Day", caption: "Thrilling races and team games", date: "Sep 25, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1013/600/400 ", category: "achievement", title: "Math Competition Winner", caption: "Top scorer with trophy", date: "Aug 18, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1012/600/400 ", category: "activity", title: "Debate Club Meeting", caption: "Heated discussions on global issues", date: "Jul 30, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1011/600/400 ", category: "event", title: "Cultural Fest", caption: "Dance, music, and traditional costumes", date: "Jun 15, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1010/600/400 ", category: "achievement", title: "National Science Fair", caption: "Innovative projects displayed", date: "May 20, 2024", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1009/600/400 ", category: "activity", title: "Coding Workshop", caption: "Learning programming basics", date: "Apr 10, 2025", comments: [], likes: 0 },
+    { src: "https://picsum.photos/id/1008/600/400 ", category: "event", title: "Teacher’s Day Celebration", caption: "Tribute to educators", date: "Mar 5, 2025", comments: [], likes: 0 },
+    { videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ ", thumbnail: "https://picsum.photos/id/1015/600/400 ", category: "video", title: "Annual Sports Meet Highlights", caption: "Watch the best moments from our annual sports event", date: "Dec 10, 2024", comments: [], likes: 0 },
+    { videoUrl: "https://www.youtube.com/watch?v=abc123xyz ", thumbnail: "https://picsum.photos/id/1016/600/400 ", category: "video", title: "STEM Lab Tour", caption: "Explore our modern science and tech labs", date: "Jan 10, 2025", comments: [], likes: 0 },
+    { videoUrl: "https://www.youtube.com/watch?v=def456uvw ", thumbnail: "https://picsum.photos/id/1017/600/400 ", category: "video", title: "Student Testimonials", caption: "What our students say about learning experience", date: "Feb 15, 2025", comments: [], likes: 0 }
+  ];
+
+  // Staff Data
+  const staffData = [
+    { src: "https://picsum.photos/id/1018/600/400 ", name: "Mr. R. P. Silva", role: "Principal", social: { linkedin: "#", facebook: "#" }, bio: "Leading our school with vision and passion." },
+    { src: "https://picsum.photos/id/1017/600/400 ", name: "Ms. N. K. Perera", role: "Vice Principal", social: { linkedin: "#", facebook: "#" }, bio: "Guiding students toward excellence." },
+    { src: "https://picsum.photos/id/1019/600/400 ", name: "Dr. M. L. Fernando", role: "Head of Science", social: { linkedin: "#", facebook: "#" }, bio: "Passionate about innovation in education." },
+    { src: "https://picsum.photos/id/1016/600/400 ", name: "Mrs. A. D. Jayasinghe", role: "Head of Math Department", social: { linkedin: "#", facebook: "#" }, bio: "Fostering mathematical excellence." },
+    { src: "https://picsum.photos/id/1015/600/400 ", name: "Mr. K. S. Gunawardena", role: "Head of Sports", social: { linkedin: "#", facebook: "#" }, bio: "Promoting physical and mental growth." },
+    { src: "https://picsum.photos/id/1014/600/400 ", name: "Ms. T. M. Dilhani", role: "IT Coordinator", social: { linkedin: "#", facebook: "#" }, bio: "Bringing technology into the classroom." },
+    { src: "https://picsum.photos/id/1013/600/400 ", name: "Mr. J. P. Rajapaksha", role: "Admissions Officer", social: { linkedin: "#", facebook: "#" }, bio: "Helping students join our community." },
+    { src: "https://picsum.photos/id/1012/600/400 ", name: "Ms. S. K. Wijerathne", role: "Head of Languages", social: { linkedin: "#", facebook: "#" }, bio: "Fostering communication and creativity." }
+  ];
+
+  let lightbox;
+  let visibleStaffCount = 4;
+  let currentImageIndex = 0;
+
+  // Render Gallery
+  function renderGallery(category = "all") {
+    const galleryGrid = document.getElementById("galleryGrid");
+    galleryGrid.innerHTML = "";
+
+    const filteredItems = category === "all" ? galleryData : galleryData.filter(item => item.category === category);
+
+    filteredItems.forEach((item, index) => {
+      const card = document.createElement("div");
+      card.className = "bento-card group glassmorphism hover-zoom";
+      card.innerHTML = `
+        <div class="card-header relative overflow-hidden rounded-t-xl">
+          <img src="${item.src || item.thumbnail}" alt="${item.title}" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Image+Not+Available ';">
+          <div class="category-badge ${getBadgeClass(item.category)}">${capitalizeFirstLetter(item.category)}</div>
+        </div>
+        <div class="card-footer glassmorphism rounded-b-xl">
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-caption">${item.caption}</p>
+          <div class="card-date flex items-center gap-1"><i class="fas fa-calendar-alt"></i><span>${item.date}</span></div>
+          <div class="comments-section mt-2">
+            <button onclick="openImagePreview(${index})" class="text-sm text-red-500 hover:text-red-300 underline">View Comments</button>
+          </div>
+        </div>
+      `;
+      galleryGrid.appendChild(card);
+    });
+
+    animateCardsOnScroll();
+  }
+
+  function getBadgeClass(category) {
+    return category === "event" ? "badge-event" : "badge-video";
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // Image Preview Modal
+  function openImagePreview(index) {
+    const modal = document.getElementById("previewModal");
+    const img = document.getElementById("modalImage");
+    const commentList = document.getElementById("commentList");
+    const likeCount = document.getElementById("likeCount");
+
+    currentImageIndex = index;
+    const item = galleryData[index];
+
+    img.src = item.src || item.thumbnail;
+    commentList.innerHTML = item.comments.map(c => `<div class="comment">${c.text} — <strong>${c.author}</strong></div>`).join("");
+    likeCount.textContent = item.likes;
+
+    modal.style.display = "flex";
+  }
+
+  function closePreview() {
+    document.getElementById("previewModal").style.display = "none";
+  }
+
+  // Add Comment
+  document.getElementById("commentForm")?.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const input = document.getElementById("commentInput");
+    const commentText = DOMPurify.sanitize(input.value.trim());
+
+    if (commentText) {
+      const author = "Anonymous";
+      galleryData[currentImageIndex].comments.push({ text: commentText, author: author });
+      galleryData[currentImageIndex].likes++;
+      openImagePreview(currentImageIndex);
+      input.value = "";
+    }
+  });
+
+  // Add Like
+  function addLike() {
+    galleryData[currentImageIndex].likes++;
+    document.getElementById("likeCount").textContent = galleryData[currentImageIndex].likes;
+  }
+
+  // Staff Grid Rendering
+  function renderStaff() {
+    const staffGrid = document.getElementById("staffGrid");
+    const staffLoader = document.getElementById("staffLoader");
+
+    const items = staffData.slice(0, visibleStaffCount);
+    items.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "staff-card glassmorphism rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500";
+      card.innerHTML = `
+        <div class="staff-img relative overflow-hidden rounded-t-xl">
+          <img src="${item.src}" alt="${item.name}" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Staff+Not+Available ';">
+        </div>
+        <div class="staff-details glassmorphism rounded-b-xl p-4">
+          <h3 class="staff-name font-bold text-lg">${item.name}</h3>
+          <p class="staff-role text-sm text-gray-400">${item.role}</p>
+          <p class="text-sm text-gray-400 mt-1">${item.bio}</p>
+          <div class="staff-social flex gap-2 mt-2">
+            <a href="${item.social.linkedin}" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            <a href="${item.social.facebook}" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      `;
+      staffGrid.appendChild(card);
+    });
+
+    if (visibleStaffCount >= staffData.length) {
+      staffLoader.style.display = "none";
+    } else {
+      staffLoader.style.display = "block";
+    }
+
+    animateCardsOnScroll();
+  }
+
+  // Infinite Scroll for Staff
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && visibleStaffCount < staffData.length) {
+      visibleStaffCount += 4;
+      renderStaff();
+    }
+  });
+
+  // Infinite Scroll for Gallery
+  window.addEventListener("scroll", () => {
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 500) {
+      const newItems = Array.from({ length: 4 }).map(() => {
+        const randomIndex = Math.floor(Math.random() * galleryData.length);
+        return galleryData[randomIndex];
+      });
+      newItems.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "bento-card group glassmorphism hover-zoom";
+        card.innerHTML = `
+          <div class="card-header relative overflow-hidden rounded-t-xl">
+            <img src="${item.src || item.thumbnail}" alt="${item.title}" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Image+Not+Available ';">
+            <div class="category-badge ${getBadgeClass(item.category)}">${capitalizeFirstLetter(item.category)}</div>
+          </div>
+          <div class="card-footer glassmorphism rounded-b-xl">
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-caption">${item.caption}</p>
+            <div class="card-date flex items-center gap-1"><i class="fas fa-calendar-alt"></i><span>${item.date}</span></div>
+          </div>
+        `;
+        card.addEventListener("click", () => openImagePreview(galleryData.indexOf(item)));
+        document.getElementById("galleryGrid").appendChild(card);
+      });
+  }});
+
+  // Filtering Logic
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderGallery(btn.getAttribute("data-category"));
+    });
+  });
+
+  document.querySelector(".mobile-filter-dropdown").addEventListener("change", e => {
+    renderGallery(e.target.value);
+  });
+
+  // GSAP Scroll Animations
+  function animateCardsOnScroll() {
+    gsap.utils.toArray(".bento-card, .staff-card").forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: true
+        }
+      });
+    });
+  }
+
+  // Initialize Glightbox
+  function updateLightbox() {
+    if (lightbox) lightbox.destroy();
+    lightbox = GLightbox({
+      selector: '.bento-card',
+      touchNavigation: true,
+      loop: true,
+      zoomable: true,
+      draggable: true,
+      captionSelector: 'self',
+      captionPosition: 'bottom',
+      captionClass: 'lightbox-caption'
+    });
+  }
+
+  // Initial Render
+  renderGallery("all");
+  renderStaff();
+</script>
+</body>
+</html>

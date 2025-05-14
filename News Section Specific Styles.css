@@ -1,0 +1,34 @@
+ /* Active filter button styles */
+ .news-filter-btn.active {
+    background: linear-gradient(to right, rgba(231, 76, 60, 0.8), rgba(243, 156, 18, 0.8));
+  }
+  
+  .news-filter-btn.active i,
+  .news-filter-btn.active span {
+    color: white;
+  }
+  
+  /* Card hover effect */
+  .news-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(30deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  .news-card:hover::after {
+    animation: shimmer 1.5s infinite;
+    opacity: 1;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+  }
