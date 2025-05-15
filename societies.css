@@ -114,8 +114,9 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
+  will-change: transform;
 }
 
 .dark .society-logo-container {
@@ -132,12 +133,65 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border-radius: 50%;
+  will-change: transform;
 }
 
 .society-card:hover .society-logo {
   transform: scale(1.05);
+}
+
+/* Add animation classes for JavaScript interactions */
+.society-card-visible {
+  animation: societyCardFadeIn 0.8s forwards;
+}
+
+.society-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Initial state for scroll reveal */
+.society-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* 3D tilt effect reset */
+.society-card .society-inner {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Button ripple effect */
+.society-button-ripple {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: societyButtonRipple 1s linear;
+  pointer-events: none;
+}
+
+@keyframes societyCardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes societyButtonRipple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /* Society Content */
