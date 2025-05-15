@@ -1,4 +1,4 @@
- /* Glassmorphism Footer Cards */
+/* Glassmorphism Footer Cards */
  .glassmorphism-footer {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -106,4 +106,5 @@
 
   .animate-marquee {
     animation: marquee 30s linear infinite;
+    display: flex;
   }

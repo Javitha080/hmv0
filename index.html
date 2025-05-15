@@ -14,7 +14,9 @@
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js" as="script">
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" as="script">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js">
+    
+  </script>
   
   <!-- GSAP for animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -67,6 +69,11 @@
 <link rel="stylesheet" href="advanced-ui.css">
 <link rel="stylesheet" href="Gallery Section Specific Styles.css">
 <link rel="stylesheet" href="News Section Specific Styles.css">
+<link rel="stylesheet" href="societies.css">
+<link rel="stylesheet" href="Footer Specific Styles.css">
+
+
+
 
 
   <!-- Remix Icons - Simple and Charming Icons -->
@@ -1083,373 +1090,211 @@
       </div>
     </section>
 
-    <!-- Society Section with Interactive Features -->
-    <section id="society" class="py-20 px-4 relative overflow-hidden">
-      <!-- Animated Background Elements -->
-      <div class="absolute inset-0 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 -z-10"></div>
-      <div class="absolute inset-0 overflow-hidden pointer-events-none -z-5">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-accent/5 to-secondary/5 rounded-full filter blur-3xl opacity-30 animate-breathe"></div>
-        <div class="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary/5 to-accent/5 rounded-full filter blur-3xl opacity-30 animate-breathe" style="animation-delay: 1s"></div>
-        
-        <!-- Floating Particles -->
-        <div class="particles">
-          <div class="particle" style="top: 15%; left: 25%; width: 3px; height: 3px; animation-duration: 22s;"></div>
-          <div class="particle" style="top: 35%; left: 65%; width: 2px; height: 2px; animation-duration: 27s;"></div>
-          <div class="particle" style="top: 65%; left: 45%; width: 4px; height: 4px; animation-duration: 32s;"></div>
-          <div class="particle" style="top: 45%; left: 15%; width: 2px; height: 2px; animation-duration: 24s;"></div>
-          <div class="particle" style="top: 25%; left: 85%; width: 3px; height: 3px; animation-duration: 30s;"></div>
+        <!-- School Societies Section -->
+<section id="societies" class="societies-section py-20 px-4 relative overflow-hidden">
+  <!-- Animated Background Elements -->
+  <div class="societies-bg-element societies-bg-1"></div>
+  <div class="societies-bg-element societies-bg-2"></div>
+  
+  <div class="container mx-auto max-w-6xl relative z-10">
+    <!-- Section Title with Animation -->
+    <div class="societies-title-container">
+      <div class="societies-title-icon">
+        <i class="ri-team-line"></i>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold gradient-text bg-gradient-to-r from-primary/80 to-secondary/80 inline-block">
+        School Societies
+      </h2>
+      <div class="societies-title-line"></div>
+      <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto text-center">
+        Explore our vibrant student societies where talents flourish and passions come to life
+      </p>
+    </div>
+    
+    <!-- Societies Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+      
+      <!-- Science Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Science&background=e74c3c&color=fff&rounded=true&size=200" alt="Science Society Logo" class="society-logo">
+          </div>
+          
+          <!-- Society Content -->
+          <h3 class="society-name">Science Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Fostering scientific curiosity through experiments, competitions, and research projects that inspire future scientists and innovators.
+          </p>
+          
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
         </div>
       </div>
       
-      <div class="container mx-auto max-w-6xl relative z-10">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-4 relative inline-block">
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">School Societies</span>
-            <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary/70 to-accent/70 rounded-full transform scale-x-0 transition-transform duration-700 group-hover:scale-x-100" id="societyTitleLine"></div>
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Discover our vibrant community of clubs and societies where students develop leadership, teamwork, and pursue their passions.</p>
-        </div>
-        
-        <!-- Society Categories -->
-        <div class="flex flex-wrap justify-center gap-4 p-4 mb-12 rounded-2xl bg-white/10 dark:bg-gray-800/20 backdrop-blur-md shadow-lg border border-white/10 dark:border-white/5 transition-all duration-500">
-          <button class="society-filter-btn active group flex flex-col items-center justify-center px-5 py-3 rounded-xl bg-white/10 hover:bg-primary/80 transition-all duration-300" data-category="all" aria-pressed="true">
-            <div class="relative">
-              <i class="fas fa-users text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-              <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
-            </div>
-            <span class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
-              All
-            </span>
-          </button>
-          <button class="society-filter-btn group flex flex-col items-center justify-center px-5 py-3 rounded-xl bg-white/10 hover:bg-primary/80 transition-all duration-300" data-category="academic" aria-pressed="false">
-            <div class="relative">
-              <i class="fas fa-book text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-              <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
-            </div>
-            <span class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
-              Academic
-            </span>
-          </button>
-          <button class="society-filter-btn group flex flex-col items-center justify-center px-5 py-3 rounded-xl bg-white/10 hover:bg-primary/80 transition-all duration-300" data-category="sports" aria-pressed="false">
-            <div class="relative">
-              <i class="fas fa-running text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-              <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
-            </div>
-            <span class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
-              Sports
-            </span>
-          </button>
-          <button class="society-filter-btn group flex flex-col items-center justify-center px-5 py-3 rounded-xl bg-white/10 hover:bg-primary/80 transition-all duration-300" data-category="arts" aria-pressed="false">
-            <div class="relative">
-              <i class="fas fa-palette text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-              <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
-            </div>
-            <span class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
-              Arts
-            </span>
-          </button>
-          <button class="society-filter-btn group flex flex-col items-center justify-center px-5 py-3 rounded-xl bg-white/10 hover:bg-primary/80 transition-all duration-300" data-category="service" aria-pressed="false">
-            <div class="relative">
-              <i class="fas fa-hands-helping text-2xl text-primary group-hover:text-white transition-colors duration-300"></i>
-              <span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 animate-pulse"></span>
-            </div>
-            <span class="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-white transition-colors duration-300">
-              Service
-            </span>
-          </button>
-        </div>
-        
-        <!-- Society Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="societyGrid">
-          <!-- Science Society Card -->
-          <div class="society-card group" data-category="academic">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-secondary"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-flask text-xl text-primary"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Science Society</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Explore the wonders of science through experiments, competitions, and research projects. Open to all students with a passion for discovery.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Tuesdays & Thursdays</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>45+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Experiments</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Research</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Competitions</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-primary/80 to-secondary/80 hover:from-primary hover:to-secondary text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
+      <!-- Literary Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Literary&background=8e44ad&color=fff&rounded=true&size=200" alt="Literary Society Logo" class="society-logo">
           </div>
           
-          <!-- Cricket Club Card -->
-          <div class="society-card group" data-category="sports">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-secondary to-accent"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-baseball-ball text-xl text-secondary"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Cricket Club</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Join our prestigious cricket team to develop your skills, compete in interschool tournaments, and continue our school's legacy of cricket excellence.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Mon, Wed, Fri</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>30+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Training</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Tournaments</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Teamwork</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-secondary/80 to-accent/80 hover:from-secondary hover:to-accent text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-secondary/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
+          <!-- Society Content -->
+          <h3 class="society-name">Literary Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Celebrating the power of words through creative writing, debates, poetry slams, and literary competitions that nurture eloquence and expression.
+          </p>
           
-          <!-- Arts Club Card -->
-          <div class="society-card group" data-category="arts">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-accent to-primary"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-paint-brush text-xl text-accent"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Arts Club</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Express yourself through various art forms including painting, sculpture, and digital art. Regular exhibitions showcase student creativity.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Wednesdays & Saturdays</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>35+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Painting</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Exhibitions</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Creativity</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-accent/80 to-primary/80 hover:from-accent hover:to-primary text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-accent/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
           </div>
-          
-          <!-- Community Service Club Card -->
-          <div class="society-card group" data-category="service">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-primary to-accent"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-hand-holding-heart text-xl text-primary"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Community Service Club</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Make a difference in our community through volunteer work, charity drives, and environmental initiatives. Develop leadership and compassion.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Fridays & Weekends</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>40+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Volunteering</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Charity</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Leadership</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-primary/80 to-accent/80 hover:from-primary hover:to-accent text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Debate Club Card -->
-          <div class="society-card group" data-category="academic">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-secondary to-primary"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-comments text-xl text-secondary"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Debate Club</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Sharpen your critical thinking and public speaking skills. Participate in interschool and national level debate competitions.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Mondays & Thursdays</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>25+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Public Speaking</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Critical Thinking</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Competitions</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-secondary/80 to-primary/80 hover:from-secondary hover:to-primary text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-secondary/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Chess Club Card -->
-          <div class="society-card group" data-category="academic">
-            <div class="relative overflow-hidden rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-              <!-- Card Top Decoration -->
-              <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-accent to-secondary"></div>
-              
-              <!-- Card Content -->
-              <div class="p-6">
-                <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mr-4">
-                    <i class="fas fa-chess-knight text-xl text-accent"></i>
-                  </div>
-                  <h3 class="text-xl font-bold text-gray-800 dark:text-white">Chess Club</h3>
-                </div>
-                
-                <p class="text-gray-600 dark:text-gray-300 mb-4">Learn strategy, patience, and foresight through the royal game of chess. All skill levels welcome, from beginners to advanced players.</p>
-                
-                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <div class="flex items-center mr-4">
-                    <i class="fas fa-clock mr-2"></i>
-                    <span>Tuesdays & Fridays</span>
-                  </div>
-                  <div class="flex items-center">
-                    <i class="fas fa-user-friends mr-2"></i>
-                    <span>20+ members</span>
-                  </div>
-                </div>
-                
-                <!-- Tags -->
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-1 text-xs rounded-full bg-accent/10 text-accent dark:bg-accent/20">Strategy</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-secondary/10 text-secondary dark:bg-secondary/20">Tournaments</span>
-                  <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary dark:bg-primary/20">Logic</span>
-                </div>
-                
-                <!-- Action Button -->
-                <button class="w-full py-2 px-4 bg-gradient-to-r from-accent/80 to-secondary/80 hover:from-accent hover:to-secondary text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-accent/50 mt-2">
-                  <span class="flex items-center justify-center">
-                    <span>Learn More</span>
-                    <i class="fas fa-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- View All Societies Button -->
-        <div class="text-center mt-12">
-          <a href="#" class="inline-block py-3 px-8 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white rounded-full transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary/50 shadow-lg hover:shadow-xl">
-            <span class="flex items-center justify-center">
-              <span class="mr-2">View All Societies</span>
-              <i class="fas fa-arrow-right text-sm"></i>
-            </span>
-          </a>
         </div>
       </div>
-    </section>
+      
+      <!-- Arts Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Arts&background=f39c12&color=fff&rounded=true&size=200" alt="Arts Society Logo" class="society-logo">
+          </div>
+          
+          <!-- Society Content -->
+          <h3 class="society-name">Arts Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Unleashing creativity through visual arts, crafts, exhibitions, and workshops that showcase artistic talents and cultural expression.
+          </p>
+          
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sports Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Sports&background=3498db&color=fff&rounded=true&size=200" alt="Sports Society Logo" class="society-logo">
+          </div>
+          
+          <!-- Society Content -->
+          <h3 class="society-name">Sports Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Promoting physical excellence, teamwork, and sportsmanship through various sports activities, tournaments, and fitness programs.
+          </p>
+          
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Environmental Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Eco&background=2ecc71&color=fff&rounded=true&size=200" alt="Environmental Society Logo" class="society-logo">
+          </div>
+          
+          <!-- Society Content -->
+          <h3 class="society-name">Environmental Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Championing sustainability through conservation projects, awareness campaigns, and eco-friendly initiatives that protect our planet.
+          </p>
+          
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Technology Society -->
+      <div class="society-card">
+        <div class="society-inner">
+          <!-- Decorative Corner Elements -->
+          <div class="society-corner society-corner-tl"></div>
+          <div class="society-corner society-corner-br"></div>
+          
+          <!-- Society Logo -->
+          <div class="society-logo-container">
+            <img src="https://ui-avatars.com/api/?name=Tech&background=1abc9c&color=fff&rounded=true&size=200" alt="Technology Society Logo" class="society-logo">
+          </div>
+          
+          <!-- Society Content -->
+          <h3 class="society-name">Technology Society</h3>
+          <div class="society-divider"></div>
+          <p class="society-description">
+            Exploring digital frontiers through coding, robotics, app development, and tech workshops that prepare students for the digital future.
+          </p>
+          
+          <!-- Society Button -->
+          <div class="text-center">
+            <a href="#" class="society-button">
+              Learn More <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- View All Societies Button -->
+    <div class="mt-16 text-center">
+      <a href="#" class="group relative overflow-hidden inline-block px-8 py-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-medium shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+        <span class="relative z-10 flex items-center justify-center">
+          Explore All Societies
+          <i class="ri-arrow-right-line ml-2 transform transition-transform duration-300 group-hover:translate-x-1"></i>
+        </span>
+        <span class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+      </a>
+    </div>
+  </div>
+</section>           
 
     <!-- Enhanced News & Events Section with Advanced UI/UX Features -->
 <section id="news" class="py-20 px-4 relative overflow-hidden">
