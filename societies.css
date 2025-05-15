@@ -1,0 +1,260 @@
+/* School Societies Section Specific Styles */
+
+/* Section Container */
+.societies-section {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+/* Background Elements */
+.societies-bg-element {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.societies-bg-1 {
+  top: -10%;
+  left: -5%;
+  width: 40%;
+  height: 40%;
+  background: linear-gradient(45deg, #e74c3c, #f39c12);
+  animation: float 15s ease-in-out infinite;
+}
+
+.societies-bg-2 {
+  bottom: -15%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(45deg, #8e44ad, #3498db);
+  animation: float 20s ease-in-out infinite reverse;
+}
+
+/* Section Title */
+.societies-title-container {
+  position: relative;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.societies-title-icon {
+  position: absolute;
+  top: -2.5rem;
+  left: -2.5rem;
+  font-size: 5rem;
+  color: rgba(142, 68, 173, 0.1);
+  transform: rotate(-15deg);
+  animation: float 6s ease-in-out infinite;
+}
+
+.societies-title-line {
+  width: 6rem;
+  height: 0.25rem;
+  margin: 0.75rem auto 0;
+  border-radius: 1rem;
+  background: linear-gradient(to right, #e74c3c, #f39c12);
+  animation: pulse 3s infinite;
+}
+
+/* Society Cards */
+.society-card {
+  position: relative;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+.society-card:hover {
+  transform: translateY(-10px);
+}
+
+.society-inner {
+  position: relative;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.dark .society-inner {
+  background: rgba(30, 30, 30, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.society-card:hover .society-inner {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dark .society-card:hover .society-inner {
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Society Logo */
+.society-logo-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.dark .society-logo-container {
+  background: #2a2a2a;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.society-card:hover .society-logo-container {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.society-logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  transition: all 0.4s ease;
+}
+
+.society-card:hover .society-logo {
+  transform: scale(1.1);
+}
+
+/* Society Content */
+.society-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.society-card:hover .society-name {
+  color: #e74c3c;
+}
+
+.dark .society-card:hover .society-name {
+  color: #f39c12;
+}
+
+.society-description {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+.dark .society-description {
+  color: #ccc;
+}
+
+/* Society Divider */
+.society-divider {
+  width: 3rem;
+  height: 0.125rem;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(to right, #e74c3c, #f39c12);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.society-card:hover .society-divider {
+  width: 5rem;
+}
+
+/* Society Button */
+.society-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(to right, #e74c3c, #f39c12);
+  color: white;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+.society-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+}
+
+.society-button i {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.society-button:hover i {
+  transform: translateX(3px);
+}
+
+/* Decorative Elements */
+.society-corner {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.society-corner-tl {
+  top: -0.25rem;
+  left: -0.25rem;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-top-left-radius: 0.5rem;
+  border-color: rgba(231, 76, 60, 0.5);
+}
+
+.society-corner-br {
+  bottom: -0.25rem;
+  right: -0.25rem;
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-bottom-right-radius: 0.5rem;
+  border-color: rgba(243, 156, 18, 0.5);
+}
+
+.society-card:hover .society-corner {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .societies-section {
+    padding: 4rem 0;
+  }
+  
+  .society-logo-container {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .society-name {
+    font-size: 1.25rem;
+  }
+}

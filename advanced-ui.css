@@ -519,7 +519,9 @@
   position: relative;
   overflow: visible; /* Allow glow effects to extend beyond container */
   border-radius: 50%;
-  padding: 3px;
+  padding: 5px; /* Increased padding */
+  width: 45px; /* Added explicit width */
+  height: 45px; /* Added explicit height */
   background: #000000; /* Black background in both modes */
   box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 25px rgba(255, 150, 0, 0.4); /* Red-yellow glow */
   transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -547,6 +549,8 @@
 .logo-container img {
   z-index: 2;
   position: relative;
+  width: 35px; /* Added explicit width for the image */
+  height: 35px; /* Added explicit height for the image */
   transition: transform var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
   filter: drop-shadow(0 0 5px rgba(255, 120, 0, 0.6)) brightness(1.1) contrast(1.1); /* Red-yellow tinted shadow */
   transform: translateZ(10px);
