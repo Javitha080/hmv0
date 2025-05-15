@@ -515,48 +515,73 @@
 }
 
 /* Logo Container */
-.logo-container {
+.logo-container, .logo-container.mr-3 {
   position: relative;
-  overflow: visible; /* Changed from hidden to allow glow effects to extend beyond container */
+  overflow: visible; /* Allow glow effects to extend beyond container */
   border-radius: 50%;
-  padding: 3px; /* Slightly increased padding */
-  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary));
-  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6), 0 0 35px rgba(255, 0, 85, 0.3); /* Enhanced glow effect */
-  transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
+  padding: 3px;
+  background: #000000; /* Black background in both modes */
+  box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 25px rgba(255, 150, 0, 0.4); /* Red-yellow glow */
+  transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  transform-style: preserve-3d; /* Enable 3D effects */
+  transform-style: preserve-3d;
   perspective: 800px;
-  animation: pulse-logo 3s infinite alternate ease-in-out; /* Subtle pulsing animation */
+  animation: logo-pulse 4s infinite alternate ease-in-out;
+  margin-right: 0.75rem;
 }
 
-/* Spinning gradient border effect */
-.logo-container::before {
-  content: '';
-  position: absolute;
-  inset: -2px; /* Extend beyond the container */
-  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary), var(--amoled-accent-primary));
-  border-radius: 50%;
-  animation: spin 6s linear infinite; /* Slower spin for more elegance */
-  opacity: 0.8; /* Always visible but not too strong */
-  transition: opacity var(--transition-medium) ease, filter var(--transition-medium) ease;
-  filter: blur(3px); /* Soft blur effect */
-  background-size: 300% 300%; /* Larger gradient for more movement */
-  z-index: 0;
+/* Removed ::after pseudo-element completely */
+
+.logo-container:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 0 20px rgba(255, 60, 0, 0.8), /* Red glow */
+    0 0 35px rgba(255, 180, 0, 0.6), /* Yellow glow */
+    inset 0 0 15px rgba(255, 120, 0, 0.5); /* Inner glow */
+  background: linear-gradient(45deg, #000000, #1a0000); /* Subtle gradient on hover */
 }
 
-/* New outer glow ring */
+/* Logo image with light/dark mode adaptations */
+.logo-container img {
+  z-index: 2;
+  position: relative;
+  transition: transform var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 5px rgba(255, 120, 0, 0.6)) brightness(1.1) contrast(1.1); /* Red-yellow tinted shadow */
+  transform: translateZ(10px);
+}
+
+.logo-container:hover img {
+  transform: translateZ(20px) scale(1.05);
+  filter: drop-shadow(0 0 8px rgba(255, 180, 0, 0.8)) brightness(1.2) contrast(1.2); /* Enhanced yellow glow */
+}
+
+/* Logo animations */
+@keyframes logo-pulse {
+  0% { 
+    box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 25px rgba(255, 150, 0, 0.4);
+    transform: scale(1); 
+  }
+  50% { 
+    box-shadow: 0 0 18px rgba(255, 60, 0, 0.7), 0 0 30px rgba(255, 180, 0, 0.5);
+  }
+  100% { 
+    box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 25px rgba(255, 150, 0, 0.4);
+    transform: scale(1.03); 
+  }
+}
+
 .logo-container::after {
   content: '';
   position: absolute;
-  inset: -5px; /* Larger than the before element */
+  inset: -5px;
   border-radius: 50%;
   background: transparent;
   border: 2px solid transparent;
   background-clip: padding-box;
   box-shadow: 0 0 25px rgba(255, 0, 85, 0.7), inset 0 0 15px rgba(255, 0, 85, 0.5);
-  opacity: 0;
+  opacity: 0.5; /* Always visible for better eye-catching effect */
   transition: opacity var(--transition-fast) ease;
   animation: pulse-glow 2s infinite alternate ease-in-out;
   z-index: -1;
@@ -567,27 +592,36 @@
   box-shadow: 0 0 30px rgba(255, 0, 85, 0.8), 0 0 50px rgba(255, 0, 85, 0.4); /* Intensified glow */
 }
 
-.logo-container:hover::before {
-  opacity: 1;
-  filter: blur(2px); /* Sharper on hover */
-  animation: spin 3s linear infinite; /* Faster spin on hover */
-}
-
 .logo-container:hover::after {
   opacity: 1;
 }
 
+/* Logo image with light/dark mode adaptations */
 .logo-container img {
   z-index: 2;
   position: relative;
   transition: transform var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Subtle glow around the logo itself */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)) brightness(1.1) contrast(1.1); /* Enhanced for white logo */
   transform: translateZ(10px); /* 3D effect */
+}
+
+/* Dark mode specific adjustments */
+.logo-container img {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)) brightness(1.1) contrast(1.1); /* For dark mode */
+}
+
+/* Light mode specific adjustments */
+.light .logo-container img {
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) brightness(0.95) contrast(1.2) invert(0.1); /* For light mode - subtle invert to make white logo visible */
 }
 
 .logo-container:hover img {
   transform: translateZ(20px) scale(1.05); /* Enhanced 3D effect on hover */
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); /* Enhanced glow */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) brightness(1.2) contrast(1.2); /* Enhanced glow */
+}
+
+.light .logo-container:hover img {
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4)) brightness(1) contrast(1.3) invert(0.15); /* Enhanced for light mode hover */
 }
 
 /* Logo animations */
