@@ -517,46 +517,94 @@
 /* Logo Container */
 .logo-container {
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to allow glow effects to extend beyond container */
   border-radius: 50%;
-  padding: 2px;
-  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary));
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
-  transition: all var(--transition-medium) ease;
+  padding: 3px; /* Slightly increased padding */
+  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary));
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.6), 0 0 35px rgba(255, 0, 85, 0.3); /* Enhanced glow effect */
+  transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
   display: flex;
   align-items: center;
   justify-content: center;
+  transform-style: preserve-3d; /* Enable 3D effects */
+  perspective: 800px;
+  animation: pulse-logo 3s infinite alternate ease-in-out; /* Subtle pulsing animation */
 }
 
+/* Spinning gradient border effect */
 .logo-container::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary));
+  inset: -2px; /* Extend beyond the container */
+  background: linear-gradient(45deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary), var(--amoled-accent-primary));
   border-radius: 50%;
-  animation: spin 4s linear infinite;
+  animation: spin 6s linear infinite; /* Slower spin for more elegance */
+  opacity: 0.8; /* Always visible but not too strong */
+  transition: opacity var(--transition-medium) ease, filter var(--transition-medium) ease;
+  filter: blur(3px); /* Soft blur effect */
+  background-size: 300% 300%; /* Larger gradient for more movement */
+  z-index: 0;
+}
+
+/* New outer glow ring */
+.logo-container::after {
+  content: '';
+  position: absolute;
+  inset: -5px; /* Larger than the before element */
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 25px rgba(255, 0, 85, 0.7), inset 0 0 15px rgba(255, 0, 85, 0.5);
   opacity: 0;
-  transition: opacity var(--transition-medium) ease;
+  transition: opacity var(--transition-fast) ease;
+  animation: pulse-glow 2s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+.logo-container:hover {
+  transform: scale(1.08) rotate(5deg); /* Slight rotation on hover */
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.8), 0 0 50px rgba(255, 0, 85, 0.4); /* Intensified glow */
 }
 
 .logo-container:hover::before {
   opacity: 1;
+  filter: blur(2px); /* Sharper on hover */
+  animation: spin 3s linear infinite; /* Faster spin on hover */
+}
+
+.logo-container:hover::after {
+  opacity: 1;
 }
 
 .logo-container img {
-  z-index: 1;
+  z-index: 2;
   position: relative;
+  transition: transform var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Subtle glow around the logo itself */
+  transform: translateZ(10px); /* 3D effect */
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.logo-container:hover img {
+  transform: translateZ(20px) scale(1.05); /* Enhanced 3D effect on hover */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)); /* Enhanced glow */
+}
+
+/* Logo animations */
+@keyframes pulse-logo {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
+}
+
+@keyframes pulse-glow {
+  0% { opacity: 0.3; box-shadow: 0 0 15px rgba(255, 0, 85, 0.5), inset 0 0 10px rgba(255, 0, 85, 0.3); }
+  100% { opacity: 0.6; box-shadow: 0 0 25px rgba(255, 0, 85, 0.7), inset 0 0 20px rgba(255, 0, 85, 0.5); }
 }
 
 /* Navigation Menu */
 .nav-menu {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.5rem; /* Consider adjusting gap for responsiveness if needed */
   align-items: center;
 }
 
@@ -564,95 +612,131 @@
   position: relative;
   color: var(--amoled-text-secondary);
   font-weight: 500;
-  padding: 0.5rem 0;
-  transition: all var(--transition-fast) ease;
+  padding: 0.5rem 0.25rem; /* Adjusted padding for a tighter look */
+  transition: all var(--transition-medium) ease; /* Smoother transition for all properties */
+  text-decoration: none; /* Ensure no default underline */
+  outline: none; /* Remove focus outline if not desired, or style it */
 }
 
 .nav-link::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px; /* Position accent line slightly below text */
   left: 0;
   width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--amoled-accent-primary), var(--amoled-accent-secondary));
-  transition: width var(--transition-medium) ease;
+  height: 2.5px; /* Slightly thicker line */
+  background: linear-gradient(90deg, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary)); /* Added tertiary color */
+  transition: width var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother easing */
+  border-radius: 1px; /* Rounded ends for the line */
 }
 
-.nav-link:hover {
-  color: var(--amoled-text);
-}
-
-.nav-link:hover::before {
-  width: 100%;
-}
-
+.nav-link:hover,
+.nav-link.hover-active, /* Combined hover and active states for consistency */
 .nav-link.active {
   color: var(--amoled-text);
+  transform: translateY(-1px); /* Subtle lift effect */
 }
 
+.nav-link:hover::before,
+.nav-link.hover-active::before,
 .nav-link.active::before {
   width: 100%;
 }
 
 /* Dropdown Menu */
+/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px); /* Ensure consistent spacing, matching JS */
   left: 0;
-  min-width: 200px;
+  min-width: 220px; /* Slightly wider dropdown */
   background: var(--glass-bg-dark);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px); /* Increased blur for better glass effect */
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border-dark);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem; /* Larger border radius */
   padding: 0.75rem;
-  box-shadow: var(--glass-shadow-dark);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity var(--transition-fast) ease, transform var(--transition-fast) ease, visibility var(--transition-fast) ease;
-  z-index: 10;
+  transform: translateY(15px) scale(0.98); /* Initial state for animation */
+  transform-origin: top center;
+  transition: opacity var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1),
+              visibility var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1000; /* Ensure dropdown is above other content */
+  pointer-events: none;
 }
 
 .light .dropdown-menu {
   background: var(--glass-bg-light);
   border: 1px solid var(--glass-border-light);
-  box-shadow: var(--glass-shadow-light);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
 }
 
-.nav-item:hover .dropdown-menu {
+.dropdown-menu[style*="visibility: visible"] {
+  pointer-events: auto;
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
+
+/* When dropdown is visible, enable pointer events */
+/* This is now handled in the main dropdown-menu styles above */
+
+/* Style for nav-link when hovering - now combined with other hover states above */
 
 .dropdown-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
+  gap: 0.75rem; /* Increased gap */
+  padding: 0.6rem 0.85rem; /* Adjusted padding */
   color: var(--amoled-text-secondary);
-  border-radius: 0.25rem;
-  transition: all var(--transition-fast) ease;
+  border-radius: 0.35rem; /* Slightly larger radius */
+  transition: all var(--transition-fast) ease-out; /* Smoother transition */
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
 }
 
 .dropdown-link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12); /* Slightly more visible hover */
   color: var(--amoled-text);
-  padding-left: 1rem;
+  transform: translateX(4px); /* More pronounced shift */
+  padding-left: 1.1rem; /* Adjust padding on hover for the accent line */
+}
+
+.dropdown-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-12px); /* Start further left */
+  height: 70%; /* Taller accent line */
+  width: 3.5px; /* Thicker line */
+  background: linear-gradient(to bottom, var(--amoled-accent-primary), var(--amoled-accent-secondary), var(--amoled-accent-tertiary));
+  border-radius: 2px;
+  opacity: 0;
+  transition: all var(--transition-medium) cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.dropdown-link:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
 }
 
 .dropdown-link .icon {
-  width: 6px;
-  height: 6px;
+  width: 7px; /* Slightly larger icon */
+  height: 7px;
   border-radius: 50%;
   background: var(--amoled-accent-primary);
-  transition: all var(--transition-fast) ease;
+  transition: all var(--transition-medium) ease;
+  box-shadow: 0 0 0px transparent; /* Prepare for shadow animation */
 }
 
 .dropdown-link:hover .icon {
-  transform: scale(1.2);
+  transform: scale(1.3) rotate(45deg); /* Added rotation */
+  background: var(--amoled-accent-secondary);
+  box-shadow: 0 0 10px var(--amoled-accent-primary), 0 0 5px var(--amoled-accent-secondary); /* Enhanced shadow */
 }
 
 /* Mobile Menu Button */

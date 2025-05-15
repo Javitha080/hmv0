@@ -372,26 +372,54 @@ function initDropdownMenus() {
   
   const navItems = document.querySelectorAll('.nav-item');
   
+  // Check if GSAP is available
+  if (typeof gsap === 'undefined') {
+    console.error('GSAP library not found. Dropdown animations will be disabled.');
+    return;
+  }
+  
   navItems.forEach(item => {
     const link = item.querySelector('.nav-link');
     const dropdown = item.querySelector('.dropdown-menu');
     
     if (!link || !dropdown) return;
     
-    // Ensure dropdown is properly positioned
-    link.addEventListener('mouseenter', () => {
-      // Calculate if dropdown would go off-screen
-      const rect = dropdown.getBoundingClientRect();
-      const windowWidth = window.innerWidth;
-      
-      if (rect.right > windowWidth) {
-        dropdown.style.left = 'auto';
-        dropdown.style.right = '0';
-      }
+    // Reset any previously set positioning
+    gsap.set(dropdown, {
+      opacity: 0,
+      y: 10,
+      visibility: 'hidden'
     });
     
-    // Add animation for smoother transitions
+    // Function to calculate and set proper dropdown position
+    const positionDropdown = () => {
+      // Reset position first to get accurate measurements
+      dropdown.style.left = '';
+      dropdown.style.right = '';
+      
+      // Get the necessary measurements
+      const linkRect = link.getBoundingClientRect();
+      const dropdownRect = dropdown.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      
+      // Calculate if dropdown would go off-screen to the right
+      if (linkRect.left + dropdownRect.width > windowWidth) {
+        // Position from the right edge of the nav item
+        dropdown.style.left = 'auto';
+        dropdown.style.right = '0';
+      } else {
+        // Default position from the left
+        dropdown.style.left = '0';
+        dropdown.style.right = 'auto';
+      }
+      
+      // Add a small offset to prevent dropdown from touching the nav item
+      dropdown.style.top = 'calc(100% + 8px)';
+    };
+    
+    // Position dropdown on hover
     item.addEventListener('mouseenter', () => {
+      positionDropdown();
       gsap.to(dropdown, {
         opacity: 1,
         y: 0,
@@ -399,18 +427,27 @@ function initDropdownMenus() {
         ease: 'power2.out',
         visibility: 'visible'
       });
+      link.classList.add('hover-active');
     });
     
     item.addEventListener('mouseleave', () => {
       gsap.to(dropdown, {
         opacity: 0,
         y: 10,
-        duration: 0.3,
+        duration: 0.2,
         ease: 'power2.in',
         onComplete: () => {
           dropdown.style.visibility = 'hidden';
         }
       });
+      link.classList.remove('hover-active');
+    });
+    
+    // Update position on window resize if dropdown is visible
+    window.addEventListener('resize', () => {
+      if (dropdown.style.visibility === 'visible') {
+        positionDropdown();
+      }
     });
   });
   
