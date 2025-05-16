@@ -28,6 +28,88 @@ function initContactAnimations() {
   
   // Add form interactions
   enhanceContactForm();
+  
+  // Enhance Get In Touch card and Map card
+  enhanceGetInTouchCard();
+  enhanceMapCard();
+}
+
+/**
+ * Enhance the Get In Touch card with interactive effects
+ */
+function enhanceGetInTouchCard() {
+  const getInTouchCard = document.querySelector('#contact .flex-col .glassmorphism:first-child');
+  
+  if (!getInTouchCard) return;
+  
+  // Add hover effect
+  getInTouchCard.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-5px)';
+    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+    
+    // Enhance the corner elements
+    const corners = this.querySelectorAll('.absolute');
+    corners.forEach(corner => {
+      corner.style.borderColor = 'rgba(239, 68, 68, 0.8)';
+      corner.style.transition = 'all 0.3s ease';
+    });
+  });
+  
+  getInTouchCard.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+    this.style.boxShadow = '';
+    
+    // Reset corner elements
+    const corners = this.querySelectorAll('.absolute');
+    corners.forEach(corner => {
+      corner.style.borderColor = '';
+    });
+  });
+  
+  // Add subtle pulse animation to icons
+  const icons = getInTouchCard.querySelectorAll('.fas');
+  icons.forEach(icon => {
+    icon.classList.add('transition-all', 'duration-300');
+    icon.parentElement.addEventListener('mouseenter', function() {
+      icon.classList.add('scale-125');
+    });
+    icon.parentElement.addEventListener('mouseleave', function() {
+      icon.classList.remove('scale-125');
+    });
+  });
+}
+
+/**
+ * Enhance the Map card with interactive effects
+ */
+function enhanceMapCard() {
+  const mapCard = document.querySelector('#contact .flex-col .glassmorphism:last-child');
+  const iframe = mapCard?.querySelector('iframe');
+  
+  if (!mapCard || !iframe) return;
+  
+  // Add hover effect
+  mapCard.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateY(-5px)';
+    this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+    iframe.style.transform = 'scale(1.02)';
+  });
+  
+  mapCard.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+    this.style.boxShadow = '';
+    iframe.style.transform = '';
+  });
+  
+  // Add loading animation
+  iframe.addEventListener('load', function() {
+    this.style.opacity = '1';
+    mapCard.classList.add('loaded');
+  });
+  
+  // Set initial state
+  iframe.style.opacity = '0.7';
+  iframe.style.transition = 'all 0.5s ease';
 }
 
 /**
@@ -107,21 +189,25 @@ function initContactGsapAnimations() {
  * Initialize standard animations without GSAP
  */
 function initContactStandardAnimations() {
-  // Add fade-in class to contact elements with delay
-  const contactElements = document.querySelectorAll('#contact .glassmorphism, #contact .contact-form, #contact iframe');
-  contactElements.forEach((element, index) => {
-    setTimeout(() => {
-      element.classList.add('contact-element-visible');
-    }, 150 * index);
-  });
-
-  // Add fade-in for list items
+  // Add fade-in animation to contact form
+  const contactForm = document.querySelector('#contact .glassmorphism');
+  if (contactForm) {
+    contactForm.classList.add('animate-fadeIn');
+  }
+  
+  // Add staggered animation to contact info items
   const contactItems = document.querySelectorAll('#contact ul li');
   contactItems.forEach((item, index) => {
-    setTimeout(() => {
-      item.classList.add('contact-item-visible');
-    }, 100 * index);
+    item.style.animationDelay = `${index * 0.1}s`;
+    item.classList.add('animate-slideInRight');
   });
+  
+  // Add animation to map
+  const mapContainer = document.querySelector('#contact .flex-col .glassmorphism:last-child');
+  if (mapContainer) {
+    mapContainer.classList.add('animate-fadeIn');
+    mapContainer.style.animationDelay = '0.3s';
+  }
 }
 
 /**
