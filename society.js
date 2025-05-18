@@ -1,27 +1,29 @@
 // Society Section JavaScript
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Society Data - Replace with actual data
   const societyData = [
     {
       id: 1,
       name: "Science Society",
       category: "academic",
-      description: "Exploring scientific concepts through experiments and discussions",
+      description:
+        "Exploring scientific concepts through experiments and discussions",
       image: "https://picsum.photos/id/1011/600/400",
       members: 45,
       established: "2010",
-      achievements: "National Science Competition Winners 2023"
+      achievements: "National Science Competition Winners 2023",
     },
     {
       id: 2,
       name: "Literary Club",
       category: "cultural",
-      description: "Fostering creativity through writing and literary appreciation",
+      description:
+        "Fostering creativity through writing and literary appreciation",
       image: "https://picsum.photos/id/1012/600/400",
       members: 30,
       established: "2012",
-      achievements: "Published school anthology 'Creative Minds'"
+      achievements: "Published school anthology 'Creative Minds'",
     },
     {
       id: 3,
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
       image: "https://picsum.photos/id/1013/600/400",
       members: 60,
       established: "2008",
-      achievements: "District Cricket Champions 2024"
+      achievements: "District Cricket Champions 2024",
     },
     {
       id: 4,
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
       image: "https://picsum.photos/id/1014/600/400",
       members: 25,
       established: "2015",
-      achievements: "National Art Exhibition Participants"
+      achievements: "National Art Exhibition Participants",
     },
     {
       id: 5,
@@ -51,17 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
       image: "https://picsum.photos/id/1015/600/400",
       members: 20,
       established: "2018",
-      achievements: "Regional Robotics Challenge Finalists"
+      achievements: "Regional Robotics Challenge Finalists",
     },
     {
       id: 6,
       name: "Environmental Club",
       category: "service",
-      description: "Working towards a sustainable environment through awareness and action",
+      description:
+        "Working towards a sustainable environment through awareness and action",
       image: "https://picsum.photos/id/1016/600/400",
       members: 35,
       established: "2014",
-      achievements: "School Garden Project Implementation"
+      achievements: "School Garden Project Implementation",
     },
     {
       id: 7,
@@ -71,63 +74,76 @@ document.addEventListener('DOMContentLoaded', function() {
       image: "https://picsum.photos/id/1017/600/400",
       members: 22,
       established: "2016",
-      achievements: "Inter-School Debate Competition Winners"
+      achievements: "Inter-School Debate Competition Winners",
     },
     {
       id: 8,
       name: "Music Society",
       category: "cultural",
-      description: "Exploring musical talents through various instruments and vocals",
+      description:
+        "Exploring musical talents through various instruments and vocals",
       image: "https://picsum.photos/id/1018/600/400",
       members: 28,
       established: "2011",
-      achievements: "Annual Cultural Show Performances"
+      achievements: "Annual Cultural Show Performances",
     },
     {
       id: 9,
       name: "Community Service Club",
       category: "service",
-      description: "Engaging in community service projects to help those in need",
+      description:
+        "Engaging in community service projects to help those in need",
       image: "https://picsum.photos/id/1019/600/400",
       members: 40,
       established: "2013",
-      achievements: "Organized Annual Charity Drive"
-    }
+      achievements: "Organized Annual Charity Drive",
+    },
   ];
 
   // Function to render society cards
-  function renderSocieties(category = 'all') {
-    const societyGrid = document.getElementById('societyGrid');
+  function renderSocieties(category = "all") {
+    const societyGrid = document.getElementById("societyGrid");
     if (!societyGrid) return;
-    
-    societyGrid.innerHTML = '';
 
-    const filteredSocieties = category === 'all' 
-      ? societyData 
-      : societyData.filter(society => society.category === category);
+    societyGrid.innerHTML = "";
 
-    filteredSocieties.forEach(society => {
-      const card = document.createElement('div');
-      card.className = 'society-card glassmorphism hover-zoom';
+    const filteredSocieties =
+      category === "all"
+        ? societyData
+        : societyData.filter((society) => society.category === category);
+
+    filteredSocieties.forEach((society) => {
+      const card = document.createElement("div");
+      card.className = "society-card glassmorphism hover-zoom";
       card.innerHTML = `
         <div class="card-header relative overflow-hidden rounded-t-xl">
-          <img src="${society.image}" alt="${society.name}" class="w-full h-auto object-cover" />
-          <div class="category-badge badge-${society.category}">${capitalizeFirstLetter(society.category)}</div>
+          <img src="${society.image}" alt="${
+        society.name
+      }" class="w-full h-auto object-cover" />
+          <div class="category-badge badge-${
+            society.category
+          }">${capitalizeFirstLetter(society.category)}</div>
         </div>
         <div class="card-body p-4">
           <h3 class="text-lg font-semibold mb-2">${society.name}</h3>
           <p class="text-sm text-gray-300 mb-3">${society.description}</p>
           <div class="flex justify-between text-xs text-gray-400">
-            <span><i class="fas fa-users mr-1"></i> ${society.members} members</span>
-            <span><i class="fas fa-calendar-alt mr-1"></i> Est. ${society.established}</span>
+            <span><i class="fas fa-users mr-1"></i> ${
+              society.members
+            } members</span>
+            <span><i class="fas fa-calendar-alt mr-1"></i> Est. ${
+              society.established
+            }</span>
           </div>
           <div class="mt-4 pt-3 border-t border-gray-700">
-            <p class="text-xs font-medium"><i class="fas fa-trophy text-yellow-500 mr-1"></i> ${society.achievements}</p>
+            <p class="text-xs font-medium"><i class="fas fa-trophy text-yellow-500 mr-1"></i> ${
+              society.achievements
+            }</p>
           </div>
         </div>
       `;
 
-      card.addEventListener('click', () => openSocietyModal(society));
+      card.addEventListener("click", () => openSocietyModal(society));
       societyGrid.appendChild(card);
     });
 
@@ -137,15 +153,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to open society details modal
   function openSocietyModal(society) {
-    const modal = document.createElement('div');
-    modal.className = 'fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-md';
+    const modal = document.createElement("div");
+    modal.className =
+      "fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 backdrop-blur-md";
     modal.innerHTML = `
       <div class="relative w-full max-w-2xl bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-700">
         <div class="relative h-48 md:h-64 overflow-hidden">
-          <img src="${society.image}" alt="${society.name}" class="w-full h-full object-cover" />
+          <img src="${society.image}" alt="${
+      society.name
+    }" class="w-full h-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
           <div class="absolute bottom-4 left-4">
-            <span class="category-badge badge-${society.category}">${capitalizeFirstLetter(society.category)}</span>
+            <span class="category-badge badge-${
+              society.category
+            }">${capitalizeFirstLetter(society.category)}</span>
           </div>
         </div>
         <div class="p-6">
@@ -192,24 +213,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Filter buttons functionality
   function setupFilters() {
-    const filterButtons = document.querySelectorAll('.society-filter-btn');
+    const filterButtons = document.querySelectorAll(".society-filter-btn");
     if (filterButtons.length === 0) return;
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
         // Remove active class from all buttons
-        filterButtons.forEach(b => b.classList.remove('active'));
+        filterButtons.forEach((b) => b.classList.remove("active"));
         // Add active class to clicked button
-        btn.classList.add('active');
+        btn.classList.add("active");
         // Render societies based on selected category
-        renderSocieties(btn.getAttribute('data-category'));
+        renderSocieties(btn.getAttribute("data-category"));
       });
     });
 
     // Mobile filter dropdown
-    const mobileFilter = document.querySelector('.mobile-filter-dropdown');
+    const mobileFilter = document.querySelector(".mobile-filter-dropdown");
     if (mobileFilter) {
-      mobileFilter.addEventListener('change', e => {
+      mobileFilter.addEventListener("change", (e) => {
         renderSocieties(e.target.value);
       });
     }
@@ -217,32 +238,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // GSAP Animations
   function animateCardsOnScroll() {
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       // Clear any existing animations first
-      gsap.killTweensOf('.society-card');
-      
+      gsap.killTweensOf(".society-card");
+
       // Set all cards to visible immediately to prevent flashing
-      const allCards = document.querySelectorAll('.society-card');
-      allCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(15px)';
-        card.style.visibility = 'visible';
+      const allCards = document.querySelectorAll(".society-card");
+      allCards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(15px)";
+        card.style.visibility = "visible";
       });
-      
+
       // Use a short timeout to ensure DOM is ready
       setTimeout(() => {
-        const cards = gsap.utils.toArray('.society-card');
-        const societyGrid = document.getElementById('societyGrid') || document.querySelector('.societies-section');
-        
+        const cards = gsap.utils.toArray(".society-card");
+        const societyGrid =
+          document.getElementById("societyGrid") ||
+          document.querySelector(".societies-section");
+
         if (cards.length > 0 && societyGrid) {
           // Create a timeline for better control
           const tl = gsap.timeline({
             defaults: {
               ease: "power2.out",
-              duration: 0.4
-            }
+              duration: 0.4,
+            },
           });
-          
+
           // Add each card to the timeline with stagger
           tl.to(cards, {
             opacity: 1,
@@ -251,12 +274,12 @@ document.addEventListener('DOMContentLoaded', function() {
             clearProps: "transform", // Clean up transform after animation
             scrollTrigger: {
               trigger: societyGrid, // Use the element we found instead of '#societyGrid'
-              start: 'top 85%',
-              toggleActions: 'play none none reset' // Reset on scroll out
-            }
+              start: "top 85%",
+              toggleActions: "play none none reset", // Reset on scroll out
+            },
           });
         } else {
-          console.log('Society cards or grid not found, skipping animations');
+          console.log("Society cards or grid not found, skipping animations");
         }
       }, 50); // Shorter delay for better responsiveness
     }
@@ -267,8 +290,8 @@ document.addEventListener('DOMContentLoaded', function() {
     renderSocieties();
     // Ensure filters are set up before animation
     setTimeout(() => {
-    setupFilters();
-    animateCardsOnScroll();
+      setupFilters();
+      animateCardsOnScroll();
     }, 50);
   }
 

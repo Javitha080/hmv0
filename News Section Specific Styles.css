@@ -1,14 +1,18 @@
 /* Active filter button styles */
- .news-filter-btn.active {
-    background: linear-gradient(to right, rgba(231, 76, 60, 0.8), rgba(243, 156, 18, 0.8));
-  }
-  
-  .news-filter-btn.active i,
-  .news-filter-btn.active span {
-    color: white;
-  }
-  
-  /* News card hover effects - mobile optimized */
+.news-filter-btn.active {
+  background: linear-gradient(
+    to right,
+    rgba(231, 76, 60, 0.8),
+    rgba(243, 156, 18, 0.8)
+  );
+}
+
+.news-filter-btn.active i,
+.news-filter-btn.active span {
+  color: white;
+}
+
+/* News card hover effects - mobile optimized */
 .news-card {
   transition: all 0.3s ease;
   backface-visibility: hidden;
@@ -58,14 +62,18 @@
   .news-card {
     transition: none;
   }
-  
+
   .news-card:hover,
   .news-card:active {
     transform: none;
   }
 }
-  
-  @keyframes shimmer {
-    0% { transform: translateX(-100%) rotate(30deg); }
-    100% { transform: translateX(100%) rotate(30deg); }
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
   }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}

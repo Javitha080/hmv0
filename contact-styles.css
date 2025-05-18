@@ -50,7 +50,7 @@
   #contact .glassmorphism {
     transition: none;
   }
-  
+
   #contact .glassmorphism:hover,
   #contact .glassmorphism:active {
     transform: none;
@@ -235,7 +235,7 @@
   #contact .flex-col {
     gap: 2rem;
   }
-  
+
   #contact .flex-col .glassmorphism:last-child iframe {
     height: 250px;
   }
@@ -296,13 +296,17 @@
 }
 
 #contact .flex-col .glassmorphism:last-child::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
   transform: rotate(30deg);
   z-index: 1;
   opacity: 0;
