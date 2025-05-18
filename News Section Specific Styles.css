@@ -1,4 +1,4 @@
- /* Active filter button styles */
+/* Active filter button styles */
  .news-filter-btn.active {
     background: linear-gradient(to right, rgba(231, 76, 60, 0.8), rgba(243, 156, 18, 0.8));
   }
@@ -8,25 +8,62 @@
     color: white;
   }
   
-  /* Card hover effect */
-  .news-card::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: rotate(30deg);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
+  /* News card hover effects - mobile optimized */
+.news-card {
+  transition: all 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure content visibility in news cards */
+.news-card .glassmorphism {
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 10;
+}
+
+.dark .news-card .glassmorphism {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+.news-card h3,
+.news-card p,
+.news-card span,
+.news-card a,
+.news-card i {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 20;
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for mobile touch */
+.news-card:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .news-card {
+    transition: none;
   }
   
-  .news-card:hover::after {
-    animation: shimmer 1.5s infinite;
-    opacity: 1;
+  .news-card:hover,
+  .news-card:active {
+    transform: none;
   }
+}
   
   @keyframes shimmer {
     0% { transform: translateX(-100%) rotate(30deg); }

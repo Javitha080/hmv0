@@ -232,7 +232,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // Use a short timeout to ensure DOM is ready
       setTimeout(() => {
         const cards = gsap.utils.toArray('.society-card');
-        if (cards.length > 0) {
+        const societyGrid = document.getElementById('societyGrid') || document.querySelector('.societies-section');
+        
+        if (cards.length > 0 && societyGrid) {
           // Create a timeline for better control
           const tl = gsap.timeline({
             defaults: {
@@ -248,11 +250,13 @@ document.addEventListener('DOMContentLoaded', function() {
             stagger: 0.05,
             clearProps: "transform", // Clean up transform after animation
             scrollTrigger: {
-              trigger: '#societyGrid',
+              trigger: societyGrid, // Use the element we found instead of '#societyGrid'
               start: 'top 85%',
               toggleActions: 'play none none reset' // Reset on scroll out
             }
           });
+        } else {
+          console.log('Society cards or grid not found, skipping animations');
         }
       }, 50); // Shorter delay for better responsiveness
     }

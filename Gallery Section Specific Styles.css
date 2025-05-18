@@ -2,6 +2,35 @@
     box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
   }
   
+  /* Ensure content visibility in gallery cards */
+  .gallery-item .card-footer {
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 10;
+  }
+  
+  .dark .gallery-item .card-footer {
+    background: rgba(30, 30, 30, 0.95);
+  }
+  
+  .gallery-item .card-title,
+  .gallery-item .card-caption,
+  .gallery-item .card-date,
+  .gallery-item i,
+  .gallery-item span {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #333;
+  }
+  
+  .dark .gallery-item .card-title,
+  .dark .gallery-item .card-caption,
+  .dark .gallery-item .card-date,
+  .dark .gallery-item i,
+  .dark .gallery-item span {
+    color: #f1f1f1;
+  }
+  
   .gallery-item::after {
     content: '';
     position: absolute;

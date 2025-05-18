@@ -1,23 +1,61 @@
 /**
  * Contact Section Specific Styles
- * Fixes styling issues with the Get In Touch card and map card
+ * Professional implementation for the Contact Us section with optimized styles
+ * for both desktop and mobile devices, ensuring accessibility and performance.
+ *
+ * @version 2.0
+ * @author HMV Web Team
  */
 
-/* Common styles for contact cards */
+/* 
+ * Base styles for contact cards with optimized mobile-friendly animations
+ * Using hardware acceleration and performance optimizations
+ */
 #contact .glassmorphism {
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 1;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
 }
 
-#contact .glassmorphism:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  #contact .glassmorphism:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Active state for mobile touch */
+#contact .glassmorphism:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  #contact .glassmorphism {
+    transition: none;
+  }
+  
+  #contact .glassmorphism:hover,
+  #contact .glassmorphism:active {
+    transform: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* Get In Touch card specific styles */
@@ -25,12 +63,149 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 20;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  color: #333;
+}
+
+/* Fix for Get In Touch title */
+#contact .flex-col .glassmorphism:first-child h3 {
+  position: relative;
+  z-index: 30;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+#contact .flex-col .glassmorphism:first-child h3 span {
+  -webkit-text-fill-color: transparent;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  display: inline-block;
 }
 
 #contact .flex-col .glassmorphism:first-child ul {
   flex: 1;
   position: relative;
-  z-index: 2;
+  z-index: 20;
+}
+
+/* Fix for floating labels in contact form */
+#contact .floating-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  padding: 0 5px;
+  z-index: 25;
+}
+
+#contact input:focus ~ .floating-label,
+#contact input:not(:placeholder-shown) ~ .floating-label,
+#contact textarea:focus ~ .floating-label,
+#contact textarea:not(:placeholder-shown) ~ .floating-label {
+  top: 0;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: #e74c3c;
+  background-color: white;
+}
+
+/* Fix for social icons */
+#contact .social-icon-container {
+  position: relative;
+  z-index: 30;
+  display: inline-block;
+}
+
+#contact .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 30;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f8f9fa;
+  color: #333;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact .social-icon:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(to right, #e74c3c, #f39c12);
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Fix for icons in contact info */
+#contact .flex-shrink-0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#contact .flex-shrink-0 i {
+  font-size: 1rem;
+  color: #e74c3c;
+  transition: all 0.3s ease;
+}
+
+#contact .group-hover\:text-secondary {
+  transition: color 0.3s ease;
+}
+
+#contact .group-hover\:scale-110 {
+  transition: transform 0.3s ease;
+}
+#contact .flex-col .glassmorphism:first-child .fas,
+#contact .flex-col .glassmorphism:first-child .fab,
+#contact .flex-col .glassmorphism:first-child i {
+  color: var(--primary-color, #e74c3c);
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure text content is visible */
+#contact .flex-col .glassmorphism:first-child h4,
+#contact .flex-col .glassmorphism:first-child span,
+#contact .flex-col .glassmorphism:first-child div,
+#contact .flex-col .glassmorphism:first-child p,
+#contact .flex-col .glassmorphism:first-child a {
+  color: #333;
+  font-weight: 500;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.dark #contact .flex-col .glassmorphism:first-child h4,
+.dark #contact .flex-col .glassmorphism:first-child span,
+.dark #contact .flex-col .glassmorphism:first-child div,
+.dark #contact .flex-col .glassmorphism:first-child p,
+.dark #contact .flex-col .glassmorphism:first-child a {
+  color: #f1f1f1;
+}
+
+/* Ensure social icons are visible */
+#contact .social-icon i,
+#contact .social-icon .fab,
+#contact .social-icon .fas {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 1rem;
 }
 
 /* Map card specific styles */
@@ -68,8 +243,29 @@
 
 /* Dark mode adjustments */
 .dark #contact .glassmorphism {
-  background: rgba(17, 24, 39, 0.7);
+  background: rgba(17, 24, 39, 0.8);
   border-color: rgba(75, 85, 99, 0.3);
+  color: #f1f1f1;
+}
+
+.dark #contact .flex-col .glassmorphism:first-child {
+  background-color: rgba(17, 24, 39, 0.8);
+}
+
+/* Fix for social icons in dark mode */
+.dark #contact .social-icon {
+  background-color: rgba(31, 41, 55, 0.8) !important;
+  color: #f1f1f1 !important;
+}
+
+.dark #contact .social-icon i {
+  color: #f1f1f1 !important;
+}
+
+/* Ensure map is visible */
+#contact .flex-col .glassmorphism:last-child iframe {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Fix for floating labels in contact form */

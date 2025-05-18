@@ -61,16 +61,30 @@
   animation: pulse 3s infinite;
 }
 
-/* Society Cards */
+/* Society Cards - Mobile Optimized */
 .society-card {
   position: relative;
   height: 100%;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
   z-index: 1;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: hidden;
 }
 
-.society-card:hover {
-  transform: translateY(-10px);
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .society-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for mobile touch */
+.society-card:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
 }
 
 .society-inner {
@@ -78,26 +92,27 @@
   height: 100%;
   padding: 2rem;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   transition: all 0.4s ease;
+  z-index: 10;
 }
 
 .dark .society-inner {
-  background: rgba(30, 30, 30, 0.5);
+  background: rgba(30, 30, 30, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .society-card:hover .society-inner {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.98);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .dark .society-card:hover .society-inner {
-  background: rgba(40, 40, 40, 0.6);
+  background: rgba(40, 40, 40, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
@@ -198,9 +213,15 @@
 .society-name {
   font-size: 1.5rem;
   font-weight: 700;
-  text-align: center;
   margin-bottom: 0.5rem;
-  transition: all 0.3s ease;
+  text-align: center;
+  background: linear-gradient(to right, #e74c3c, #f39c12);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .society-card:hover .society-name {
@@ -214,9 +235,11 @@
 .society-description {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  color: #4b5563;
   line-height: 1.6;
-  color: #555;
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .dark .society-description {

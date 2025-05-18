@@ -10,6 +10,9 @@
  * - Image zoom and overlay effects
  * - Interactive button animations
  * - Accessibility enhancements
+* @version 2.0
+ * @author HMV Web Team
+ * @requires GSAP 3.13.0+
  */
 
 document.addEventListener('DOMContentLoaded', function() {

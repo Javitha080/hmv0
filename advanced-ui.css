@@ -15,11 +15,12 @@
   
   /* Glassmorphism Variables */
   --glass-bg-dark: rgba(10, 10, 10, 0.7);
-  --glass-bg-light: rgba(255, 255, 255, 0.1);
+  --glass-bg-light: rgba(255, 255, 255, 0.95);
   --glass-border-dark: rgba(255, 255, 255, 0.05);
   --glass-border-light: rgba(255, 255, 255, 0.2);
   --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
   --glass-shadow-light: 0 8px 32px rgba(255, 255, 255, 0.1);
+  --glass-z-index: 10;
   
   /* Animation Durations */
   --transition-fast: 0.2s;
@@ -532,6 +533,69 @@
   perspective: 800px;
   animation: logo-pulse 4s infinite alternate ease-in-out;
   margin-right: 0.75rem;
+}
+
+/* Card hover effects - simplified and mobile-friendly */
+.card-hover {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backface-visibility: hidden; /* Prevents flickering on mobile */
+  -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+  touch-action: manipulation; /* Improves touch responsiveness */
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Active state for mobile touch */
+.card-hover:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Consistent card animations for all sections - mobile friendly */
+.news-card, .staff-card, .society-card, .contact-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  backface-visibility: hidden; /* Prevents flickering on mobile */
+  -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+  touch-action: manipulation; /* Improves touch responsiveness */
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .news-card:hover, .staff-card:hover, .society-card:hover, .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for mobile touch */
+.news-card:active, .staff-card:active, .society-card:active, .contact-card:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .news-card, .staff-card, .society-card, .contact-card {
+    transition: none;
+  }
+  
+  .news-card:hover, .staff-card:hover, .society-card:hover, .contact-card:hover,
+  .news-card:active, .staff-card:active, .society-card:active, .contact-card:active {
+    transform: none;
+  }
 }
 
 /* Removed ::after pseudo-element completely */
