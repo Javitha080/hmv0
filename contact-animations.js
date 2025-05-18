@@ -131,42 +131,7 @@ function enhanceMapCard() {
   iframe.style.transition = 'all 0.5s ease';
 }
 
-/**
- * Initialize GSAP animations for smoother effects
- * With proper element targeting and error handling
- */
-function initContactGsapAnimations() {
-  // Check if contact form exists before animating
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    gsap.from('#contactForm', {
-      x: -50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '#contact',
-        start: 'top 70%',
-        toggleActions: 'play none none none'
-      }
-    });
-  }
 
-  // Animate contact info - with element existence check
-  const glassmorphismElements = document.querySelectorAll('.glassmorphism');
-  if (glassmorphismElements.length > 0) {
-    gsap.from('.glassmorphism', {
-      x: 50,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '#contact',
-        start: 'top 70%',
-        toggleActions: 'play none none none'
-      }
-    });
-  }
 
   // Stagger animation for contact info items - with element existence check
   const contactListItems = document.querySelectorAll('#contact ul li');
