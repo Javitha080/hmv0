@@ -953,12 +953,44 @@ h1 {
   background-clip: text;
   color: transparent;
 }
-/* Custom Cursor */
-.cursor-blink {
+/* Advanced typing animation styles */
+.typing-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-cursor {
   display: inline-block;
-  width: 4px;
+  width: 0.1em;
+  height: 1.2em;
   background-color: white;
-  animation: blink 1s infinite;
+  margin-left: 0.1em;
+  animation: typingCursorBlink 0.8s ease-in-out infinite;
+  vertical-align: middle;
+  position: relative;
+  border-radius: 1px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes typingCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.typing-cursor-container {
+  transition: opacity 0.3s ease;
+}
+
+.typing-cursor-container.active {
+  opacity: 1;
+}
+
+.typing-cursor-line {
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
 @keyframes blink {
@@ -974,13 +1006,91 @@ h1 {
 /* Fade out effect */
 .typed-fade-out {
   opacity: 0;
+  animation: fadeOut 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
 }
 
-/* Responsive font size for #typedText */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Smooth character-by-character fade in */
+.ti-text-char {
+  animation: fadeIn 0.2s ease-out forwards;
+  opacity: 0;
+}
+
+/* Smooth line animation for typing progress */
+@keyframes lineProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Subtle highlight effect for newly typed characters */
+.ti-text-char.is-highlighted {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transition: text-shadow 0.3s ease;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .typing-container {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .typing-cursor-line {
+    height: 2px;
+  }
+}
+
+/* Ensure smooth animation for typed text */
+.typed-element {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Advanced responsive styling for #typedText */
 #typedText {
   font-size: clamp(2rem, 5vw, 4rem); /* Responsive from mobile to desktop */
   line-height: 1.2;
+  min-height: 1.5em; /* Ensure consistent height for the container */
+  display: inline-block; /* Better text alignment */
+  padding: 0.2em 0; /* Add some padding for the text */
+  margin: 0 auto 0.5rem;
+  position: relative; /* For proper cursor positioning */
+  overflow: visible; /* Allow cursor to be visible */
+  border: none; /* Remove any border that might interfere */
+  will-change: contents; /* Optimize for animation */
+  transition: all 0.3s ease; /* Smooth transitions */
+  text-align: center;
+  width: 100%;
+  letter-spacing: -0.01em; /* Slightly tighter letter spacing for better readability */
+}
+
+/* TypeIt instance styling */
+.ti-cursor {
+  position: relative;
+  color: white;
+  font-weight: 300;
+  display: inline-block;
+  opacity: 1;
+  margin-left: 0.1em;
+  animation: typingCursorBlink 0.8s ease-in-out infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Ensure proper spacing between characters */
+.ti-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
 }
 /* Welcome screen logo animation */
 .welcome-screen .school-logo {

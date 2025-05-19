@@ -352,39 +352,84 @@ document.addEventListener("DOMContentLoaded", () => {
 // Init Functions
 function initTypedText() {
   const typedElement = document.getElementById("typedText");
+  const cursorContainer = document.querySelector(".typing-cursor-container");
 
   if (!typedElement) {
-    console.warn("Typed.js element (#typedText) not found in DOM.");
+    console.warn("TypeIt element (#typedText) not found in DOM.");
     return;
   }
 
-  // Optional: Add gradient text styling dynamically
-  typedElement.classList.add(
-    "text-transparent",
-    "bg-clip-text",
-    "bg-gradient-to-r",
-    "from-white",
-    "to-gray-300"
-  );
+  // Ensure the element is visible with a fade-in effect
+  setTimeout(() => {
+    typedElement.style.opacity = '1';
+    if (cursorContainer) {
+      cursorContainer.classList.add('active');
+    }
+  }, 800);
 
-  new Typed("#typedText", {
+  // Create a more realistic typing animation with TypeIt
+  const typeItInstance = new TypeIt("#typedText", {
     strings: [
       "A Legacy of Excellence",
       "Inspiring Young Minds Since 19XX",
       "Where Learning Meets Innovation",
     ],
-    typeSpeed: 50, // Slower and smoother typing
-    backSpeed: 20, // Smooth backspacing
-    backDelay: 1800, // Slight pause before backspace
-    startDelay: 600, // Delay before first string starts
+    speed: 80, // Natural human typing speed
+    deleteSpeed: 50, // Natural backspacing speed
+    lifeLike: true, // Adds human-like randomness to typing
+    cursor: true,
+    cursorChar: "|",
+    cursorSpeed: 800, // Cursor blink speed
+    breakLines: false,
+    waitUntilVisible: true,
     loop: true,
-    showCursor: true,
-    cursorChar: "<span class='cursor-blink'>|</span>",
-    autoInsertCss: false, // We'll define custom cursor
-    fadeOut: true,
-    fadeOutClass: "typed-fade-out",
-    fadeOutDelay: 400,
-  });
+    loopDelay: 2000, // Pause before looping
+    startDelay: 800, // Initial delay before typing starts
+    html: true,
+    afterStep: (instance) => {
+      // Animate the cursor line to follow typing progress
+      if (cursorContainer) {
+        const textWidth = typedElement.offsetWidth;
+        const progress = typedElement.textContent.length / 30; // Approximate max length
+        const cursorLine = cursorContainer.querySelector('.typing-cursor-line');
+        if (cursorLine) {
+          cursorLine.style.width = `${Math.min(100, progress * 100)}%`;
+        }
+      }
+    },
+    afterComplete: (instance) => {
+      // Add a pause before deleting
+      return instance.pause(1500);
+    },
+    afterString: (step, instance) => {
+      // Add a pause after each string is typed
+      return instance.pause(800);
+    }
+  }).go();
+  
+  // Add custom animation effects
+  const animateCursor = () => {
+    if (cursorContainer) {
+      const cursorLine = cursorContainer.querySelector('.typing-cursor-line');
+      if (cursorLine) {
+        // Subtle pulse animation for the cursor line
+        gsap.to(cursorLine, {
+          opacity: 0.7,
+          duration: 0.8,
+          repeat: -1,
+          yoyo: true,
+          ease: "power2.inOut"
+        });
+      }
+    }
+  };
+  
+  // Initialize cursor animation if GSAP is available
+  if (typeof gsap !== 'undefined') {
+    animateCursor();
+  }
+  
+  return typeItInstance;
 }
 function initGSAPAnimations() {
   gsap.registerPlugin(ScrollTrigger);

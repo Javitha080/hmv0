@@ -56,13 +56,40 @@
   color: #f1f1f1;
 }
 
-/* Ensure social icons are visible */
+/* Ensure social icons are visible and properly aligned */
 .staff-card .social-icon i,
 .staff-card .social-icon .fab,
 .staff-card .social-icon .fas {
   display: inline-block !important;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Improved social icon container styling */
+.staff-card .social-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced social icon styling */
+.staff-card .social-icon {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure proper spacing between social icons */
+.staff-card .flex.space-x-4 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-top: 1rem !important;
+  flex-wrap: wrap !important;
 }
 
 /* Ensure proper contrast for text on hover */

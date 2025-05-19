@@ -40,6 +40,67 @@ function initContactAnimations() {
 }
 
 /**
+ * Initialize GSAP animations for contact section
+ * Provides smooth, professional animations using GSAP library
+ */
+function initContactGsapAnimations() {
+  if (typeof gsap === "undefined") return;
+  
+  // Check if ScrollTrigger plugin is available
+  const hasScrollTrigger = typeof ScrollTrigger !== "undefined";
+  
+  // Animate contact form with GSAP
+  const contactForm = document.querySelector("#contact .glassmorphism");
+  if (contactForm) {
+    gsap.from(contactForm, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: hasScrollTrigger ? {
+        trigger: contactForm,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      } : null
+    });
+  }
+  
+  // Animate contact info items with staggered delay
+  const contactItems = document.querySelectorAll("#contact ul li");
+  if (contactItems.length > 0) {
+    gsap.from(contactItems, {
+      x: -30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: hasScrollTrigger ? {
+        trigger: "#contact ul",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      } : null
+    });
+  }
+  
+  // Animate map container
+  const mapContainer = document.querySelector("#contact .flex-col .glassmorphism:last-child");
+  if (mapContainer) {
+    gsap.from(mapContainer, {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.2,
+      ease: "power2.out",
+      scrollTrigger: hasScrollTrigger ? {
+        trigger: mapContainer,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      } : null
+    });
+  }
+}
+
+/**
  * Enhance the Get In Touch card with optimized interactive effects
  * Uses a performance-focused approach with CSS classes instead of inline styles
  * @returns {void}
