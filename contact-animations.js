@@ -98,6 +98,23 @@ function initContactGsapAnimations() {
       } : null
     });
   }
+  
+  // Animate social icons with staggered delay
+  const socialIcons = document.querySelectorAll("#contact .social-icon");
+  if (socialIcons.length > 0) {
+    gsap.from(socialIcons, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "back.out(1.7)",
+      scrollTrigger: hasScrollTrigger ? {
+        trigger: "#contact .social-icon",
+        start: "top 85%",
+        toggleActions: "play none none none"
+      } : null
+    });
+  }
 }
 
 /**
@@ -202,56 +219,58 @@ function enhanceMapCard() {
   iframe.style.transition = "all 0.5s ease";
 }
 
-// Stagger animation for contact info items - with element existence check
-const contactListItems = document.querySelectorAll("#contact ul li");
-if (contactListItems.length > 0) {
-  gsap.from("#contact ul li", {
-    y: 20,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#contact ul",
-      start: "top 80%",
-      toggleActions: "play none none none",
-    },
-  });
-}
+// Remove duplicate animations that are already in initContactGsapAnimations function
+// The following code was causing duplicate animations
+// // Stagger animation for contact info items - with element existence check
+// const contactListItems = document.querySelectorAll("#contact ul li");
+// if (contactListItems.length > 0) {
+//   gsap.from("#contact ul li", {
+//     y: 20,
+//     opacity: 0,
+//     duration: 0.5,
+//     stagger: 0.1,
+//     ease: "power2.out",
+//     scrollTrigger: {
+//       trigger: "#contact ul",
+//       start: "top 80%",
+//       toggleActions: "play none none none",
+//     },
+//   });
+// }
 
-// Animate map - with element existence check
-const mapIframe = document.querySelector("#contact iframe");
-if (mapIframe) {
-  gsap.from("#contact iframe", {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    delay: 0.3,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: "#contact iframe",
-      start: "top 85%",
-      toggleActions: "play none none none",
-    },
-  });
-}
+// // Animate map - with element existence check
+// const mapIframe = document.querySelector("#contact iframe");
+// if (mapIframe) {
+//   gsap.from("#contact iframe", {
+//     y: 30,
+//     opacity: 0,
+//     duration: 0.8,
+//     delay: 0.3,
+//     ease: "power2.out",
+//     scrollTrigger: {
+//       trigger: "#contact iframe",
+//       start: "top 85%",
+//       toggleActions: "play none none none",
+//     },
+//   });
+// }
 
-// Animate social icons - with element existence check
-const socialIcons = document.querySelectorAll("#contact .social-icon");
-if (socialIcons.length > 0) {
-  gsap.from("#contact .social-icon", {
-    scale: 0,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.1,
-    ease: "back.out(1.7)",
-    scrollTrigger: {
-      trigger: "#contact .social-icon",
-      start: "top 85%",
-      toggleActions: "play none none none",
-    },
-  });
-}
+// // Animate social icons - with element existence check
+// const socialIcons = document.querySelectorAll("#contact .social-icon");
+// if (socialIcons.length > 0) {
+//   gsap.from("#contact .social-icon", {
+//     scale: 0,
+//     opacity: 0,
+//     duration: 0.5,
+//     stagger: 0.1,
+//     ease: "back.out(1.7)",
+//     scrollTrigger: {
+//       trigger: "#contact .social-icon",
+//       start: "top 85%",
+//       toggleActions: "play none none none",
+//     },
+//   });
+// }
 
 /**
  * Initialize standard animations without GSAP
