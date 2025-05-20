@@ -7,7 +7,7 @@
 #contact .glassmorphism {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -23,17 +23,17 @@
 /* Desktop hover effects */
 @media (hover: hover) and (pointer: fine) {
   #contact .glassmorphism:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    /* transform: translateY(-5px); */
+    /* box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); */
+    /* border-color: rgba(255, 255, 255, 0.3); */
   }
 }
 
 /* Active state for mobile touch */
 #contact .glassmorphism:active {
-  transform: scale(0.98);
-  transition: all 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  /* transform: scale(0.98); */
+  /* transition: all 0.2s ease; */
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); */
 }
 
 /* Reduce motion for users who prefer it */
@@ -45,7 +45,7 @@
   #contact .glassmorphism:hover,
   #contact .glassmorphism:active {
     transform: none;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Ensure box-shadow is reset */
   }
 }
 
@@ -124,15 +124,15 @@
   border-radius: 50%;
   background-color: #f8f9fa;
   color: #333;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 #contact .social-icon:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(to right, #e74c3c, #f39c12);
-  color: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  /* transform: translateY(-3px); */
+  /* background: linear-gradient(to right, #e74c3c, #f39c12); */
+  /* color: white; */
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); */
 }
 
 /* Fix for icons in contact info */
@@ -142,28 +142,28 @@
   justify-content: center;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 #contact .flex-shrink-0 i {
   font-size: 1rem;
   color: #e74c3c;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 #contact .group-hover\:text-secondary {
-  transition: color 0.3s ease;
+  /* transition: color 0.3s ease; */
 }
 
 #contact .group-hover\:scale-110 {
-  transition: transform 0.3s ease;
+  /* transition: transform 0.3s ease; */
 }
 #contact .flex-col .glassmorphism:first-child .fas,
 #contact .flex-col .glassmorphism:first-child .fab,
 #contact .flex-col .glassmorphism:first-child i {
   color: var(--primary-color, #e74c3c);
   font-size: 1.2rem;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
   display: inline-block !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -214,11 +214,11 @@
   height: 300px;
   border: none;
   display: block;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 #contact .flex-col .glassmorphism:last-child:hover iframe {
-  transform: scale(1.02);
+  /* transform: scale(1.02); */
 }
 
 /* Responsive adjustments */
@@ -281,6 +281,7 @@
 }
 
 /* Add subtle animation to the map card */
+/*
 #contact .flex-col .glassmorphism:last-child {
   position: relative;
   overflow: hidden;
@@ -303,7 +304,7 @@
 #contact .flex-col .glassmorphism:last-child:hover::before {
   opacity: 1;
 }
-
+*/
 /* Fix for social icons in Get In Touch card */
 #contact .social-icon-container {
   position: relative;

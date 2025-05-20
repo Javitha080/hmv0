@@ -18,18 +18,18 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function initContactAnimations() {
   // Initialize GSAP for smoother animations if available
-  if (typeof gsap !== "undefined") {
-    initContactGsapAnimations();
-  } else {
-    // Fallback to standard animations if GSAP is not available
-    initContactStandardAnimations();
-  }
+  // if (typeof gsap !== "undefined") {
+  //   initContactGsapAnimations();
+  // } else {
+  //   // Fallback to standard animations if GSAP is not available
+  //   initContactStandardAnimations();
+  // }
 
   // Add scroll reveal effects
-  initContactScrollReveal();
+  // initContactScrollReveal();
 
   // Add hover effects
-  initContactHoverEffects();
+  // initContactHoverEffects();
 
   // Add form interactions
   enhanceContactForm();
@@ -131,13 +131,13 @@ function enhanceGetInTouchCard() {
 
   // Performance optimization: Use classList operations in batch
   // Add all classes at once rather than multiple separate operations
-  getInTouchCard.classList.add(
-    "contact-card-enhanced",
-    "hover:shadow-xl",
-    "hover:-translate-y-1",
-    "transition-all",
-    "duration-300"
-  );
+  // getInTouchCard.classList.add(
+  //   "contact-card-enhanced",
+  //   "hover:shadow-xl",
+  //   "hover:-translate-y-1",
+  //   "transition-all",
+  //   "duration-300"
+  // );
 
   // Enhance corner elements with subtle animation using a single operation
   document
@@ -161,26 +161,26 @@ function enhanceGetInTouchCard() {
     const icon = container.querySelector(".fas");
     if (icon) {
       // Use CSS classes instead of inline styles for better performance
-      icon.classList.add(
-        "icon-enhanced",
-        "transition-all",
-        "duration-300",
-        "group-hover:text-secondary",
-        "relative",
-        "z-10"
-      );
+      // icon.classList.add(
+      //   "icon-enhanced",
+      //   "transition-all",
+      //   "duration-300",
+      //   "group-hover:text-secondary",
+      //   "relative",
+      //   "z-10"
+      // );
     }
   });
 
   // Enhance social icons with optimized class application
   getInTouchCard.querySelectorAll(".social-icon").forEach((icon) => {
-    icon.classList.add(
-      "social-icon-enhanced",
-      "relative",
-      "z-30",
-      "transition-all",
-      "duration-300"
-    );
+    // icon.classList.add(
+    //   "social-icon-enhanced",
+    //   "relative",
+    //   "z-30",
+    //   "transition-all",
+    //   "duration-300"
+    // );
   });
 }
 
@@ -196,17 +196,17 @@ function enhanceMapCard() {
   if (!mapCard || !iframe) return;
 
   // Add hover effect
-  mapCard.addEventListener("mouseenter", function () {
-    this.style.transform = "translateY(-5px)";
-    this.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.15)";
-    iframe.style.transform = "scale(1.02)";
-  });
+  // mapCard.addEventListener("mouseenter", function () {
+  //   this.style.transform = "translateY(-5px)";
+  //   this.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.15)";
+  //   iframe.style.transform = "scale(1.02)";
+  // });
 
-  mapCard.addEventListener("mouseleave", function () {
-    this.style.transform = "";
-    this.style.boxShadow = "";
-    iframe.style.transform = "";
-  });
+  // mapCard.addEventListener("mouseleave", function () {
+  //   this.style.transform = "";
+  //   this.style.boxShadow = "";
+  //   iframe.style.transform = "";
+  // });
 
   // Add loading animation
   iframe.addEventListener("load", function () {
@@ -216,7 +216,7 @@ function enhanceMapCard() {
 
   // Set initial state
   iframe.style.opacity = "0.7";
-  iframe.style.transition = "all 0.5s ease";
+  // iframe.style.transition = "all 0.5s ease";
 }
 
 // Remove duplicate animations that are already in initContactGsapAnimations function
@@ -407,16 +407,16 @@ function enhanceContactForm() {
       // Add a success animation
       const submitButton = this.querySelector('button[type="submit"]');
       if (submitButton) {
-        submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-        submitButton.classList.add("success-animation");
+        // submitButton.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+        // submitButton.classList.add("success-animation");
 
         // Reset form after delay
-        setTimeout(() => {
-          this.reset();
-          submitButton.innerHTML = "Send Message";
-          submitButton.classList.remove("success-animation");
-          formInputs.forEach((input) => input.classList.remove("has-value"));
-        }, 3000);
+        // setTimeout(() => {
+        //   this.reset();
+        //   submitButton.innerHTML = "Send Message";
+        //   submitButton.classList.remove("success-animation");
+        //   formInputs.forEach((input) => input.classList.remove("has-value"));
+        // }, 3000);
       }
     });
   }
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", function () {
       background: linear-gradient(to right, #4CAF50, #8BC34A) !important;
     }
   `;
-  document.head.appendChild(style);
+  // document.head.appendChild(style);
 });
 
 // Add proper error handling for animations
