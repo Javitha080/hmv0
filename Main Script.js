@@ -370,12 +370,12 @@ function initTypedText() {
   // Create a more realistic typing animation with TypeIt
   const typeItInstance = new TypeIt("#typedText", {
     strings: [
-      "A Legacy of Excellence",
-      "Inspiring Young Minds Since 19XX",
-      "Where Learning Meets Innovation",
+      "Welcome To HOMAGAMA MAHA VIDYALAYA",
+      "හෝමාගම මහා විද්‍යාලය වෙත ඔබව සාදරයෙන් පිළිගනිමු",
+      "ஹோமாகமா மஹா வித்யாலயாவிற்கு வரவேற்கிறோம்",
     ],
-    speed: 80, // Natural human typing speed
-    deleteSpeed: 50, // Natural backspacing speed
+    speed: 50, // Natural human typing speed
+    deleteSpeed: 20, // Natural backspacing speed
     lifeLike: true, // Adds human-like randomness to typing
     cursor: true,
     cursorChar: "|",
