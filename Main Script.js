@@ -370,16 +370,14 @@ function initTypedText() {
   // Create a more realistic typing animation with TypeIt
   const typeItInstance = new TypeIt("#typedText", {
     strings: [
-      "A Legacy of Excellence",
-      "Inspiring Young Minds Since 19XX",
-      "Where Learning Meets Innovation",
+      "Welcome To Homagama Maha Vidyalaya",
+      "හෝමාගම මහා විද්‍යාලයට සාදරයෙන් පිළිගනිමු",
+      "ஹோமாகம மகா வித்தியாலயத்திற்கு வரவேற்கிறோம்",
     ],
-    speed: 80, // Natural human typing speed
-    deleteSpeed: 50, // Natural backspacing speed
+    speed: 40, // Natural human typing speed
+    deleteSpeed: 10, // Natural backspacing speed
     lifeLike: true, // Adds human-like randomness to typing
-    cursor: true,
-    cursorChar: "|",
-    cursorSpeed: 800, // Cursor blink speed
+    cursor: false,
     breakLines: false,
     waitUntilVisible: true,
     loop: true,
@@ -390,7 +388,7 @@ function initTypedText() {
       // Animate the cursor line to follow typing progress
       if (cursorContainer) {
         const textWidth = typedElement.offsetWidth;
-        const progress = typedElement.textContent.length / 30; // Approximate max length
+        const progress = typedElement.textContent.length / 300; // Approximate max length
         const cursorLine = cursorContainer.querySelector('.typing-cursor-line');
         if (cursorLine) {
           cursorLine.style.width = `${Math.min(100, progress * 100)}%`;
@@ -399,36 +397,16 @@ function initTypedText() {
     },
     afterComplete: (instance) => {
       // Add a pause before deleting
-      return instance.pause(1500);
+      return instance.pause(15000);
     },
     afterString: (step, instance) => {
       // Add a pause after each string is typed
       return instance.pause(800);
     }
   }).go();
+ 
   
-  // Add custom animation effects
-  const animateCursor = () => {
-    if (cursorContainer) {
-      const cursorLine = cursorContainer.querySelector('.typing-cursor-line');
-      if (cursorLine) {
-        // Subtle pulse animation for the cursor line
-        gsap.to(cursorLine, {
-          opacity: 0.7,
-          duration: 0.8,
-          repeat: -1,
-          yoyo: true,
-          ease: "power2.inOut"
-        });
-      }
-    }
-  };
-  
-  // Initialize cursor animation if GSAP is available
-  if (typeof gsap !== 'undefined') {
-    animateCursor();
-  }
-  
+
   return typeItInstance;
 }
 function initGSAPAnimations() {
