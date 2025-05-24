@@ -24,6 +24,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
   
+  <!-- Website Router -->
+  <script src="router.js"></script>
+  
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -75,6 +78,9 @@
 <link rel="stylesheet" href="Footer Specific Styles.css">
 <!-- contact-styles.css removed -->
 <link rel="stylesheet" href="staff-cards.css">
+
+  <!-- Enhanced Theme Styles -->
+  <link rel="stylesheet" href="theme-styles.css">
 
   <!-- Font Awesome Icons -->  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -767,7 +773,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
           <!-- Principal - Enhanced with Glassmorphism -->
-          <div class="staff-card group">
+          <div id="principal-section" class="staff-card group">
             <div class="glassmorphism rounded-xl p-8 shadow-lg transition-all duration-500 h-full
                         backdrop-blur-lg bg-white/20 dark:bg-gray-900/20 border border-white/20 dark:border-gray-700/20
                         hover:shadow-2xl hover:bg-white/30 dark:hover:bg-gray-800/30 hover:scale-105 hover:-translate-y-2">
@@ -819,7 +825,7 @@
           </div>
 
           <!-- Vice Principal - Enhanced with Glassmorphism -->
-          <div class="staff-card group">
+          <div id="vice-principal-section" class="staff-card group">
             <div class="glassmorphism rounded-xl p-8 shadow-lg transition-all duration-500 h-full
                         backdrop-blur-lg bg-white/20 dark:bg-gray-900/20 border border-white/20 dark:border-gray-700/20
                         hover:shadow-2xl hover:bg-white/30 dark:hover:bg-gray-800/30 hover:scale-105 hover:-translate-y-2">
@@ -871,7 +877,7 @@
           </div>
 
           <!-- Head of Science - Enhanced with Glassmorphism -->
-          <div class="staff-card group">
+          <div id="science-head-section" class="staff-card group">
             <div class="glassmorphism rounded-xl p-8 shadow-lg transition-all duration-500 h-full
                         backdrop-blur-lg bg-white/20 dark:bg-gray-900/20 border border-white/20 dark:border-gray-700/20
                         hover:shadow-2xl hover:bg-white/30 dark:hover:bg-gray-800/30 hover:scale-105 hover:-translate-y-2">
@@ -1379,23 +1385,20 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <!-- News Card 1 (Event) -->
       <div class="news-card relative overflow-hidden rounded-xl shadow-lg" data-category="event">
-        <!-- Card Background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 z-0"></div>
-        
         <!-- Card Content Container -->
-        <div class="glassmorphism rounded-xl overflow-hidden h-full flex flex-col">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden h-full flex flex-col border border-gray-200 dark:border-gray-700">
           <!-- Image Container -->
           <div class="relative h-48 overflow-hidden">
             <img src="https://scontent.fcmb3-2.fna.fbcdn.net/v/t39.30808-6/481553492_122173271102268549_5556585428357593444_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFX0CVN-Wp9atB0iUrw5CoSIBE1Gbghy2cgETUZuCHLZxZVhpzBKnEu3sEWI-80BVBK8rslxU4YfSPmBOmTc8ry&_nc_ohc=cr20B3UGvgQQ7kNvwEyPc1a&_nc_oc=Adn__GSHRo9rbRrm7wNc3n5gaExYZsUhfHRyb1w9AAb9swe5R6eYgbp1EUQHzGCJajEzmQx-Id6CZ2PKNjukl-rJ&_nc_zt=23&_nc_ht=scontent.fcmb3-2.fna&_nc_gid=XqjXa-k6diJ7a0aic94n8Q&oh=00_AfIYHB0yrip4XtrRiDiCOuf4BQ6iTst6LdMElgxQxl6IWA&oe=682FF07E" alt="Sports Meet" class="w-full h-full object-cover">
             
             <!-- Category Badge -->
-            <div class="absolute top-4 left-4 bg-primary/80 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm shadow-md flex items-center gap-1">
+            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold shadow-md flex items-center gap-1">
               <i class="fas fa-calendar-alt text-xs"></i>
               <span>Event</span>
             </div>
             
             <!-- Decorative Corner Element -->
-            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center">
               <i class="fas fa-expand text-white/90 text-xs"></i>
             </div>
           </div>
@@ -1404,7 +1407,7 @@
           <div class="p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-start mb-2">
               <h3 class="text-xl font-bold dark:text-white text-gray-800">Annual Sports Meet 2025</h3>
-              <span class="text-xs text-white px-2 py-1 rounded-md bg-primary/20 dark:bg-primary/30 backdrop-blur-sm">New</span>
+              <span class="text-xs text-white px-2 py-1 rounded-md bg-primary/80 dark:bg-primary">New</span>
             </div>
             
             <!-- Date with Icon -->
@@ -1429,23 +1432,20 @@
 
       <!-- News Card 2 (Announcement) -->
       <div class="news-card relative overflow-hidden rounded-xl shadow-lg" data-category="announcement">
-        <!-- Card Background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-accent/10 to-secondary/10 z-0"></div>
-        
         <!-- Card Content Container -->
-        <div class="glassmorphism rounded-xl overflow-hidden h-full flex flex-col">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden h-full flex flex-col border border-gray-200 dark:border-gray-700">
           <!-- Image Container -->
           <div class="relative h-48 overflow-hidden">
             <img src="https://scontent.fcmb11-1.fna.fbcdn.net/v/t39.30808-6/490574808_122180049974268549_6996996362611514857_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFP_EXWe8KyjWzvj93UoDu-ZrKN8Ccad2Fmso3wJxp3YQy1LpbqtSE2mecGK6PX2GSJtFZMtzKgGyn6Gz2nm2mw&_nc_ohc=eDa-1InMEZwQ7kNvwFNNdPv&_nc_oc=Adm26lRChYvO1r2NLSe2YbDz_aPhVXeUGzlw_OpRyMxfYx6rNQK85twHBSEk-k4sQDFbJ2NsRlbZUtlnOHAJ2tlj&_nc_zt=23&_nc_ht=scontent.fcmb11-1.fna&_nc_gid=MZ7Y3wv1zEL-fbZNBIQolA&oh=00_AfLXReZtWYs5am3z1mEIn27XCn4Zi5vtCFhC17w9T2B7nQ&oe=682FDCBB" alt="STEM Lab" class="w-full h-full object-cover">
             
             <!-- Category Badge -->
-            <div class="absolute top-4 left-4 bg-accent/80 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm shadow-md flex items-center gap-1">
+            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-md flex items-center gap-1">
               <i class="fas fa-bullhorn text-xs"></i>
               <span>Announcement</span>
             </div>
             
             <!-- Decorative Corner Element -->
-            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center">
               <i class="fas fa-expand text-white/90 text-xs"></i>
             </div>
           </div>
@@ -1454,7 +1454,7 @@
           <div class="p-6 flex flex-col flex-grow">
             <div class="flex justify-between items-start mb-2">
               <h3 class="text-xl font-bold dark:text-white text-gray-800">කෝකිල උදානය 2025</h3>
-              <span class="text-xs text-white px-2 py-1 rounded-md bg-accent/20 dark:bg-accent/30 backdrop-blur-sm">Event</span>
+              <span class="text-xs text-white px-2 py-1 rounded-md bg-accent/80 dark:bg-accent">Event</span>
             </div>
             
             <!-- Date with Icon -->
@@ -1479,23 +1479,20 @@
 
       <!-- News Card 3 (Achievement) -->
       <div class="news-card relative overflow-hidden rounded-xl shadow-lg" data-category="achievement">
-        <!-- Card Background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-primary/10 z-0"></div>
-        
         <!-- Card Content Container -->
-        <div class="glassmorphism rounded-xl overflow-hidden h-full flex flex-col">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden h-full flex flex-col border border-gray-200 dark:border-gray-700">
           <!-- Image Container -->
           <div class="relative h-48 overflow-hidden">
             <img src="https://scontent.fcmb11-1.fna.fbcdn.net/v/t39.30808-6/497419060_122185001018268549_6613693757260692653_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH0xT1nTIcHNMktC7jqBRVSw3uHG3o2q9jDe4cbejar2HJwU1BXrM8dc3QNoAZ5EbZHANAKhft5JTgTtRq6M2PS&_nc_ohc=IFW73DVinP4Q7kNvwGzoIMH&_nc_oc=Adn8iOGyvJ8yqBmzfgx_MVIIm2IAMRyBCw6sL125hRotUb6honCI74XDAFqNql-PobXKU3uxkz4dmYa-XgrAOK26&_nc_zt=23&_nc_ht=scontent.fcmb11-1.fna&_nc_gid=zU2rcpvk0moNaLI2tiYoEQ&oh=00_AfLH-kj5juj2Dn4vh0KKqzJZQ86_ZnwOaDTDzO4egywBOQ&oe=682FD4C3" alt="Scholarship Awards" class="w-full h-full object-cover">
             
             <!-- Category Badge -->
-            <div class="absolute top-4 left-4 bg-secondary/80 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm shadow-md flex items-center gap-1">
+            <div class="absolute top-4 left-4 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold shadow-md flex items-center gap-1">
               <i class="fas fa-award text-xs"></i>
               <span>Achievement</span>
             </div>
             
             <!-- Decorative Corner Element -->
-            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+            <div class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 flex items-center justify-center">
               <i class="fas fa-expand text-white/90 text-xs"></i>
             </div>
           </div>
@@ -1505,7 +1502,7 @@
             <div class="flex justify-between items-start mb-2">
               <h3 class="text-xl font-bold dark:text-white text-gray-800">වෙසක් දන්සැල 2025 
                 ( රතු කුරුස සමාජය )</h3>
-              <span class="text-xs text-white px-2 py-1 rounded-md bg-secondary/20 dark:bg-secondary/30 backdrop-blur-sm">Event</span>
+              <span class="text-xs text-white px-2 py-1 rounded-md bg-secondary/80 dark:bg-secondary">Event</span>
             </div>
             
             <!-- Date with Icon -->
@@ -1529,15 +1526,13 @@
       </div>
     </div>
 
-    <!-- Enhanced View All Button with Animation -->
+    <!-- View All Button -->
     <div class="mt-12 text-center">
-      <a href="#" class="inline-block px-8 py-3 rounded-full bg-gradient-to-r from-primary/80 to-secondary/80 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
-        <span class="relative z-10 flex items-center justify-center">
+      <a href="#" class="inline-block px-8 py-3 rounded-full bg-primary text-white font-medium shadow-lg">
+        <span class="flex items-center justify-center">
           <span>View All News</span>
-          <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+          <i class="fas fa-arrow-right ml-2"></i>
         </span>
-        <span class="absolute top-0 left-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
-        <span class="absolute top-0 left-0 w-0 h-full bg-gradient-to-r from-secondary/80 to-accent/80 group-hover:w-full transition-all duration-500"></span>
       </a>
     </div>
   </div>
@@ -1548,89 +1543,61 @@
 
 <!-- Contact Section -->
 <section id="contact" class="py-20 px-4 relative overflow-hidden">
-  <!-- Animated Background Elements -->
-  <div class="absolute inset-0 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 -z-10"></div>
-  <div class="absolute inset-0 overflow-hidden -z-5">
-    <div class="particles">
-      <div class="particle bg-primary/10 w-24 h-24 rounded-full absolute top-20 left-[10%] animate-float" style="animation-delay: 0s;"></div>
-      <div class="particle bg-secondary/10 w-32 h-32 rounded-full absolute bottom-40 right-[15%] animate-float" style="animation-delay: -2s;"></div>
-      <div class="particle bg-accent/10 w-16 h-16 rounded-full absolute top-1/2 left-[20%] animate-float" style="animation-delay: -4s;"></div>
-      <div class="particle bg-primary/5 w-40 h-40 rounded-full absolute bottom-20 left-[5%] animate-breathe" style="animation-delay: -1s;"></div>
-    </div>
-  </div>
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gray-100 dark:bg-gray-800 -z-10"></div>
   
   <div class="container mx-auto max-w-6xl relative z-10">
     <!-- Enhanced Section Title -->
     <div class="relative mb-16 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-center mb-4 gradient-text bg-gradient-to-r from-primary via-red-500 to-secondary inline-block">
+      <h2 class="text-3xl md:text-5xl font-bold text-center mb-4 text-primary">
         Contact Us
       </h2>
-      <div class="h-1 w-24 mx-auto bg-gradient-to-r from-primary to-secondary rounded-full mt-2 animate-pulse"></div>
+      <div class="h-1 w-24 mx-auto bg-primary rounded-full mt-2"></div>
       <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-6 text-center">
         We'd love to hear from you. Reach out to us with any questions or inquiries.
       </p>
     </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Enhanced Contact Form -->
-      <div class="group glassmorphism rounded-xl p-8 shadow-lg transition-all duration-500 backdrop-blur-lg bg-white/20 dark:bg-gray-900/20 border border-white/20 dark:border-gray-700/20 hover:shadow-2xl hover:bg-white/30 dark:hover:bg-gray-800/30">
-        <!-- Decorative Corner Elements -->
-        <div class="absolute -top-2 -left-2 w-10 h-10 border-t-2 border-l-2 border-primary/70 rounded-tl-lg"></div>
-        <div class="absolute -bottom-2 -right-2 w-10 h-10 border-b-2 border-r-2 border-primary/70 rounded-br-lg"></div>
-        
-        <h3 class="text-2xl font-bold mb-6 flex items-center">
-          <span class="bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text">Send Us a Message</span>
-          <div class="ml-3 h-px w-12 bg-gradient-to-r from-primary/50 to-transparent"></div>
+      <!-- Contact Form -->
+      <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+        <h3 class="text-2xl font-bold mb-6 text-primary">
+          Send Us a Message
         </h3>
         
         <form id="contactForm" class="space-y-6">
-          <div class="relative group/input transition-all duration-300 rounded-lg overflow-hidden">
-            <input type="text" id="name" placeholder=" " class="w-full p-4 rounded-lg bg-gray-100/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary/50 peer transition-all duration-300" required />
-            <label for="name" class="floating-label text-gray-500 dark:text-gray-400 font-medium transition-all duration-300 px-1 bg-gradient-to-r from-transparent via-white/30 dark:via-gray-800/30 to-transparent">Your Name</label>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover/input:w-full transition-all duration-500"></div>
+          <div class="relative rounded-lg overflow-hidden">
+            <input type="text" id="name" placeholder="Your Name" class="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary" required />
           </div>
           
-          <div class="relative group/input transition-all duration-300 rounded-lg overflow-hidden">
-            <input type="email" id="email" placeholder=" " class="w-full p-4 rounded-lg bg-gray-100/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary/50 peer transition-all duration-300" required />
-            <label for="email" class="floating-label text-gray-500 dark:text-gray-400 font-medium transition-all duration-300 px-1 bg-gradient-to-r from-transparent via-white/30 dark:via-gray-800/30 to-transparent">Your Email</label>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover/input:w-full transition-all duration-500"></div>
+          <div class="relative rounded-lg overflow-hidden">
+            <input type="email" id="email" placeholder="Your Email" class="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary" required />
           </div>
           
-          <div class="relative group/input transition-all duration-300 rounded-lg overflow-hidden">
-            <textarea id="message" rows="5" placeholder=" " class="w-full p-4 rounded-lg bg-gray-100/50 dark:bg-gray-700/50 border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary/50 peer transition-all duration-300"></textarea>
-            <label for="message" class="floating-label text-gray-500 dark:text-gray-400 font-medium transition-all duration-300 px-1 bg-gradient-to-r from-transparent via-white/30 dark:via-gray-800/30 to-transparent">Your Message</label>
-            <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover/input:w-full transition-all duration-500"></div>
+          <div class="relative rounded-lg overflow-hidden">
+            <textarea id="message" rows="5" placeholder="Your Message" class="w-full p-4 rounded-lg bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
           </div>
           
-          <button type="submit" class="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1">
+          <button type="submit" class="relative overflow-hidden px-8 py-4 bg-primary text-white font-semibold rounded-full shadow-lg">
             <span class="relative z-10 flex items-center justify-center">
               Send Message
-              <i class="fas fa-paper-plane ml-2 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+              <i class="fas fa-paper-plane ml-2"></i>
             </span>
-            <span class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
           </button>
         </form>
       </div>
 
-      <!-- Enhanced Contact Info with Simplified Animation -->
+      <!-- Contact Info -->
       <div class="flex flex-col space-y-8">
-        <div class="glassmorphism rounded-xl p-8 shadow-lg transition-all duration-300 backdrop-blur-lg bg-white/95 dark:bg-gray-900/95 border border-white/20 dark:border-gray-700/20 hover:shadow-xl hover:translate-y-[-5px] relative overflow-hidden group">
-          <!-- Simple Corner Elements -->
-          <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-secondary/70 rounded-tl-lg"></div>
-          <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-secondary/70 rounded-br-lg"></div>
-          
-          <!-- Subtle Background Element -->
-          <div class="absolute -right-16 -bottom-16 w-40 h-40 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full opacity-30 group-hover:scale-105 transition-transform duration-300 ease-in-out"></div>
-          
-          <h3 class="text-2xl font-bold mb-6 flex items-center relative z-10">
-            <span class="bg-gradient-to-r from-secondary to-primary text-transparent bg-clip-text">Reach Out To Us</span>
-            <div class="ml-3 h-px w-12 bg-gradient-to-r from-secondary/50 to-transparent"></div>
+        <div class="bg-white dark:bg-gray-900 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="text-2xl font-bold mb-6 text-primary">
+            Reach Out To Us
           </h3>
           
-          <ul class="space-y-5 relative z-10">
-            <li class="flex items-start group/item hover:translate-x-1 transition-all duration-300 ease-in-out">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 group-hover/item:scale-105 transition-transform duration-300 shadow-sm">
-                <i class="fas fa-map-marker-alt text-primary group-hover/item:text-secondary transition-colors duration-300"></i>
+          <ul class="space-y-5">
+            <li class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 shadow-sm">
+                <i class="fas fa-map-marker-alt text-primary"></i>
               </div>
               <div>
                 <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">Our Location</h4>
@@ -1638,9 +1605,9 @@
               </div>
             </li>
             
-            <li class="flex items-start group/item hover:translate-x-1 transition-all duration-300 ease-in-out">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 group-hover/item:scale-105 transition-transform duration-300 shadow-sm">
-                <i class="fas fa-phone text-primary group-hover/item:text-secondary transition-colors duration-300"></i>
+            <li class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 shadow-sm">
+                <i class="fas fa-phone text-primary"></i>
               </div>
               <div>
                 <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">Phone Contact</h4>
@@ -1648,9 +1615,9 @@
               </div>
             </li>
             
-            <li class="flex items-start group/item hover:translate-x-1 transition-all duration-300 ease-in-out">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 group-hover/item:scale-105 transition-transform duration-300 shadow-sm">
-                <i class="fas fa-envelope text-primary group-hover/item:text-secondary transition-colors duration-300"></i>
+            <li class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 shadow-sm">
+                <i class="fas fa-envelope text-primary"></i>
               </div>
               <div>
                 <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">Email Us</h4>
@@ -1658,9 +1625,9 @@
               </div>
             </li>
             
-            <li class="flex items-start group/item hover:translate-x-1 transition-all duration-300 ease-in-out">
-              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center mr-4 group-hover/item:scale-105 transition-transform duration-300 shadow-sm">
-                <i class="fas fa-clock text-primary group-hover/item:text-secondary transition-colors duration-300"></i>
+            <li class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4 shadow-sm">
+                <i class="fas fa-clock text-primary"></i>
               </div>
               <div>
                 <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-1">Office Hours</h4>
@@ -1669,27 +1636,27 @@
             </li>
           </ul>
           
-          <!-- Social Media Links with Simplified Animation -->
-          <div class="mt-6 pt-5 border-t border-gray-200/30 dark:border-gray-700/30 relative z-10">
+          <!-- Social Media Links -->
+          <div class="mt-6 pt-5 border-t border-gray-200 dark:border-gray-700">
             <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-3">Connect With Us</h4>
             <div class="flex space-x-3">
               <a href="#" class="social-icon-container" aria-label="Facebook">
-                <div class="social-icon bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-primary/70 hover:to-secondary/70 text-gray-600 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md">
+                <div class="social-icon bg-gray-100 dark:bg-gray-800 text-gray-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm">
                   <i class="fab fa-facebook-f"></i>
                 </div>
               </a>
               <a href="#" class="social-icon-container" aria-label="Twitter">
-                <div class="social-icon bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-primary/70 hover:to-secondary/70 text-gray-600 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md">
+                <div class="social-icon bg-gray-100 dark:bg-gray-800 text-gray-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm">
                   <i class="fab fa-twitter"></i>
                 </div>
               </a>
               <a href="#" class="social-icon-container" aria-label="Instagram">
-                <div class="social-icon bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-primary/70 hover:to-secondary/70 text-gray-600 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md">
+                <div class="social-icon bg-gray-100 dark:bg-gray-800 text-gray-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm">
                   <i class="fab fa-instagram"></i>
                 </div>
               </a>
               <a href="#" class="social-icon-container" aria-label="YouTube">
-                <div class="social-icon bg-gray-100 dark:bg-gray-800 hover:bg-gradient-to-r hover:from-primary/70 hover:to-secondary/70 text-gray-600 hover:text-white w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md">
+                <div class="social-icon bg-gray-100 dark:bg-gray-800 text-gray-600 w-9 h-9 rounded-full flex items-center justify-center shadow-sm">
                   <i class="fab fa-youtube"></i>
                 </div>
               </a>
@@ -1698,8 +1665,8 @@
         </div>
 
         <!-- Map -->
-        <div class="glassmorphism rounded-xl overflow-hidden shadow-lg">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31688.14411198728!2d79.89045679069226!3d6.877929665918623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f882af5%3A0x2aa3b52fd0f2cb0e!2sHomagama!5e0!3m2!1sen!2slk!4v1718000000000!5m2!1sen!2slk" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg shadow-inner hover:shadow-xl transition-shadow duration-300"></iframe>
+        <div class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31688.14411198728!2d79.89045679069226!3d6.877929665918623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae253d10f882af5%3A0x2aa3b52fd0f2cb0e!2sHomagama!5e0!3m2!1sen!2slk!4v1718000000000!5m2!1sen!2slk" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg"></iframe>
         </div>
       </div>
     </div>
@@ -1910,7 +1877,9 @@
 
   <!-- JavaScript Files -->
   <script src="script.js"></script>
+  <!-- Main Script.js - Dark mode functionality disabled in favor of theme-manager.js -->
   <script src="Main Script.js"></script>
+  <!-- Gallery Section.js - Dark mode functionality disabled in favor of theme-manager.js -->
   <script src="Gallery Section.js"></script>
   <!-- news.js removed -->
   <script src="about.js"></script>
@@ -1920,6 +1889,33 @@
   <script src="Back to Top Button Script.js"></script>
   <script src="societies.js"></script>
   <!-- contact-animations.js removed -->
+  
+  <!-- Dark Mode Styles -->
+  <link rel="stylesheet" href="dark-mode-styles.css">
+  
+  <!-- Mobile Menu Styles -->
+  <link rel="stylesheet" href="mobile-menu-styles.css">
+  
+  <!-- Mobile Menu Conflict Disabler - MUST load first to prevent conflicts -->
+  <script src="mobile-menu-conflict-disabler.js"></script>
+  
+  <!-- Enhanced Router System -->
+  <script src="router.js"></script>
+  
+  <!-- DOM Fixer and Enhancement Script -->
+  <script src="dom-fixer.js"></script>
+  
+  <!-- Dark Mode Conflict Resolver - Must load before dark mode manager -->
+  <script src="dark-mode-conflict-resolver.js"></script>
+  
+  <!-- Mobile Menu Manager - Professional mobile menu functionality -->
+  <script src="mobile-menu-manager.js"></script>
+  
+  <!-- Comprehensive Dark Mode Manager -->
+  <script src="dark-mode-manager.js"></script>
+  
+  <!-- Global Error Handler -->
+  <script src="error-handler.js"></script>
   
 </body>
 </html>

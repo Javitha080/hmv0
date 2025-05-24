@@ -1,3 +1,49 @@
+// Enhanced News Filter Functionality with Error Handling
+function initializeNewsFilters() {
+  try {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const newsCards = document.querySelectorAll(".news-card");
+    
+    if (filterButtons.length === 0 || newsCards.length === 0) {
+      console.warn('News filter elements not found, skipping initialization');
+      return;
+    }
+    
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const category = button.getAttribute("data-category");
+        
+        newsCards.forEach((card) => {
+          const shouldShow = category === "all" || card.classList.contains(category);
+          
+          if (shouldShow) {
+            card.style.display = "block";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          } else {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            setTimeout(() => {
+              card.style.display = "none";
+            }, 300);
+          }
+        });
+      });
+    });
+    
+    console.log('News filters initialized successfully');
+  } catch (error) {
+    console.error('Error initializing news filters:', error);
+  }
+}
+
 document.querySelectorAll("[data-category]").forEach((button) => {
   button.addEventListener("click", () => {
     const category = button.getAttribute("data-category");
@@ -91,57 +137,133 @@ darkModeToggle.addEventListener("click", () => {
   }
 });
 
-// Mobile Menu Toggle
-const mobileMenuButton = document.getElementById("mobileMenuButton");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuIcon = mobileMenuButton ? mobileMenuButton.querySelector("i") : null;
-
-// Function to open mobile menu
-function openMobileMenu() {
-  if (!mobileMenu || !menuIcon) return;
-  mobileMenu.classList.add("active");
-  menuIcon.classList.remove("ri-menu-line");
-  menuIcon.classList.add("ri-close-line");
-}
-
-// Function to close mobile menu
-function closeMobileMenu() {
-  if (!mobileMenu || !menuIcon) return;
-  mobileMenu.classList.remove("active");
-  menuIcon.classList.remove("ri-close-line");
-  menuIcon.classList.add("ri-menu-line");
-}
-
-// Toggle mobile menu
-if (mobileMenuButton) {
-  mobileMenuButton.addEventListener("click", () => {
-    if (mobileMenu && mobileMenu.classList.contains("active")) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
+// Enhanced Mobile Menu Logic with Error Handling
+function initializeMobileMenu() {
+  try {
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuIcon = mobileMenuButton ? mobileMenuButton.querySelector("i") : null;
+    
+    if (!mobileMenuButton || !mobileMenu) {
+      console.warn('Mobile menu elements not found, skipping initialization');
+      return;
     }
-  });
-}
-
-// Close menu when clicking on mobile nav links
-if (mobileMenu) {
-  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      closeMobileMenu();
+    
+    let isMenuOpen = false;
+    let isAnimating = false;
+    
+    // Function to open mobile menu
+    function openMobileMenu() {
+      if (isAnimating || isMenuOpen) return;
+      
+      isAnimating = true;
+      isMenuOpen = true;
+      
+      mobileMenu.classList.add("active");
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      
+      if (menuIcon) {
+        menuIcon.classList.remove("ri-menu-line");
+        menuIcon.classList.add("ri-close-line");
+      }
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
+      // Set focus to first menu item
+      const firstLink = mobileMenu.querySelector('.mobile-nav-link');
+      if (firstLink) {
+        setTimeout(() => firstLink.focus(), 100);
+      }
+      
+      setTimeout(() => {
+        isAnimating = false;
+      }, 300);
+    }
+    
+    // Function to close mobile menu
+    function closeMobileMenu() {
+      if (isAnimating || !isMenuOpen) return;
+      
+      isAnimating = true;
+      isMenuOpen = false;
+      
+      mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      
+      if (menuIcon) {
+        menuIcon.classList.remove("ri-close-line");
+        menuIcon.classList.add("ri-menu-line");
+      }
+      
+      // Restore body scroll
+      document.body.style.overflow = '';
+      
+      // Return focus to menu button
+      mobileMenuButton.focus();
+      
+      setTimeout(() => {
+        isAnimating = false;
+      }, 300);
+    }
+    
+    // Toggle mobile menu
+    mobileMenuButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (isMenuOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
-  });
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      mobileMenu.classList.contains("active") &&
-      !mobileMenu.contains(e.target) &&
-      mobileMenuButton &&
-      !mobileMenuButton.contains(e.target)
-    ) {
-      closeMobileMenu();
-    }
-  });
+    
+    // Close menu when clicking on mobile nav links
+    const mobileNavLinks = mobileMenu.querySelectorAll(".mobile-nav-link");
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        // Allow navigation to proceed
+        setTimeout(() => {
+          closeMobileMenu();
+        }, 100);
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        isMenuOpen &&
+        !mobileMenu.contains(e.target) &&
+        !mobileMenuButton.contains(e.target)
+      ) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Close menu on window resize (desktop view)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Initialize ARIA attributes
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    mobileMenuButton.setAttribute('aria-controls', 'mobileMenu');
+    
+    console.log('Mobile menu initialized successfully');
+  } catch (error) {
+    console.error('Error initializing mobile menu:', error);
+  }
 }
 
 // Floating Labels
@@ -469,13 +591,435 @@ function initScrollAnimations() {
   });
 }
 
-// Handle Script Errors
+// Enhanced Script Error Handling
 function handleScriptError(event) {
   console.error("Script failed to load:", event.target.src);
-  alert(
-    "A critical script failed to load. Please check your internet connection."
-  );
+  
+  // Attempt to reload critical scripts
+  const src = event.target.src;
+  if (src.includes('gsap') || src.includes('three') || src.includes('router')) {
+    console.log('Attempting to reload critical script:', src);
+    setTimeout(() => {
+      const newScript = document.createElement('script');
+      newScript.src = src;
+      newScript.onerror = () => console.error('Failed to reload script:', src);
+      document.head.appendChild(newScript);
+    }, 2000);
+  }
 }
+
+// Comprehensive DOM and Component Initialization
+class WebsiteInitializer {
+  constructor() {
+    this.initialized = false;
+    this.components = new Map();
+    this.retryCount = 0;
+    this.maxRetries = 3;
+    
+    this.init();
+  }
+  
+  async init() {
+    try {
+      console.log('Starting website initialization...');
+      
+      // Wait for DOM to be ready
+      await this.waitForDOM();
+      
+      // Initialize core components
+      await this.initializeCore();
+      
+      // Initialize UI components
+      await this.initializeUI();
+      
+      // Initialize interactive features
+      await this.initializeFeatures();
+      
+      // Set up observers and listeners
+      this.setupObservers();
+      
+      // Mark as initialized
+      this.initialized = true;
+      
+      console.log('Website initialization completed successfully');
+      
+      // Dispatch initialization complete event
+      window.dispatchEvent(new CustomEvent('websiteInitialized'));
+      
+    } catch (error) {
+      console.error('Website initialization failed:', error);
+      
+      if (this.retryCount < this.maxRetries) {
+        this.retryCount++;
+        console.log(`Retrying initialization (${this.retryCount}/${this.maxRetries})...`);
+        setTimeout(() => this.init(), 2000 * this.retryCount);
+      } else {
+        console.error('Max initialization retries exceeded');
+        this.fallbackInitialization();
+      }
+    }
+  }
+  
+  waitForDOM() {
+    return new Promise((resolve) => {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', resolve);
+      } else {
+        resolve();
+      }
+    });
+  }
+  
+  async initializeCore() {
+    // Initialize router if available
+    if (typeof WebsiteRouter !== 'undefined') {
+      try {
+        this.components.set('router', new WebsiteRouter());
+        console.log('Router initialized');
+      } catch (error) {
+        console.error('Router initialization failed:', error);
+      }
+    }
+    
+    // Initialize DOM fixer if available
+    if (typeof DOMFixer !== 'undefined') {
+      try {
+        this.components.set('domFixer', new DOMFixer());
+        console.log('DOM Fixer initialized');
+      } catch (error) {
+        console.error('DOM Fixer initialization failed:', error);
+      }
+    }
+    
+    // Initialize error handler if available
+    if (typeof ErrorHandler !== 'undefined') {
+      try {
+        this.components.set('errorHandler', new ErrorHandler());
+        console.log('Error Handler initialized');
+      } catch (error) {
+        console.error('Error Handler initialization failed:', error);
+      }
+    }
+  }
+  
+  async initializeUI() {
+    // Initialize mobile menu
+    try {
+      initializeMobileMenu();
+      console.log('Mobile menu initialized');
+    } catch (error) {
+      console.error('Mobile menu initialization failed:', error);
+    }
+    
+    // Initialize dark mode
+    try {
+      this.initializeDarkMode();
+      console.log('Dark mode initialized');
+    } catch (error) {
+      console.error('Dark mode initialization failed:', error);
+    }
+    
+    // Initialize theme manager if available
+    if (typeof ThemeManager !== 'undefined') {
+      try {
+        this.components.set('themeManager', new ThemeManager());
+        console.log('Theme Manager initialized');
+      } catch (error) {
+        console.error('Theme Manager initialization failed:', error);
+      }
+    }
+  }
+  
+  async initializeFeatures() {
+    // Initialize news filters
+    try {
+      initializeNewsFilters();
+      console.log('News filters initialized');
+    } catch (error) {
+      console.error('News filters initialization failed:', error);
+    }
+    
+    // Initialize scroll effects
+    try {
+      this.initializeScrollEffects();
+      console.log('Scroll effects initialized');
+    } catch (error) {
+      console.error('Scroll effects initialization failed:', error);
+    }
+    
+    // Initialize animations
+    try {
+      this.initializeAnimations();
+      console.log('Animations initialized');
+    } catch (error) {
+      console.error('Animations initialization failed:', error);
+    }
+  }
+  
+  initializeDarkMode() {
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const darkModeIcon = document.getElementById("darkModeIcon");
+    const mobileDarkModeToggle = document.getElementById("mobileDarkModeToggle");
+    const mobileDarkModeIcon = document.getElementById("mobileDarkModeIcon");
+    
+    // Check for saved dark mode preference
+    if (localStorage.getItem("darkMode") === "enabled") {
+      document.documentElement.classList.add("dark");
+      if (darkModeIcon) {
+        darkModeIcon.classList.remove("ri-moon-line");
+        darkModeIcon.classList.add("ri-sun-line");
+      }
+      if (mobileDarkModeIcon) {
+        mobileDarkModeIcon.classList.remove("fa-moon");
+        mobileDarkModeIcon.classList.add("fa-sun");
+      }
+    }
+    
+    // Toggle function
+    const toggleDarkMode = () => {
+      const isDark = document.documentElement.classList.contains("dark");
+      
+      if (isDark) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("darkMode", "disabled");
+        
+        if (darkModeIcon) {
+          darkModeIcon.classList.remove("ri-sun-line");
+          darkModeIcon.classList.add("ri-moon-line");
+        }
+        if (mobileDarkModeIcon) {
+          mobileDarkModeIcon.classList.remove("fa-sun");
+          mobileDarkModeIcon.classList.add("fa-moon");
+        }
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("darkMode", "enabled");
+        
+        if (darkModeIcon) {
+          darkModeIcon.classList.remove("ri-moon-line");
+          darkModeIcon.classList.add("ri-sun-line");
+        }
+        if (mobileDarkModeIcon) {
+          mobileDarkModeIcon.classList.remove("fa-moon");
+          mobileDarkModeIcon.classList.add("fa-sun");
+        }
+      }
+    };
+    
+    // Add event listeners
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener("click", toggleDarkMode);
+    }
+    if (mobileDarkModeToggle) {
+      mobileDarkModeToggle.addEventListener("click", toggleDarkMode);
+    }
+  }
+  
+  initializeScrollEffects() {
+    // Back to top button
+    const backToTopBtn = document.getElementById("backToTop") || document.getElementById("scrollToTop");
+    
+    if (backToTopBtn) {
+      const handleScroll = this.throttle(() => {
+        if (window.scrollY > 500) {
+          backToTopBtn.classList.add("show");
+          backToTopBtn.style.opacity = "1";
+          backToTopBtn.style.visibility = "visible";
+        } else {
+          backToTopBtn.classList.remove("show");
+          backToTopBtn.style.opacity = "0";
+          backToTopBtn.style.visibility = "hidden";
+        }
+      }, 100);
+      
+      window.addEventListener("scroll", handleScroll);
+      
+      backToTopBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        if (typeof gsap !== 'undefined') {
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: { y: 0, autoKill: false },
+            ease: "power2.inOut",
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+    
+    // Cursor glow effect
+    const cursorGlow = document.getElementById("cursorGlow");
+    if (cursorGlow && window.innerWidth > 768) {
+      document.addEventListener("mousemove", (e) => {
+        cursorGlow.style.opacity = "0.7";
+        cursorGlow.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+      
+      document.addEventListener("mouseleave", () => {
+        cursorGlow.style.opacity = "0";
+      });
+    }
+  }
+  
+  initializeAnimations() {
+    // Intersection Observer for animations
+    if ('IntersectionObserver' in window) {
+      const animationObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+              entry.target.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+              
+              // Add animation classes if they exist
+              if (entry.target.classList.contains('animate-on-scroll')) {
+                entry.target.classList.add('animated');
+              }
+              
+              animationObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+      
+      // Observe elements that should animate
+      const animateElements = document.querySelectorAll(
+        '.animate-on-scroll, .fade-in, .slide-up, [data-animate]'
+      );
+      
+      animateElements.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        animationObserver.observe(el);
+      });
+    }
+  }
+  
+  setupObservers() {
+    // Set up mutation observer for dynamic content
+    if ('MutationObserver' in window) {
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                this.processNewElement(node);
+              }
+            });
+          }
+        });
+      });
+      
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+  
+  processNewElement(element) {
+    // Process newly added elements
+    try {
+      // Add lazy loading to images
+      const images = element.querySelectorAll('img:not([loading])');
+      images.forEach(img => {
+        img.loading = 'lazy';
+      });
+      
+      // Add animation classes to new elements
+      if (element.classList && element.classList.contains('animate-on-scroll')) {
+        element.style.opacity = "0";
+        element.style.transform = "translateY(30px)";
+      }
+      
+    } catch (error) {
+      console.error('Error processing new element:', error);
+    }
+  }
+  
+  throttle(func, limit) {
+    let inThrottle;
+    return function() {
+      const args = arguments;
+      const context = this;
+      if (!inThrottle) {
+        func.apply(context, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  }
+  
+  fallbackInitialization() {
+    console.log('Running fallback initialization...');
+    
+    try {
+      // Basic mobile menu fallback
+      const mobileMenuButton = document.getElementById("mobileMenuButton");
+      const mobileMenu = document.getElementById("mobileMenu");
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('active');
+        });
+      }
+      
+      // Basic dark mode fallback
+      const darkModeToggle = document.getElementById("darkModeToggle");
+      if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+          document.documentElement.classList.toggle('dark');
+        });
+      }
+      
+      console.log('Fallback initialization completed');
+    } catch (error) {
+      console.error('Fallback initialization failed:', error);
+    }
+  }
+  
+  destroy() {
+    // Cleanup method
+    this.components.forEach((component, name) => {
+      if (component && typeof component.destroy === 'function') {
+        try {
+          component.destroy();
+          console.log(`${name} destroyed`);
+        } catch (error) {
+          console.error(`Error destroying ${name}:`, error);
+        }
+      }
+    });
+    
+    this.components.clear();
+    this.initialized = false;
+  }
+}
+
+// Initialize the website when DOM is ready
+let websiteInitializer;
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    websiteInitializer = new WebsiteInitializer();
+  });
+} else {
+  websiteInitializer = new WebsiteInitializer();
+}
+
+// Make initializer globally available
+window.websiteInitializer = websiteInitializer;
+
+// Handle page unload
+window.addEventListener('beforeunload', () => {
+  if (websiteInitializer) {
+    websiteInitializer.destroy();
+  }
+});
 
 // Welcome Particles initialization moved to the unified function above
 document.getElementById("enterButton").addEventListener("click", function () {
