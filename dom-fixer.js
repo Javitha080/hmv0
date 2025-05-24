@@ -37,9 +37,9 @@ class DOMFixer {
       this.fixImageErrors();
       this.fixFormElements();
       this.fixAccessibility();
-      this.fixMobileMenu();
-      this.fixScrollBehavior();
-      this.fixDarkModeToggle();
+      // this.fixMobileMenu();
+      // this.fixScrollBehavior();
+      // this.fixDarkModeToggle();
       
       // Enhancement fixes
       this.enhanceNavigation();
@@ -217,123 +217,123 @@ class DOMFixer {
   /**
    * Fix mobile menu functionality
    */
-  fixMobileMenu() {
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    if (mobileMenuButton && mobileMenu) {
-      // Ensure proper ARIA attributes
-      mobileMenuButton.setAttribute('aria-expanded', 'false');
-      mobileMenuButton.setAttribute('aria-controls', 'mobileMenu');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      
-      // Fix menu toggle functionality
-      mobileMenuButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        const isOpen = mobileMenu.classList.contains('active');
-        
-        if (isOpen) {
-          mobileMenu.classList.remove('active');
-          mobileMenuButton.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        } else {
-          mobileMenu.classList.add('active');
-          mobileMenuButton.setAttribute('aria-expanded', 'true');
-          mobileMenu.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-          mobileMenu.classList.remove('active');
-          mobileMenuButton.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }
-      });
-      
-      // Close menu on escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-          mobileMenu.classList.remove('active');
-          mobileMenuButton.setAttribute('aria-expanded', 'false');
-          mobileMenu.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          mobileMenuButton.focus();
-        }
-      });
-    }
-  }
+  // fixMobileMenu() {
+  //   const mobileMenuButton = document.getElementById('mobileMenuButton');
+  //   const mobileMenu = document.getElementById('mobileMenu');
+  //  
+  //   if (mobileMenuButton && mobileMenu) {
+  //     // Ensure proper ARIA attributes
+  //     mobileMenuButton.setAttribute('aria-expanded', 'false');
+  //     mobileMenuButton.setAttribute('aria-controls', 'mobileMenu');
+  //     mobileMenu.setAttribute('aria-hidden', 'true');
+  //    
+  //     // Fix menu toggle functionality
+  //     mobileMenuButton.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       const isOpen = mobileMenu.classList.contains('active');
+  //      
+  //       if (isOpen) {
+  //         mobileMenu.classList.remove('active');
+  //         mobileMenuButton.setAttribute('aria-expanded', 'false');
+  //         mobileMenu.setAttribute('aria-hidden', 'true');
+  //         document.body.style.overflow = '';
+  //       } else {
+  //         mobileMenu.classList.add('active');
+  //         mobileMenuButton.setAttribute('aria-expanded', 'true');
+  //         mobileMenu.setAttribute('aria-hidden', 'false');
+  //         document.body.style.overflow = 'hidden';
+  //       }
+  //     });
+  //    
+  //     // Close menu when clicking outside
+  //     document.addEventListener('click', (e) => {
+  //       if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+  //         mobileMenu.classList.remove('active');
+  //         mobileMenuButton.setAttribute('aria-expanded', 'false');
+  //         mobileMenu.setAttribute('aria-hidden', 'true');
+  //         document.body.style.overflow = '';
+  //       }
+  //     });
+  //    
+  //     // Close menu on escape key
+  //     document.addEventListener('keydown', (e) => {
+  //       if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+  //         mobileMenu.classList.remove('active');
+  //         mobileMenuButton.setAttribute('aria-expanded', 'false');
+  //         mobileMenu.setAttribute('aria-hidden', 'true');
+  //         document.body.style.overflow = '';
+  //         mobileMenuButton.focus();
+  //       }
+  //     });
+  //   }
+  // }
 
   /**
    * Fix scroll behavior
    */
-  fixScrollBehavior() {
-    // Ensure smooth scrolling is enabled
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    // Fix back to top button
-    const backToTop = document.getElementById('scrollToTop');
-    if (backToTop) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-          backToTop.style.opacity = '1';
-          backToTop.style.transform = 'translateY(0)';
-        } else {
-          backToTop.style.opacity = '0';
-          backToTop.style.transform = 'translateY(20px)';
-        }
-      });
-      
-      backToTop.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    }
-  }
+  // fixScrollBehavior() {
+  //   // Ensure smooth scrolling is enabled
+  //   document.documentElement.style.scrollBehavior = 'smooth';
+  //  
+  //   // Fix back to top button
+  //   const backToTop = document.getElementById('scrollToTop');
+  //   if (backToTop) {
+  //     window.addEventListener('scroll', () => {
+  //       if (window.scrollY > 500) {
+  //         backToTop.style.opacity = '1';
+  //         backToTop.style.transform = 'translateY(0)';
+  //       } else {
+  //         backToTop.style.opacity = '0';
+  //         backToTop.style.transform = 'translateY(20px)';
+  //       }
+  //     });
+  //    
+  //     backToTop.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       window.scrollTo({ top: 0, behavior: 'smooth' });
+  //     });
+  //   }
+  // }
 
   /**
    * Fix dark mode toggle
    */
-  fixDarkModeToggle() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
-    
-    const toggleDarkMode = () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-      
-      // Update icons
-      const icons = document.querySelectorAll('#darkModeIcon, #mobileDarkModeIcon');
-      icons.forEach(icon => {
-        if (isDark) {
-          icon.className = 'fas fa-sun';
-        } else {
-          icon.className = 'fas fa-moon';
-        }
-      });
-    };
-    
-    if (darkModeToggle) {
-      darkModeToggle.addEventListener('click', toggleDarkMode);
-    }
-    
-    if (mobileDarkModeToggle) {
-      mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
-    }
-    
-    // Initialize dark mode from localStorage
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      document.documentElement.classList.add('dark');
-      const icons = document.querySelectorAll('#darkModeIcon, #mobileDarkModeIcon');
-      icons.forEach(icon => {
-        icon.className = 'fas fa-sun';
-      });
-    }
-  }
+  // fixDarkModeToggle() {
+  //   const darkModeToggle = document.getElementById('darkModeToggle');
+  //   const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
+  //  
+  //   const toggleDarkMode = () => {
+  //     const isDark = document.documentElement.classList.toggle('dark');
+  //     localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+  //    
+  //     // Update icons
+  //     const icons = document.querySelectorAll('#darkModeIcon, #mobileDarkModeIcon');
+  //     icons.forEach(icon => {
+  //       if (isDark) {
+  //         icon.className = 'fas fa-sun';
+  //       } else {
+  //         icon.className = 'fas fa-moon';
+  //       }
+  //     });
+  //   };
+  //  
+  //   if (darkModeToggle) {
+  //     darkModeToggle.addEventListener('click', toggleDarkMode);
+  //   }
+  //  
+  //   if (mobileDarkModeToggle) {
+  //     mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
+  //   }
+  //  
+  //   // Initialize dark mode from localStorage
+  //   if (localStorage.getItem('darkMode') === 'enabled') {
+  //     document.documentElement.classList.add('dark');
+  //     const icons = document.querySelectorAll('#darkModeIcon, #mobileDarkModeIcon');
+  //     icons.forEach(icon => {
+  //       icon.className = 'fas fa-sun';
+  //     });
+  //   }
+  // }
 
   /**
    * Enhance navigation functionality
@@ -351,24 +351,24 @@ class DOMFixer {
       });
     });
     
-    // Enhance dropdown menus
-    const dropdowns = document.querySelectorAll('.nav-item');
-    dropdowns.forEach(dropdown => {
-      const menu = dropdown.querySelector('.dropdown-menu');
-      if (menu) {
-        dropdown.addEventListener('mouseenter', () => {
-          menu.style.opacity = '1';
-          menu.style.visibility = 'visible';
-          menu.style.transform = 'translateY(0)';
-        });
-        
-        dropdown.addEventListener('mouseleave', () => {
-          menu.style.opacity = '0';
-          menu.style.visibility = 'hidden';
-          menu.style.transform = 'translateY(-10px)';
-        });
-      }
-    });
+    // Enhance dropdown menus (Now commented out as this is handled by header.js)
+    // const dropdowns = document.querySelectorAll('.nav-item');
+    // dropdowns.forEach(dropdown => {
+    //   const menu = dropdown.querySelector('.dropdown-menu');
+    //   if (menu) {
+    //     dropdown.addEventListener('mouseenter', () => {
+    //       menu.style.opacity = '1';
+    //       menu.style.visibility = 'visible';
+    //       menu.style.transform = 'translateY(0)';
+    //     });
+    //    
+    //     dropdown.addEventListener('mouseleave', () => {
+    //       menu.style.opacity = '0';
+    //       menu.style.visibility = 'hidden';
+    //       menu.style.transform = 'translateY(-10px)';
+    //     });
+    //   }
+    // });
   }
 
   /**
@@ -464,12 +464,12 @@ class DOMFixer {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
           
-          // Trigger lazy loading for images
-          const images = entry.target.querySelectorAll('img[data-src]');
-          images.forEach(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-          });
+          // Trigger lazy loading for images (Now commented out to rely on native loading='lazy')
+          // const images = entry.target.querySelectorAll('img[data-src]');
+          // images.forEach(img => {
+          //   img.src = img.dataset.src;
+          //   img.removeAttribute('data-src');
+          // });
         }
       });
     }, {
