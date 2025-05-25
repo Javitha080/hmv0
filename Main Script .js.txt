@@ -320,25 +320,21 @@ document.addEventListener("DOMContentLoaded", () => {
       welcomeScreen.classList.add("fade-out");
       skeletonLoader.classList.add("active");
 
-
-setTimeout(() => {
+      setTimeout(() => {
         skeletonLoader.classList.remove("active");
         mainContent.classList.remove("hidden");
         // Initialize animations after content is visible
         initGSAPAnimations();
         initTiltEffects();
         initWelcomeParticles();
-        
+        initTypedText();
       }, 2000);
-
-   
     });
   } else {
     // Fallback automatic transition if button doesn't exist
     setTimeout(() => {
       welcomeScreen.classList.add("fade-out");
       skeletonLoader.classList.add("active");
-
 
       setTimeout(() => {
         skeletonLoader.classList.remove("active");
@@ -347,7 +343,7 @@ setTimeout(() => {
         initGSAPAnimations();
         initTiltEffects();
         initWelcomeParticles();
-        
+        initTypedText();
       }, 2000);
     }, 4000);
   }
@@ -385,7 +381,7 @@ function initTypedText() {
     breakLines: false,
     waitUntilVisible: true,
     loop: true,
-    loopDelay: 200, // Pause before looping
+    loopDelay: 2000, // Pause before looping
     startDelay: 800, // Initial delay before typing starts
     html: true,
     afterStep: (instance) => {

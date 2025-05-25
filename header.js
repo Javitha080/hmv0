@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initHeader();
 
   // Initialize mobile menu animations
-  // initMobileMenu();
+  initMobileMenu();
 
   // Initialize hero section parallax effects
   initHeroParallax();
@@ -298,83 +298,83 @@ function updateDarkModeIcons(isDarkMode) {
 /**
  * Initialize mobile menu animations
  */
-// function initMobileMenu() {
-//   console.log("Initializing mobile menu animations");
-//
-//   const mobileMenu = document.getElementById("mobileMenu");
-//   const mobileMenuButton = document.getElementById("mobileMenuButton");
-//
-//   if (!mobileMenu || !mobileMenuButton) {
-//     console.error("Mobile menu elements not found");
-//     return;
-//   }
-//
-//   console.log("Mobile menu elements found");
-//
-//   // Add GSAP animations for mobile menu
-//   gsap.set(mobileMenu, { x: "100%" });
-//
-//   // Add click event to mobile menu button
-//   mobileMenuButton.addEventListener("click", function () {
-//     if (mobileMenu.classList.contains("active")) {
-//       // Close menu
-//       gsap.to(mobileMenu, {
-//         x: "100%",
-//         duration: 0.5,
-//         ease: "power2.inOut",
-//         onComplete: () => {
-//           mobileMenu.classList.remove("active");
-//         },
-//       });
-//
-//       // Update icon
-//       const icon = this.querySelector("i");
-//       if (icon) {
-//         icon.classList.remove("ri-close-line");
-//         icon.classList.add("ri-menu-line");
-//       }
-//     } else {
-//       // Open menu
-//       mobileMenu.classList.add("active");
-//       gsap.to(mobileMenu, {
-//         x: "0%",
-//         duration: 0.5,
-//         ease: "power2.inOut",
-//       });
-//
-//       // Update icon
-//       const icon = this.querySelector("i");
-//       if (icon) {
-//         icon.classList.remove("ri-menu-line");
-//         icon.classList.add("ri-close-line");
-//       }
-//     }
-//   });
-//
-//   // Close menu when clicking on mobile nav links
-//   const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
-//   mobileNavLinks.forEach((link) => {
-//     link.addEventListener("click", function () {
-//       gsap.to(mobileMenu, {
-//         x: "100%",
-//         duration: 0.5,
-//         ease: "power2.inOut",
-//         onComplete: () => {
-//           mobileMenu.classList.remove("active");
-//
-//           // Update icon
-//           const icon = mobileMenuButton.querySelector("i");
-//           if (icon) {
-//             icon.classList.remove("ri-close-line");
-//             icon.classList.add("ri-menu-line");
-//           }
-//         },
-//       });
-//     });
-//   });
-//
-//   console.log("Mobile menu animations initialized");
-// }
+function initMobileMenu() {
+  console.log("Initializing mobile menu animations");
+
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+  if (!mobileMenu || !mobileMenuButton) {
+    console.error("Mobile menu elements not found");
+    return;
+  }
+
+  console.log("Mobile menu elements found");
+
+  // Add GSAP animations for mobile menu
+  gsap.set(mobileMenu, { x: "100%" });
+
+  // Add click event to mobile menu button
+  mobileMenuButton.addEventListener("click", function () {
+    if (mobileMenu.classList.contains("active")) {
+      // Close menu
+      gsap.to(mobileMenu, {
+        x: "100%",
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => {
+          mobileMenu.classList.remove("active");
+        },
+      });
+
+      // Update icon
+      const icon = this.querySelector("i");
+      if (icon) {
+        icon.classList.remove("ri-close-line");
+        icon.classList.add("ri-menu-line");
+      }
+    } else {
+      // Open menu
+      mobileMenu.classList.add("active");
+      gsap.to(mobileMenu, {
+        x: "0%",
+        duration: 0.5,
+        ease: "power2.inOut",
+      });
+
+      // Update icon
+      const icon = this.querySelector("i");
+      if (icon) {
+        icon.classList.remove("ri-menu-line");
+        icon.classList.add("ri-close-line");
+      }
+    }
+  });
+
+  // Close menu when clicking on mobile nav links
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", function () {
+      gsap.to(mobileMenu, {
+        x: "100%",
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => {
+          mobileMenu.classList.remove("active");
+
+          // Update icon
+          const icon = mobileMenuButton.querySelector("i");
+          if (icon) {
+            icon.classList.remove("ri-close-line");
+            icon.classList.add("ri-menu-line");
+          }
+        },
+      });
+    });
+  });
+
+  console.log("Mobile menu animations initialized");
+}
 
 /**
  * Initialize dropdown menus for desktop navigation
