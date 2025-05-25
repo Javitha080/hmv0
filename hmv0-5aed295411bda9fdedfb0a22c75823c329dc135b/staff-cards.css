@@ -1,0 +1,102 @@
+/* Staff Cards Specific Styles */
+
+/* Staff card mobile-friendly animations */
+.staff-card {
+  transition: all 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for mobile touch */
+.staff-card:active {
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Ensure staff card content visibility */
+.staff-card .glassmorphism {
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 10;
+}
+
+.dark .staff-card .glassmorphism {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+/* Ensure text content is visible */
+.staff-card h3,
+.staff-card p,
+.staff-card .text-gray-500,
+.staff-card .text-gray-700,
+.staff-card .dark\:text-gray-300,
+.staff-card .dark\:text-gray-400 {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #333;
+}
+
+.dark .staff-card h3,
+.dark .staff-card p,
+.dark .staff-card .text-gray-500,
+.dark .staff-card .text-gray-700,
+.dark .staff-card .dark\:text-gray-300,
+.dark .staff-card .dark\:text-gray-400 {
+  color: #f1f1f1;
+}
+
+/* Ensure social icons are visible and properly aligned */
+.staff-card .social-icon i,
+.staff-card .social-icon .fab,
+.staff-card .social-icon .fas {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Improved social icon container styling */
+.staff-card .social-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enhanced social icon styling */
+.staff-card .social-icon {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ensure proper spacing between social icons */
+.staff-card .flex.space-x-4 {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  margin-top: 1rem !important;
+  flex-wrap: wrap !important;
+}
+
+/* Ensure proper contrast for text on hover */
+.staff-card:hover .glassmorphism {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.dark .staff-card:hover .glassmorphism {
+  background: rgba(40, 40, 40, 0.98);
+}

@@ -1,0 +1,64 @@
+.gallery-item {
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure content visibility in gallery cards */
+.gallery-item .card-footer {
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 10;
+}
+
+.dark .gallery-item .card-footer {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+.gallery-item .card-title,
+.gallery-item .card-caption,
+.gallery-item .card-date,
+.gallery-item i,
+.gallery-item span {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #333;
+}
+
+.dark .gallery-item .card-title,
+.dark .gallery-item .card-caption,
+.dark .gallery-item .card-date,
+.dark .gallery-item i,
+.dark .gallery-item span {
+  color: #f1f1f1;
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(30deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.gallery-item:hover::after {
+  animation: shimmer 1.5s infinite;
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(30deg);
+  }
+}
