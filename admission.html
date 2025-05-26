@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ openFaq: null, mobileMenu: false, currentStep: 1 }" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admissions | Excellence in Education</title>
+  <meta name="description" content="Join our prestigious educational institution. Discover world-class facilities, expert faculty, and a nurturing environment for your child's growth.">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6366f1',
+            secondary: '#8b5cf6',
+            accent: '#06b6d4'
+          },
+          fontFamily: {
+            'display': ['Poppins', 'sans-serif'],
+            'body': ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+    }
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .gradient-text {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+    }
+
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .slide-in {
+      animation: slide-in 0.6s ease-out;
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .section-divider {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      height: 1px;
+      margin: 4rem 0;
+    }
+
+    .step-indicator {
+      position: relative;
+    }
+
+    .step-indicator::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, transparent);
+      transform: translateY(-50%);
+    }
+
+    .step-indicator:last-child::before {
+      display: none;
+    }
+
+    .parallax-bg {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: var(--primary-gradient);
+      border-radius: 4px;
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="text-white overflow-x-hidden custom-scrollbar">
+
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 nav-blur bg-black/20 border-b border-white/10" x-data="{ scrolled: false }" 
+     @scroll.window="scrolled = window.pageYOffset > 50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white text-xl"></i>
+        </div>
+        <span class="text-xl font-display font-bold gradient-text">EduExcellence</span>
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#about" class="text-white/80 hover:text-white transition-colors duration-300">About</a>
+        <a href="#eligibility" class="text-white/80 hover:text-white transition-colors duration-300">Eligibility</a>
+        <a href="#process" class="text-white/80 hover:text-white transition-colors duration-300">Process</a>
+        <a href="#faq" class="text-white/80 hover:text-white transition-colors duration-300">FAQ</a>
+        <a href="#contact" class="text-white/80 hover:text-white transition-colors duration-300">Contact</a>
+        <button class="btn-primary px-6 py-2 rounded-full text-white font-medium">
+          Apply Now
+        </button>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button @click="mobileMenu = !mobileMenu" class="md:hidden text-white">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div x-show="mobileMenu" x-transition class="md:hidden pb-4">
+      <div class="flex flex-col space-y-4">
+        <a href="#about" class="text-white/80 hover:text-white transition-colors duration-300">About</a>
+        <a href="#eligibility" class="text-white/80 hover:text-white transition-colors duration-300">Eligibility</a>
+        <a href="#process" class="text-white/80 hover:text-white transition-colors duration-300">Process</a>
+        <a href="#faq" class="text-white/80 hover:text-white transition-colors duration-300">FAQ</a>
+        <a href="#contact" class="text-white/80 hover:text-white transition-colors duration-300">Contact</a>
+        <button class="btn-primary px-6 py-2 rounded-full text-white font-medium w-fit">
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-blue-900/50 to-indigo-900/50"></div>
+    <div class="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+  </div>
+  
+  <!-- Floating Elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-white/20 rounded-full floating" style="animation-delay: 0s;"></div>
+    <div class="absolute top-3/4 left-3/4 w-6 h-6 bg-blue-400/30 rounded-full floating" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 right-1/4 w-3 h-3 bg-purple-400/40 rounded-full floating" style="animation-delay: 4s;"></div>
+    <div class="absolute bottom-1/4 left-1/2 w-5 h-5 bg-indigo-400/30 rounded-full floating" style="animation-delay: 1s;"></div>
+  </div>
+  
+  <div class="relative z-10 text-center px-6 max-w-6xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+    <div class="mb-8">
+      <span class="inline-block px-4 py-2 bg-white/10 rounded-full text-sm font-medium mb-6 glass">
+        <i class="fas fa-star text-yellow-400 mr-2"></i>
+        Ranked #1 Educational Institution
+      </span>
+    </div>
+    
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold hero-gradient mb-8 text-shadow leading-tight">
+      Shape Your
+      <span class="block">Future Today</span>
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 leading-relaxed">
+      Join our prestigious educational community where innovation meets tradition. 
+      Experience world-class education, cutting-edge facilities, and personalized learning paths.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+      <button class="btn-primary px-8 py-4 rounded-full text-white font-semibold text-lg pulse-glow group">
+        <i class="fas fa-rocket mr-2 group-hover:animate-bounce"></i>
+        Start Your Journey
+      </button>
+      <button class="glass px-8 py-4 rounded-full text-white font-semibold text-lg hover:bg-white/20 transition-all duration-300">
+        <i class="fas fa-play mr-2"></i>
+        Watch Virtual Tour
+      </button>
+    </div>
+    
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">15+</div>
+        <div class="text-white/70 text-sm">Years of Excellence</div>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">2500+</div>
+        <div class="text-white/70 text-sm">Happy Students</div>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="600">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">98%</div>
+        <div class="text-white/70 text-sm">Success Rate</div>
+      </div>
+      <div class="text-center" data-aos="fade-up" data-aos-delay="800">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2">50+</div>
+        <div class="text-white/70 text-sm">Expert Faculty</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+      <div class="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-school mr-2"></i>
+        About EduExcellence
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Where Dreams Take Flight
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Discover an educational experience that goes beyond traditional learning
+      </p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div data-aos="fade-right" data-aos-delay="200">
+        <div class="glass p-8 rounded-3xl card-hover">
+          <h3 class="text-2xl font-bold mb-6 text-white">
+            <i class="fas fa-lightbulb text-yellow-400 mr-3"></i>
+            Our Mission
+          </h3>
+          <p class="text-white/80 leading-relaxed mb-6">
+            EduExcellence is a premier educational institution dedicated to nurturing young minds from Pre-K to Grade 12. 
+            We believe in fostering creativity, critical thinking, and character development in every student.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-primary rounded-full"></div>
+              <span class="text-white/70">Personalized learning approaches</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-secondary rounded-full"></div>
+              <span class="text-white/70">State-of-the-art facilities</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <div class="w-2 h-2 bg-accent rounded-full"></div>
+              <span class="text-white/70">Expert faculty with global experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-6" data-aos="fade-left" data-aos-delay="400">
+        <div class="glass p-6 rounded-2xl card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-award text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2">Excellence</h4>
+          <p class="text-white/70 text-sm">Committed to academic and personal excellence</p>
+        </div>
+        
+        <div class="glass p-6 rounded-2xl card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-secondary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2">Community</h4>
+          <p class="text-white/70 text-sm">Building strong relationships and partnerships</p>
+        </div>
+        
+        <div class="glass p-6 rounded-2xl card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-accent to-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-rocket text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2">Innovation</h4>
+          <p class="text-white/70 text-sm">Embracing technology and modern teaching methods</p>
+        </div>
+        
+        <div class="glass p-6 rounded-2xl card-hover text-center">
+          <div class="w-16 h-16 bg-gradient-to-r from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-heart text-white text-2xl"></i>
+          </div>
+          <h4 class="font-bold text-white mb-2">Care</h4>
+          <p class="text-white/70 text-sm">Nurturing every student with love and attention</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Eligibility Section -->
+<section id="eligibility" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-secondary/20 text-secondary rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-user-graduate mr-2"></i>
+        Admission Requirements
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Eligibility Criteria
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Find the right program for your child's educational journey
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Nursery -->
+      <div class="glass p-8 rounded-3xl card-hover group" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center mb-6">
+          <div class="w-20 h-20 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-baby text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Nursery</h3>
+          <div class="w-16 h-1 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full mx-auto"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Age: 3+ years by June 1st</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">No previous qualification required</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Basic interaction assessment</span>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-6 border-t border-white/10">
+          <div class="text-center">
+            <span class="text-2xl font-bold gradient-text">₹25,000</span>
+            <span class="text-white/60 text-sm block">Annual Fee</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Kindergarten -->
+      <div class="glass p-8 rounded-3xl card-hover group" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-center mb-6">
+          <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-child text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Kindergarten</h3>
+          <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mx-auto"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Age: 4+ years by June 1st</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Must complete Nursery</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Basic readiness evaluation</span>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-6 border-t border-white/10">
+          <div class="text-center">
+            <span class="text-2xl font-bold gradient-text">₹30,000</span>
+            <span class="text-white/60 text-sm block">Annual Fee</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Grade 1 -->
+      <div class="glass p-8 rounded-3xl card-hover group" data-aos="fade-up" data-aos-delay="600">
+        <div class="text-center mb-6">
+          <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-user-graduate text-white text-2xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Grade 1</h3>
+          <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto"></div>
+        </div>
+        
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Age: 5+ years by June 1st</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Must complete Kindergarten</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-sm"></i>
+            </div>
+            <span class="text-white/80">Entrance assessment required</span>
+          </div>
+        </div>
+        
+        <div class="mt-6 pt-6 border-t border-white/10">
+          <div class="text-center">
+            <span class="text-2xl font-bold gradient-text">₹35,000</span>
+            <span class="text-white/60 text-sm block">Annual Fee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="800">
+      <div class="glass p-6 rounded-2xl max-w-4xl mx-auto">
+        <h3 class="text-xl font-bold text-white mb-4">
+          <i class="fas fa-info-circle text-blue-400 mr-2"></i>
+          Important Notes
+        </h3>
+        <div class="grid md:grid-cols-2 gap-6 text-left">
+          <div class="space-y-2">
+            <p class="text-white/80">• Age calculation is based on June 1st of the academic year</p>
+            <p class="text-white/80">• All fees are subject to annual revision</p>
+            <p class="text-white/80">• Sibling discounts available (10% off second child)</p>
+          </div>
+          <div class="space-y-2">
+            <p class="text-white/80">• Early bird discount: Apply before March 31st (5% off)</p>
+            <p class="text-white/80">• Payment plans available for annual fees</p>
+            <p class="text-white/80">• Scholarship programs for meritorious students</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Documents Section -->
+<section id="documents" class="py-20 px-6">
+  <div class="max-w-5xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
+    <h2 class="text-3xl font-bold mb-6 neon-gradient">📂 Required Documents</h2>
+    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+      <li>Birth Certificate / Aadhar Card</li>
+      <li>Previous Academic Records</li>
+      <li>Transfer Certificate (if applicable)</li>
+      <li>Caste Certificate (if applicable)</li>
+      <li>Residence Proof</li>
+      <li>Passport-size Photographs</li>
+      <li>Vaccination Certificate (for Nursery/KG)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Application Process -->
+<section id="process" class="py-20 px-6 bg-indigo-950/30">
+  <div class="max-w-5xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
+    <h2 class="text-3xl font-bold mb-6 neon-gradient">📝 Application Process</h2>
+    <ol class="list-decimal pl-6 space-y-4 text-gray-300">
+      <li>Fill out the online application form.</li>
+      <li>Upload scanned copies of all required documents.</li>
+      <li>Attend entrance test or interview.</li>
+      <li>Receive admission offer via email/SMS.</li>
+      <li>Confirm seat by paying fees before deadline.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQs Accordion -->
+<section id="faq" class="py-20 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8 neon-gradient text-center">❓ Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div class="glass p-4 rounded-lg">
+        <button @click="openFaq = openFaq === 'q1' ? null : 'q1'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
+          Is there an entrance exam?
+          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q1' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div x-show="openFaq === 'q1'" x-collapse class="px-4 pb-4 text-gray-300">
+          Yes, entrance exams are conducted for admissions starting from Grade 1 onwards.
+        </div>
+      </div>
+      <div class="glass p-4 rounded-lg">
+        <button @click="openFaq = openFaq === 'q2' ? null : 'q2'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
+          Can I apply if relocating?
+          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q2' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div x-show="openFaq === 'q2'" x-collapse class="px-4 pb-4 text-gray-300">
+          Yes, please mention your relocation date in the application.
+        </div>
+      </div>
+      <div class="glass p-4 rounded-lg">
+        <button @click="openFaq = openFaq === 'q3' ? null : 'q3'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
+          What curriculum do you follow?
+          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q3' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div x-show="openFaq === 'q3'" x-collapse class="px-4 pb-4 text-gray-300">
+          We follow the CBSE curriculum with a focus on holistic learning.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-6 bg-indigo-950/30">
+  <div class="max-w-4xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
+    <h2 class="text-3xl font-bold mb-6 neon-gradient">📞 Contact Us</h2>
+    <p class="mb-2"><strong>Email:</strong> admissions@[yourschool].com</p>
+    <p class="mb-2"><strong>Phone:</strong> +91 1234567890</p>
+    <p><strong>Address:</strong> 123 Education Lane, City</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center py-6 text-gray-400">
+  <p>© 2025 [Your School Name]. All rights reserved.</p>
+</footer>
+
+<script>
+  // Initialize Vanilla Tilt
+  const cards = document.querySelectorAll(".tilt-card");
+  cards.forEach(card => {
+    VanillaTilt.init(card, {
+      max: 15,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3
+    });
+  });
+</script>
+
+</body>
+</html>

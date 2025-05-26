@@ -1,1094 +1,1162 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homagama Maha Vidyalaya - Gallery</title>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Gallery - Homagama Maha Vidyalaya</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com "></script>
-
-    <!-- Font Awesome Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css "
-    />
-
-    <!-- Glightbox for Image Modal -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css "
-    />
-    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js "></script>
-
-    <!-- GSAP Animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js "></script>
-
-    <!-- DOMPurify for XSS Protection -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.1/purify.min.js "></script>
-
-    <!-- CSP Meta Tag -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net  https://cdnjs.cloudflare.com ; style-src 'self' https://cdn.jsdelivr.net  https://cdnjs.cloudflare.com ; img-src 'self' data: https://picsum.photos  https://via.placeholder.com ;"
-    />
-
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        background: #0f172a;
-        color: #f8fafc;
-        margin: 0;
-        padding: 0;
-      }
-
-      .glassmorphism {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .bento-card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        will-change: transform, opacity;
-      }
-
-      .bento-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      .card-header img {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-        transition: transform 0.7s ease-in-out;
-        loading: lazy;
-      }
-
-      .bento-card:hover .card-header img {
-        transform: scale(1.1);
-      }
-
-      .card-footer {
-        padding: 1rem;
-      }
-
-      .card-title {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .card-caption {
-        font-size: 0.8rem;
-        color: #ccc;
-      }
-
-      .card-date {
-        font-size: 0.7rem;
-        color: #aaa;
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-
-      .filter-btn {
-        padding: 6px 12px;
-        border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 500;
-        background-color: #ffffff10;
-        backdrop-filter: blur(6px);
-        border: 1px solid #ffffff20;
-        color: #fff;
-        transition: all 0.3s ease;
-      }
-
-      .filter-btn.active,
-      .filter-btn:hover {
-        background: linear-gradient(to right, #e63946, #fcb813);
-        color: #fff;
-        box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
-      }
-
-      .lighting-animation {
-        position: fixed;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-          circle at center,
-          rgba(230, 57, 70, 0.1),
-          transparent 60%
-        );
-        z-index: -1;
-        animation: rotateLight 30s ease-in-out infinite;
-        pointer-events: none;
-      }
-
-      @keyframes rotateLight {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com "></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e74c3c',
+            secondary: '#f39c12',
+            accent: '#3498db',
+            green: '#2ecc71',
+            purple: '#9b59b6'
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            roboto: ['Roboto', 'sans-serif']
+          }
         }
       }
+    };
+  </script>
 
-      .back-to-home {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(to bottom, #1a1a1a, #2a2a2a);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        cursor: pointer;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 50;
-        transition: all 0.3s ease;
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins :wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css " />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon @3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css " />
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ===== Glassmorphism Cards ===== */
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glassmorphism:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark .glassmorphism {
+      background: rgba(17, 24, 39, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== Bento Card Style ===== */
+    .bento-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      will-change: transform, opacity;
+      cursor: pointer;
+    }
+
+    .bento-card img,
+    .bento-card iframe {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .bento-card:hover img,
+    .bento-card:hover iframe {
+      transform: scale(1.05);
+    }
+
+    /* ===== Category Badges ===== */
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      border-radius: 9999px;
+      z-index: 10;
+    }
+
+    .badge-event {
+      background: linear-gradient(to right, #e74c3c, #f39c12);
+      color: white;
+    }
+
+    .badge-achievement {
+      background: linear-gradient(to right, #3498db, #2ecc71);
+      color: white;
+    }
+
+    .badge-activity {
+      background: linear-gradient(to right, #f1c40f, #f39c12);
+      color: black;
+    }
+
+    .badge-video {
+      background: linear-gradient(to right, #9b59b6, #3498db);
+      color: white;
+    }
+
+    /* ===== Modal Styles ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 800px;
+      width: 90%;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: auto;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .comment-list {
+      margin-top: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+    }
+
+    /* ===== Aurora Background ===== */
+    .aurora-bg::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(120deg, #e74c3c, #f39c12, #3498db);
+      background-size: 400% 400%;
+      animation: auroraBG 10s ease infinite;
+      opacity: 0.05;
+    }
+
+    @keyframes auroraBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Back To Top Button ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 50;
+      padding: 0.5rem 0.75rem;
+      background: linear-gradient(to right, #e74c3c, #f39c12);
+      color: white;
+      border-radius: 9999px;
+      box-shadow: 0 10px 25px rgba(230, 57, 70, 0.3);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== Filter Buttons ===== */
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 9999px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: linear-gradient(to right, #e74c3c, #f39c12);
+      color: white;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+    }
+
+    /* ===== Grid Layout ===== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ===== Scroll-triggered Animation ===== */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Custom Video Player ===== */
+    .custom-player {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+
+    .custom-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 1rem;
+    }
+
+    /* ===== Footer Aurora Glow ===== */
+    .footer-aurora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #e74c3c/10, #f39c12/10, #3498db/10);
+      filter: blur(120px);
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    /* ===== Skeleton Loader ===== */
+    .skeleton {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skeleton::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+      );
+      animation: shimmer 1.5s infinite ease-in-out;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* ===== Cursor Glow ===== */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent 70%);
+      mix-blend-mode: difference;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.7;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      will-change: transform;
+    }
+
+    /* ===== Decorative Corners ===== */
+    .decor-top-left,
+    .decor-bottom-right {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      z-index: 10;
+    }
+
+    .decor-top-left {
+      top: 0;
+      left: 0;
+      border-top: 2px solid #e63946;
+      border-left: 2px solid #e63946;
+    }
+
+    .decor-bottom-right {
+      bottom: 0;
+      right: 0;
+      border-bottom: 2px solid #e63946;
+      border-right: 2px solid #e63946;
+    }
+
+    /* ===== Loading Dots ===== */
+    .loading-dots {
+      display: inline-flex;
+    }
+
+    .loading-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.7);
+      margin: 0 2px;
+      animation: dotPulse 1.5s infinite ease-in-out;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% {
+        transform: scale(1);
       }
-
-      .back-to-home:hover {
-        transform: scale(1.1);
-        box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5);
+      50% {
+        transform: scale(1.5);
       }
+    }
 
-      .bento-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-      }
+    /* ===== Scroll Indicator ===== */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards 1.5s;
+    }
 
-      .staff-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
+    .scroll-text {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-      .staff-card {
-        position: relative;
-        overflow: hidden;
-        border-radius: 1rem;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
+    .scroll-icon {
+      width: 30px;
+      height: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 25px;
+      position: relative;
+    }
 
-      .staff-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
+    .scroll-icon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 9999px;
+      animation: scrollIconMove 1.5s infinite;
+    }
 
-      .staff-img {
-        position: relative;
-        overflow: hidden;
-        aspect-ratio: 4 / 3;
-      }
+    @keyframes scrollIconMove {
+      0% { transform: translateX(-50%) translateY(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+    }
 
-      .staff-img img {
+    /* ===== Hover Zoom Effect ===== */
+    .hover-zoom img {
+      transition: transform 0.7s ease;
+    }
+
+    .hover-zoom:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ===== Header & Nav ===== */
+    header {
+      background: #ffffff;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark header {
+      background: #1a1a1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== Glassmorphism Footer ===== */
+    .glassmorphism-footer {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark .glassmorphism-footer {
+      background: rgba(17, 24, 39, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== Image Parallax Hover ===== */
+    .image-parallax {
+      transition: transform 0.5s ease;
+    }
+
+    .image-parallax:hover {
+      transform: translateY(-5px) rotate(0.5deg);
+    }
+
+    /* ===== Text Shine Effect ===== */
+    .text-shine {
+      position: relative;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background-repeat: no-repeat;
+      background-size: 200% 100%;
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: -100% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ===== Gradient Text ===== */
+    .gradient-text {
+      background: linear-gradient(to right, #e74c3c, #f39c12);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    body.dark .gradient-text {
+      background: linear-gradient(to right, #f39c12, #e74c3c);
+    }
+
+    /* ===== Title Underline Animation ===== */
+    .subtitle::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      animation: handwriting 2s forwards 1s;
+    }
+
+    @keyframes handwriting {
+      to {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.7s ease;
       }
+    }
 
-      .staff-img:hover img {
-        transform: scale(1.1);
-      }
+    /* ===== Skeleton Loaders ===== */
+    .skeleton-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      height: 300px;
+    }
 
-      .staff-details {
-        padding: 1rem;
-      }
+    .skeleton-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      animation: shimmer 1.5s infinite ease;
+    }
 
-      .staff-name {
-        font-weight: 600;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-      }
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
 
-      .staff-role {
-        font-size: 0.8rem;
-        color: #ccc;
-      }
+    /* ===== Progress Bar ===== */
+    .progress-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 50;
+      overflow: hidden;
+    }
 
-      .staff-social {
-        margin-top: 0.5rem;
-        display: flex;
-        gap: 0.5rem;
-      }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #e74c3c, #f39c12, #3498db);
+      transition: width 0.3s ease;
+    }
 
-      .staff-social a {
-        font-size: 0.9rem;
-        color: #e63946;
-        transition: color 0.3s ease;
-      }
+    /* ===== Modal Overlay ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .staff-social a:hover {
-        color: #fcb813;
-      }
+    .modal-content {
+      max-width: 800px;
+      width: 90%;
+      background: rgba(255, 255, 250, 0.05);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: auto;
+      position: relative;
+    }
 
-      .modal-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.95);
-        z-index: 50;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        backdrop-filter: blur(10px);
-      }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #fff;
+    }
 
-      .modal-content {
-        max-width: 90vw;
-        max-height: 90vh;
-        width: fit-content;
-        position: relative;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 1rem;
-        overflow: hidden;
-      }
+    .comment-list {
+      margin-top: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+    }
 
-      .modal-close {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.5rem;
-        color: white;
-        background: rgba(0, 0, 0, 0.6);
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-      }
+    /* ===== Social Icon Styling ===== */
+    .social-icon-footer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-      .comments-section {
-        margin-top: 1rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    .social-icon-footer::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transform: rotate(30deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-      .comment-form {
-        display: flex;
-        gap: 0.5rem;
-      }
+    .social-icon-footer:hover::after {
+      animation: shimmer 1.5s infinite;
+      opacity: 1;
+    }
 
-      .comment-form input {
-        flex: 1;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #4a5568;
-        background: #1e293b;
-        color: #f8fafc;
-      }
+    /* ===== Footer Aurora Background ===== */
+    .footer-aurora {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #e74c3c/10, #f39c12/10, #3498db/10);
+      filter: blur(120px);
+      opacity: 0.1;
+      z-index: 0;
+    }
 
-      .comment-form button {
-        background: linear-gradient(to right, #e63946, #fcb813);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-      }
+    /* ===== Scroll Triggered Animations ===== */
+    .card-hover {
+      transition: transform 0.3s ease;
+    }
 
-      .comment-list {
-        margin-top: 1rem;
-      }
+    .card-hover:hover {
+      transform: translateY(-5px);
+    }
 
-      .comment {
-        margin-bottom: 0.5rem;
-        padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        font-size: 0.8rem;
-      }
+    /* ===== Hero Section ===== */
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #f9fafb;
+    }
 
-      .reaction-buttons {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
+    body.dark .hero-section {
+      background: #111827;
+    }
 
-      .reaction-buttons button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        padding: 0.3rem 0.5rem;
-        border-radius: 9999px;
-        color: #e63946;
-        cursor: pointer;
-      }
+    .hero-section .container {
+      z-index: 10;
+    }
 
-      .reaction-buttons button:hover {
-        background: rgba(230, 57, 70, 0.2);
-      }
+    /* ===== Cursor Glow ===== */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(230, 57, 70, 0.2), transparent 70%);
+      mix-blend-mode: difference;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.7;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+      will-change: transform;
+    }
 
-      .loader {
-        text-align: center;
-        padding: 2rem;
-        font-weight: bold;
-        color: #e63946;
-      }
+    /* ===== Lighting Effects ===== */
+    .lighting-effect {
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(230, 57, 70, 0.1), transparent 60%);
+      z-index: 0;
+      animation: rotateLight 30s ease-in-out infinite;
+      pointer-events: none;
+    }
 
-      .particles {
-        display: none;
-      }
+    @keyframes rotateLight {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-      .no-js {
-        display: none;
-      }
+    /* ===== Glassmorphism Footer ===== */
+    .glassmorphism-footer {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 
-      [onerror="this.onerror=null;this.src='fallback.jpg'"] {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+    body.dark .glassmorphism-footer {
+      background: rgba(17, 24, 39, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
 
-      a[href^="javascript:"] {
-        display: none;
-      }
+    /* ===== Floating Logo Glow ===== */
+    .logo-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      padding: 8px;
+      background: #000;
+      display: inline-block;
+      animation: pulse 3s ease-in-out infinite;
+    }
 
-      .error-message {
-        color: #e63946;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        display: none;
-      }
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
 
-      .form-control input:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #e63946;
-      }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
 
-      .form-control textarea:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px #e63946;
-      }
+    /* ===== Scroll Progress Indicator ===== */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      animation: fadeInUp 1s forwards 1.5s;
+    }
 
-      .category-badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        padding: 4px 10px;
-        border-radius: 9999px;
-        font-size: 0.65rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        z-index: 10;
-        transition: all 0.3s ease;
-      }
+    .scroll-text {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-      .badge-event {
-        background: linear-gradient(135deg, #e63946, #fcb813);
-        color: white;
-      }
+    .scroll-icon {
+      width: 30px;
+      height: 50px;
+      border: 2px solid rgba(255, 255, 250, 0.3);
+      border-radius: 25px;
+    }
 
-      .badge-video {
-        background: linear-gradient(135deg, #9c27b0, #e040fb);
-        color: white;
-      }
+    .scroll-icon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 10px;
+      background: rgba(255, 255, 250, 0.6);
+      border-radius: 9999px;
+      animation: scrollIconMove 1.5s infinite;
+    }
 
-      .category-badge:hover {
-        transform: scale(1.1);
-      }
+    @keyframes scrollIconMove {
+      0% { transform: translateX(-50%) translateY(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white font-sans">
 
-      .decor-top-left {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 10px;
-        height: 10px;
-        border-top: 2px solid #e63946;
-        border-left: 2px solid #e63946;
-        z-index: 10;
-      }
+  <!-- Cursor Glow (Optional) -->
+  <div id="cursorGlow" class="cursor-glow hidden md:block"></div>
 
-      .decor-bottom-right {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 10px;
-        height: 10px;
-        border-bottom: 2px solid #e63946;
-        border-right: 2px solid #e63946;
-        z-index: 10;
-      }
+  <!-- Lighting Animation -->
+  <div class="lighting-effect"></div>
 
-      .hover-zoom img {
-        transition: transform 0.7s ease;
-      }
-
-      .hover-zoom:hover img {
-        transform: scale(1.1);
-      }
-
-      .card-tilt {
-        transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
-        transition: transform 0.3s ease;
-      }
-
-      .card-tilt:hover {
-        transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
-      }
-
-      .social-icon {
-        background: linear-gradient(to right, #e63946, #fcb813);
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-      }
-
-      .social-icon:hover {
-        transform: scale(1.1);
-      }
-
-      .header-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-      }
-
-      .school-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 9999px;
-        border: 2px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .school-name {
-        font-size: 1.5rem;
-        font-weight: bold;
-        background: linear-gradient(to right, #e63946, #fcb813);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .back-to-home i {
-        font-size: 1.2rem;
-      }
-
-      .staff-section {
-        margin-top: 4rem;
-      }
-
-      .staff-section h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-      }
-
-      .comments-section {
-        margin-top: 1rem;
-      }
-
-      .comment-form {
-        margin-top: 1rem;
-      }
-
-      .comment-form input {
-        flex: 1;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #4a5568;
-        background: #1e293b;
-        color: #f8fafc;
-      }
-
-      .comment-form button {
-        background: linear-gradient(to right, #e63946, #fcb813);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        cursor: pointer;
-      }
-
-      .comment {
-        margin-bottom: 0.5rem;
-        padding: 0.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        font-size: 0.8rem;
-      }
-
-      .reaction-buttons {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
-
-      .reaction-buttons button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        padding: 0.3rem 0.5rem;
-        border-radius: 9999px;
-        color: #e63946;
-        cursor: pointer;
-      }
-
-      .reaction-buttons button:hover {
-        background: rgba(230, 57, 70, 0.2);
-      }
-
-      .error-message {
-        color: #e63946;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        display: none;
-      }
-
-      .hidden {
-        display: none !important;
-      }
-
-      .cursor-glow {
-        display: none;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-900 text-white font-poppins px-4 py-8 relative">
-    <!-- Lighting Animation -->
-    <div class="lighting-animation"></div>
-
-    <!-- Back to Home Button -->
-    <a href="#" class="back-to-home" aria-label="Back to Home">
-      <i class="fas fa-arrow-left"></i>
-    </a>
-
-    <!-- Header -->
-    <header class="mb-6 relative z-10">
-      <div class="header-wrapper">
-        <div class="flex items-center space-x-3">
-          <img
-            src="https://via.placeholder.com/50 "
-            alt="School Logo"
-            class="school-logo"
-          />
-          <h1 class="school-name">Homagama Maha Vidyalaya</h1>
-        </div>
-        <a
-          href="#"
-          class="text-sm text-white/80 hover:text-yellow-300 underline md:hidden"
-          >← Back</a
-        >
-      </div>
-    </header>
-
-    <!-- Filter Buttons -->
-    <div class="filter-container mb-6 relative z-10">
-      <button class="filter-btn active" data-category="all">All</button>
-      <button class="filter-btn" data-category="event">Events</button>
-      <button class="filter-btn" data-category="achievement">
-        Achievements
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center space-x-2">
+        <img src="https://ik.imagekit.io/5fpzilm1y/logo.png?updatedAt=1747557297487 "
+             alt="Logo" class="w-10 h-10 rounded-full object-contain" />
+        <span class="text-xl font-medium">Homagama Maha Vidyalaya</span>
+      </a>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#events" class="hover:text-primary transition">Events</a>
+        <a href="#achievements" class="hover:text-primary transition">Achievements</a>
+        <a href="#activities" class="hover:text-primary transition">Activities</a>
+        <a href="#videos" class="hover:text-primary transition">Videos</a>
+      </nav>
+      <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-primary hover:text-white transition">
+        <i class="fas fa-moon" id="darkModeIcon"></i>
       </button>
-      <button class="filter-btn" data-category="activity">Activities</button>
-      <button class="filter-btn" data-category="video">Videos</button>
     </div>
+  </header>
 
-    <!-- Mobile Filter Dropdown -->
-    <select class="mobile-filter-dropdown mb-6 relative z-10">
-      <option value="all">All</option>
-      <option value="event">Events</option>
-      <option value="achievement">Achievements</option>
-      <option value="activity">Activities</option>
-      <option value="video">Videos</option>
-    </select>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-24 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-center">
+    <div class="aurora-bg absolute inset-0 z-0 pointer-events-none"></div>
+    <div class="container mx-auto px-6 relative z-10">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">School Gallery</h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Explore memorable moments from our events, achievements, and student life.
+      </p>
+    </div>
+  </section>
 
-    <!-- Bento Grid Layout -->
-    <section id="galleryGrid" class="bento-grid mt-6 relative z-10"></section>
+  <!-- Filter Navigation -->
+  <section class="py-4 bg-white dark:bg-gray-800/50 sticky top-[80px] z-30">
+    <div class="container mx-auto px-6 flex flex-wrap justify-center gap-2">
+      <button class="filter-btn active p-2 px-4 rounded-full text-white" data-category="all">All</button>
+      <button class="filter-btn p-2 px-4 rounded-full text-white" data-category="event">Events</button>
+      <button class="filter-btn p-2 px-4 rounded-full text-white" data-category="achievement">Achievements</button>
+      <button class="filter-btn p-2 px-4 rounded-full text-white" data-category="activity">Activities</button>
+      <button class="filter-btn p-2 px-4 rounded-full text-white" data-category="video">Videos</button>
+    </div>
+  </section>
 
-    <!-- Custom Modal for Preview -->
-    <div id="previewModal" class="modal-overlay">
-      <div class="modal-content">
-        <span class="modal-close" onclick="closePreview()">&times;</span>
-        <img id="modalImage" src="" alt="Preview" />
-        <div class="comments-section">
-          <h3 class="font-semibold text-sm mb-2">Comments</h3>
-          <div id="commentList" class="comment-list"></div>
-          <form id="commentForm" class="comment-form">
-            <input
-              type="text"
-              id="commentInput"
-              placeholder="Add a comment..."
-              required
-            />
-            <button type="submit">Post</button>
-          </form>
-          <div class="reaction-buttons">
-            <button onclick="addLike()">❤️ Like</button>
-            <span id="likeCount" class="ml-1">0</span>
-          </div>
-        </div>
+  <!-- Gallery Grid -->
+  <section id="galleryGrid" class="py-16 px-4 container mx-auto max-w-6xl">
+    <div class="grid-3" id="galleryCards">
+      <!-- Cards will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- Load More Placeholder -->
+  <div id="staffLoader" class="text-center my-6 hidden">
+    <div class="inline-block w-6 h-6 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+    <p class="mt-2">Loading more...</p>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="previewModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closePreview()">&times;</span>
+      <img id="modalImage" src="" alt="Gallery Item" class="w-full h-auto rounded-lg mb-4">
+      <div class="text-sm text-gray-400" id="likeCount">Likes: 0</div>
+      <div class="comments-section mt-4">
+        <h3 class="font-semibold text-sm mb-2">Comments</h3>
+        <div id="commentList" class="text-xs text-gray-300"></div>
+        <input type="text" id="commentInput" placeholder="Add a comment..." class="w-full mt-2 p-2 rounded bg-gray-800 text-white focus:outline-none">
+        <button onclick="addComment()" class="mt-1 text-xs px-3 py-1 bg-primary text-white rounded">Post</button>
       </div>
     </div>
+  </div>
 
-    <!-- Staff Section -->
-    <section id="staffSection" class="staff-section mt-12">
-      <h2 class="text-center gradient-text">Our Leadership</h2>
-      <div id="staffGrid" class="staff-grid"></div>
-      <div id="staffLoader" class="loader text-center">
-        Loading more staff...
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-900 pt-10 pb-6 relative">
+    <div class="absolute inset-0 footer-aurora"></div>
+    <div class="container mx-auto px-6 text-center z-10 relative">
+      <p class="text-sm">&copy; 2025 Homagama Maha Vidyalaya. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-4">
+        <a href="#" class="text-gray-500 hover:text-primary transition">Privacy Policy</a>
+        <span>|</span>
+        <a href="#" class="text-gray-500 hover:text-primary transition">Terms of Service</a>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-      &copy; 2025 Homagama Maha Vidyalaya. All rights reserved.
-    </footer>
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gradient-to-r from-primary to-secondary text-white flex items-center justify-center shadow-lg z-40">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
-    <script>
-      // Gallery Data
-      const galleryData = [
-        {
-          src: "https://picsum.photos/id/1016/600/400 ",
-          category: "event",
-          title: "Annual Day Celebration",
-          caption: "Students enjoying cultural performances",
-          date: "Dec 15, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1019/600/400 ",
-          category: "achievement",
-          title: "Science Olympiad Winners",
-          caption: "Gold medalists receiving awards",
-          date: "Nov 20, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1015/600/400 ",
-          category: "activity",
-          title: "Art Club Exhibition",
-          caption: "Creative masterpieces by students",
-          date: "Oct 10, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1014/600/400 ",
-          category: "event",
-          title: "Sports Day",
-          caption: "Thrilling races and team games",
-          date: "Sep 25, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1013/600/400 ",
-          category: "achievement",
-          title: "Math Competition Winner",
-          caption: "Top scorer with trophy",
-          date: "Aug 18, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1012/600/400 ",
-          category: "activity",
-          title: "Debate Club Meeting",
-          caption: "Heated discussions on global issues",
-          date: "Jul 30, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1011/600/400 ",
-          category: "event",
-          title: "Cultural Fest",
-          caption: "Dance, music, and traditional costumes",
-          date: "Jun 15, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1010/600/400 ",
-          category: "achievement",
-          title: "National Science Fair",
-          caption: "Innovative projects displayed",
-          date: "May 20, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1009/600/400 ",
-          category: "activity",
-          title: "Coding Workshop",
-          caption: "Learning programming basics",
-          date: "Apr 10, 2025",
-          comments: [],
-          likes: 0,
-        },
-        {
-          src: "https://picsum.photos/id/1008/600/400 ",
-          category: "event",
-          title: "Teacher’s Day Celebration",
-          caption: "Tribute to educators",
-          date: "Mar 5, 2025",
-          comments: [],
-          likes: 0,
-        },
-        {
-          videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ ",
-          thumbnail: "https://picsum.photos/id/1015/600/400 ",
-          category: "video",
-          title: "Annual Sports Meet Highlights",
-          caption: "Watch the best moments from our annual sports event",
-          date: "Dec 10, 2024",
-          comments: [],
-          likes: 0,
-        },
-        {
-          videoUrl: "https://www.youtube.com/watch?v=abc123xyz ",
-          thumbnail: "https://picsum.photos/id/1016/600/400 ",
-          category: "video",
-          title: "STEM Lab Tour",
-          caption: "Explore our modern science and tech labs",
-          date: "Jan 10, 2025",
-          comments: [],
-          likes: 0,
-        },
-        {
-          videoUrl: "https://www.youtube.com/watch?v=def456uvw ",
-          thumbnail: "https://picsum.photos/id/1017/600/400 ",
-          category: "video",
-          title: "Student Testimonials",
-          caption: "What our students say about learning experience",
-          date: "Feb 15, 2025",
-          comments: [],
-          likes: 0,
-        },
-      ];
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js "></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js "></script>
 
-      // Staff Data
-      const staffData = [
-        {
-          src: "https://picsum.photos/id/1018/600/400 ",
-          name: "Mr. R. P. Silva",
-          role: "Principal",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Leading our school with vision and passion.",
-        },
-        {
-          src: "https://picsum.photos/id/1017/600/400 ",
-          name: "Ms. N. K. Perera",
-          role: "Vice Principal",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Guiding students toward excellence.",
-        },
-        {
-          src: "https://picsum.photos/id/1019/600/400 ",
-          name: "Dr. M. L. Fernando",
-          role: "Head of Science",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Passionate about innovation in education.",
-        },
-        {
-          src: "https://picsum.photos/id/1016/600/400 ",
-          name: "Mrs. A. D. Jayasinghe",
-          role: "Head of Math Department",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Fostering mathematical excellence.",
-        },
-        {
-          src: "https://picsum.photos/id/1015/600/400 ",
-          name: "Mr. K. S. Gunawardena",
-          role: "Head of Sports",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Promoting physical and mental growth.",
-        },
-        {
-          src: "https://picsum.photos/id/1014/600/400 ",
-          name: "Ms. T. M. Dilhani",
-          role: "IT Coordinator",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Bringing technology into the classroom.",
-        },
-        {
-          src: "https://picsum.photos/id/1013/600/400 ",
-          name: "Mr. J. P. Rajapaksha",
-          role: "Admissions Officer",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Helping students join our community.",
-        },
-        {
-          src: "https://picsum.photos/id/1012/600/400 ",
-          name: "Ms. S. K. Wijerathne",
-          role: "Head of Languages",
-          social: { linkedin: "#", facebook: "#" },
-          bio: "Fostering communication and creativity.",
-        },
-      ];
+  <script>
+    // Sample Gallery Data
+    const galleryData = [
+      {
+        category: "event",
+        title: "Annual Day Celebration",
+        caption: "Students enjoying cultural performances",
+        date: "Dec 15, 2024",
+        src: "https://picsum.photos/id/1016/600/400 ",
+        likes: 0,
+        comments: []
+      },
+      {
+        category: "achievement",
+        title: "Science Olympiad Winners",
+        caption: "Gold medalists receiving awards",
+        date: "Nov 20, 2024",
+        src: "https://picsum.photos/id/1019/600/400 ",
+        likes: 0,
+        comments: []
+      },
+      {
+        category: "activity",
+        title: "Art Club Exhibition",
+        caption: "Creative masterpieces by students",
+        date: "Oct 10, 2024",
+        src: "https://picsum.photos/id/1015/600/400 ",
+        likes: 0,
+        comments: []
+      },
+      {
+        category: "video",
+        title: "STEM Lab Tour",
+        caption: "Explore our modern science and tech labs",
+        date: "Jan 10, 2025",
+        thumbnail: "https://picsum.photos/id/1016/600/400 ",
+        videoUrl: "https://www.youtube.com/watch?v=abc123xyz "
+      },
+      {
+        category: "video",
+        title: "Student Testimonials",
+        caption: "What our students say about learning experience",
+        date: "Feb 15, 2025",
+        thumbnail: "https://picsum.photos/id/1017/600/400 ",
+        videoUrl: "https://www.youtube.com/watch?v=def456uvw "
+      }
+      // Add more cards up to 40
+    ];
 
-      let lightbox;
-      let visibleStaffCount = 4;
-      let currentImageIndex = 0;
+    let currentImageIndex = 0;
 
-      // Render Gallery
-      function renderGallery(category = "all") {
-        const galleryGrid = document.getElementById("galleryGrid");
-        galleryGrid.innerHTML = "";
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
-        const filteredItems =
-          category === "all"
-            ? galleryData
-            : galleryData.filter((item) => item.category === category);
+    function getBadgeClass(category) {
+      switch (category) {
+        case 'event': return 'badge-event';
+        case 'achievement': return 'badge-achievement';
+        case 'activity': return 'badge-activity';
+        case 'video': return 'badge-video';
+        default: return '';
+      }
+    }
 
-        filteredItems.forEach((item, index) => {
-          const card = document.createElement("div");
-          card.className = "bento-card group glassmorphism hover-zoom";
+    function renderGallery(category = "all") {
+      const galleryGrid = document.getElementById("galleryCards");
+      galleryGrid.innerHTML = "";
+
+      const filteredItems = category === "all" ? galleryData : galleryData.filter(item => item.category === category);
+
+      filteredItems.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "bento-card glassmorphism group hover:shadow-xl";
+
+        if (item.videoUrl) {
           card.innerHTML = `
-        <div class="card-header relative overflow-hidden rounded-t-xl">
-          <img src="${item.src || item.thumbnail}" alt="${
-            item.title
-          }" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Image+Not+Available ';">
-          <div class="category-badge ${getBadgeClass(
-            item.category
-          )}">${capitalizeFirstLetter(item.category)}</div>
-        </div>
-        <div class="card-footer glassmorphism rounded-b-xl">
-          <h3 class="card-title">${item.title}</h3>
-          <p class="card-caption">${item.caption}</p>
-          <div class="card-date flex items-center gap-1"><i class="fas fa-calendar-alt"></i><span>${
-            item.date
-          }</span></div>
-          <div class="comments-section mt-2">
-            <button onclick="openImagePreview(${index})" class="text-sm text-red-500 hover:text-red-300 underline">View Comments</button>
-          </div>
-        </div>
-      `;
-          galleryGrid.appendChild(card);
-        });
+            <div class="custom-player">
+              <iframe src="${item.videoUrl.replace('watch?v=', 'embed/')}" allowfullscreen></iframe>
+            </div>
+            <div class="card-footer glassmorphism rounded-b-xl p-4">
+              <h3 class="card-title">${item.title}</h3>
+              <p class="card-caption">${item.caption}</p>
+              <div class="card-date flex items-center gap-1 text-xs mt-2">
+                <i class="fas fa-calendar-alt"></i><span>${item.date}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          card.innerHTML = `
+            <div class="card-header relative overflow-hidden rounded-t-xl hover-zoom">
+              <img src="${item.src}" alt="${item.title}" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400 ';">
+              <div class="category-badge ${getBadgeClass(item.category)}">${capitalizeFirstLetter(item.category)}</div>
+            </div>
+            <div class="card-footer glassmorphism rounded-b-xl p-4">
+              <h3 class="card-title font-medium">${item.title}</h3>
+              <p class="card-caption">${item.caption}</p>
+              <div class="card-date flex items-center gap-1 text-xs mt-2">
+                <i class="fas fa-calendar-alt"></i><span>${item.date}</span>
+              </div>
+              <div class="mt-2 flex justify-between">
+                <button onclick="openImagePreview(${index})" class="text-sm text-primary underline">View Details</button>
+                <span class="text-xs">❤️ <span id="likeCount-${index}">0</span></span>
+              </div>
+            </div>
+          `;
+        }
 
-        animateCardsOnScroll();
-      }
+        card.addEventListener("click", () => openImagePreview(index));
 
-      function getBadgeClass(category) {
-        return category === "event" ? "badge-event" : "badge-video";
-      }
+        galleryGrid.appendChild(card);
+      });
+    }
 
-      function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-      }
+    function openImagePreview(index) {
+      const modal = document.getElementById("previewModal");
+      const img = document.getElementById("modalImage");
+      const commentList = document.getElementById("commentList");
 
-      // Image Preview Modal
-      function openImagePreview(index) {
-        const modal = document.getElementById("previewModal");
-        const img = document.getElementById("modalImage");
-        const commentList = document.getElementById("commentList");
-        const likeCount = document.getElementById("likeCount");
+      const item = galleryData[index];
+      img.src = item.thumbnail || item.src;
+      commentList.innerHTML = "";
 
-        currentImageIndex = index;
-        const item = galleryData[index];
+      item.comments.forEach(comment => {
+        const div = document.createElement("div");
+        div.className = "mb-2 text-xs text-gray-400";
+        div.textContent = `${comment.author}: ${comment.text}`;
+        commentList.appendChild(div);
+      });
 
-        img.src = item.src || item.thumbnail;
-        commentList.innerHTML = item.comments
-          .map(
-            (c) =>
-              `<div class="comment">${c.text} — <strong>${c.author}</strong></div>`
-          )
-          .join("");
-        likeCount.textContent = item.likes;
+      modal.style.display = "flex";
+    }
 
-        modal.style.display = "flex";
-      }
+    function closePreview() {
+      document.getElementById("previewModal").style.display = "none";
+    }
 
-      function closePreview() {
-        document.getElementById("previewModal").style.display = "none";
-      }
+    function addComment() {
+      const input = document.getElementById("commentInput");
+      const author = "Anonymous";
+      const text = input.value;
 
-      // Add Comment
-      document
-        .getElementById("commentForm")
-        ?.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const input = document.getElementById("commentInput");
-          const commentText = DOMPurify.sanitize(input.value.trim());
+      if (!text.trim()) return;
 
-          if (commentText) {
-            const author = "Anonymous";
-            galleryData[currentImageIndex].comments.push({
-              text: commentText,
-              author: author,
-            });
-            galleryData[currentImageIndex].likes++;
-            openImagePreview(currentImageIndex);
-            input.value = "";
+      galleryData[currentImageIndex].comments.push({ author, text });
+      input.value = "";
+
+      const newDiv = document.createElement("div");
+      newDiv.className = "mb-2 text-xs text-gray-400";
+      newDiv.textContent = `${author}: ${text}`;
+      document.getElementById("commentList").appendChild(newDiv);
+    }
+
+    // GSAP Scroll Animations
+    function initGSAPAnimations() {
+      gsap.utils.toArray(".bento-card").forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
           }
         });
+      });
+    }
 
-      // Add Like
-      function addLike() {
-        galleryData[currentImageIndex].likes++;
-        document.getElementById("likeCount").textContent =
-          galleryData[currentImageIndex].likes;
-      }
+    window.addEventListener("DOMContentLoaded", () => {
+      renderGallery();
+      initGSAPAnimations();
 
-      // Staff Grid Rendering
-      function renderStaff() {
-        const staffGrid = document.getElementById("staffGrid");
-        const staffLoader = document.getElementById("staffLoader");
-
-        const items = staffData.slice(0, visibleStaffCount);
-        items.forEach((item) => {
-          const card = document.createElement("div");
-          card.className =
-            "staff-card glassmorphism rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500";
-          card.innerHTML = `
-        <div class="staff-img relative overflow-hidden rounded-t-xl">
-          <img src="${item.src}" alt="${item.name}" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Staff+Not+Available ';">
-        </div>
-        <div class="staff-details glassmorphism rounded-b-xl p-4">
-          <h3 class="staff-name font-bold text-lg">${item.name}</h3>
-          <p class="staff-role text-sm text-gray-400">${item.role}</p>
-          <p class="text-sm text-gray-400 mt-1">${item.bio}</p>
-          <div class="staff-social flex gap-2 mt-2">
-            <a href="${item.social.linkedin}" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-            <a href="${item.social.facebook}" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          </div>
-        </div>
-      `;
-          staffGrid.appendChild(card);
+      // Attach filter event listeners
+      document.querySelectorAll(".filter-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+          e.target.classList.add("active");
+          const category = e.target.getAttribute("data-category");
+          renderGallery(category);
         });
+      });
 
-        if (visibleStaffCount >= staffData.length) {
-          staffLoader.style.display = "none";
-        } else {
-          staffLoader.style.display = "block";
-        }
-
-        animateCardsOnScroll();
-      }
-
-      // Infinite Scroll for Staff
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
       window.addEventListener("scroll", () => {
-        if (
-          window.innerHeight + window.scrollY >=
-            document.body.offsetHeight - 500 &&
-          visibleStaffCount < staffData.length
-        ) {
-          visibleStaffCount += 4;
-          renderStaff();
+        if (window.scrollY > 500) backToTop.classList.add("show");
+        else backToTop.classList.remove("show");
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Dark Mode Toggle
+      const toggleBtn = document.getElementById("darkModeToggle");
+      const icon = document.getElementById("darkModeIcon");
+      const isDark = localStorage.getItem("theme") === "dark";
+
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        if (document.body.classList.contains("dark")) {
+          icon.classList.replace("fa-moon", "fa-sun");
+          localStorage.setItem("theme", "dark");
+        } else {
+          icon.classList.replace("fa-sun", "fa-moon");
+          localStorage.setItem("theme", "light");
         }
       });
 
-      // Infinite Scroll for Gallery
-      window.addEventListener("scroll", () => {
-        if (
-          window.innerHeight + window.scrollY >=
-          document.body.scrollHeight - 500
-        ) {
-          const newItems = Array.from({ length: 4 }).map(() => {
-            const randomIndex = Math.floor(Math.random() * galleryData.length);
-            return galleryData[randomIndex];
-          });
-          newItems.forEach((item) => {
-            const card = document.createElement("div");
-            card.className = "bento-card group glassmorphism hover-zoom";
-            card.innerHTML = `
-          <div class="card-header relative overflow-hidden rounded-t-xl">
-            <img src="${item.src || item.thumbnail}" alt="${
-              item.title
-            }" class="w-full h-auto object-cover" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Image+Not+Available ';">
-            <div class="category-badge ${getBadgeClass(
-              item.category
-            )}">${capitalizeFirstLetter(item.category)}</div>
+      if (isDark) {
+        document.body.classList.add("dark");
+        icon.classList.replace("fa-moon", "fa-sun");
+      }
+    });
+
+    // Infinite Scroll
+    let loadIndex = 10;
+    const galleryGrid = document.getElementById("galleryCards");
+
+    window.addEventListener("scroll", () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 && loadIndex < galleryData.length) {
+        const nextItem = galleryData[loadIndex++];
+        const card = document.createElement("div");
+        card.className = "bento-card glassmorphism group hover:shadow-xl";
+        card.innerHTML = `
+          <div class="card-header relative overflow-hidden rounded-t-xl hover-zoom">
+            <img src="${nextItem.src}" alt="${nextItem.title}" class="w-full h-auto object-cover" loading="lazy">
+            <div class="category-badge ${getBadgeClass(nextItem.category)}">${capitalizeFirstLetter(nextItem.category)}</div>
           </div>
-          <div class="card-footer glassmorphism rounded-b-xl">
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-caption">${item.caption}</p>
-            <div class="card-date flex items-center gap-1"><i class="fas fa-calendar-alt"></i><span>${
-              item.date
-            }</span></div>
+          <div class="card-footer glassmorphism rounded-b-xl p-4">
+            <h3 class="card-title font-medium">${nextItem.title}</h3>
+            <p class="card-caption">${nextItem.caption}</p>
+            <div class="card-date flex items-center gap-1 text-xs mt-2">
+              <i class="fas fa-calendar-alt"></i><span>${nextItem.date}</span>
+            </div>
+            <div class="mt-2 flex justify-between">
+              <button class="text-sm text-primary underline">View Details</button>
+              <span class="text-xs">❤️ <span id="likeCount-${loadIndex}">0</span></span>
+            </div>
           </div>
         `;
-            card.addEventListener("click", () =>
-              openImagePreview(galleryData.indexOf(item))
-            );
-            document.getElementById("galleryGrid").appendChild(card);
-          });
-        }
-      });
-
-      // Filtering Logic
-      document.querySelectorAll(".filter-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          document
-            .querySelectorAll(".filter-btn")
-            .forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          renderGallery(btn.getAttribute("data-category"));
-        });
-      });
-
-      document
-        .querySelector(".mobile-filter-dropdown")
-        .addEventListener("change", (e) => {
-          renderGallery(e.target.value);
-        });
-
-      // GSAP Scroll Animations
-      function animateCardsOnScroll() {
-        gsap.utils.toArray(".bento-card, .staff-card").forEach((card, i) => {
-          gsap.from(card, {
-            opacity: 0,
-            y: 40,
-            duration: 1,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              end: "bottom 20%",
-              scrub: true,
-            },
-          });
-        });
+        card.addEventListener("click", () => openImagePreview(loadIndex - 1));
+        galleryGrid.appendChild(card);
       }
+    });
 
-      // Initialize Glightbox
-      function updateLightbox() {
-        if (lightbox) lightbox.destroy();
-        lightbox = GLightbox({
-          selector: ".bento-card",
-          touchNavigation: true,
-          loop: true,
-          zoomable: true,
-          draggable: true,
-          captionSelector: "self",
-          captionPosition: "bottom",
-          captionClass: "lightbox-caption",
-        });
-      }
+    // Initialize lightbox
+    let lightbox;
 
-      // Initial Render
-      renderGallery("all");
-      renderStaff();
-    </script>
-  </body>
+    function updateLightbox() {
+      lightbox = GLightbox({
+        selector: ".bento-card",
+        touchNavigation: true,
+        loop: true,
+        zoomable: true,
+        draggable: true,
+        captionPosition: "bottom"
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", updateLightbox);
+  </script>
+</body>
 </html>

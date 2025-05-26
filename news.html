@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✨ News & Events</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com "></script>
+  <link href="https://unpkg.com/feather-icons " rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs @3.x.x/dist/cdn.min.js" defer></script>
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos @2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos @2.3.4/dist/aos.js"></script>
+
+  <!-- Custom Styles -->
+  <style type="text/tailwind">
+    @layer utilities {
+      /* Aurora Background */
+      .aurora {
+        background: linear-gradient(120deg,
+          #a855f7 0%,
+          #ec4899 25%,
+          #3b82f6 50%,
+          #10b981 75%,
+          #f59e0b 100%
+        );
+        background-size: 400% 400%;
+        animation: aurora 15s ease-in-out infinite;
+      }
+
+      @keyframes aurora {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* Glassmorphism */
+      .glass {
+        @apply bg-white/20 dark:bg-gray-800/30 backdrop-blur-lg border border-white/30 dark:border-gray-600/30 rounded-xl shadow-lg;
+      }
+
+      /* Neon Button Glow */
+      .neon-hover:hover {
+        @apply shadow-[0_0_10px_#a855f7,0_0_20px_#ec4899] transform scale-105 transition-all duration-300;
+      }
+
+      /* Toast Notification */
+      .toast {
+        @apply fixed bottom-4 right-4 px-4 py-2 rounded-full bg-green-500 text-white shadow-lg transition-opacity duration-300 z-50;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-900 dark:text-white transition-colors duration-300 overflow-x-hidden" x-data="{ darkMode: false }">
+
+<!-- Aurora Animated Background -->
+<div class="aurora min-h-screen w-full fixed top-0 left-0 -z-10"></div>
+
+<!-- Header -->
+<header class="py-12 text-center">
+  <h1 class="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">News & Events</h1>
+  <p class="mt-4 text-lg text-gray-700 dark:text-gray-300">Stay updated with what’s happening around us.</p>
+
+  <div class="mt-6 flex flex-wrap justify-center items-center gap-4">
+    <input id="searchInput" type="text" placeholder="Search news or events..."
+           class="px-4 py-2 rounded-full glass focus:outline-none focus:ring-2 focus:ring-indigo-500 w-64" />
+
+    <button @click="darkMode = !darkMode; $el.classList.toggle('bg-indigo-700')" :class="darkMode ? 'bg-indigo-700' : ''"
+            class="flex items-center gap-2 px-4 py-2 rounded-full glass hover:shadow-md transition-all neon-hover">
+      <i data-feather="moon" class="w-5 h-5"></i> <span x-text="darkMode ? 'Light Mode' : 'Dark Mode'"></span>
+    </button>
+  </div>
+</header>
+
+<!-- Filters -->
+<section class="container mx-auto px-4 mb-10">
+  <div class="flex flex-wrap justify-center gap-3">
+    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">All</button>
+    <button data-filter="news" class="filter-btn px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">News</button>
+    <button data-filter="event" class="filter-btn px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">Events</button>
+    <button data-filter="education" class="filter-btn px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">Education</button>
+    <button data-filter="sports" class="filter-btn px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">Sports</button>
+    <button data-filter="workshop" class="filter-btn px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">Workshops</button>
+  </div>
+</section>
+
+<!-- Grid -->
+<main id="grid"
+      class="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+</main>
+
+<!-- Pagination -->
+<div class="container mx-auto px-4 flex justify-center gap-4 mb-10">
+  <button id="prevPage"
+          class="px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">&laquo; Prev</button>
+  <span id="pageInfo" class="px-4 py-2 glass">Page 1</span>
+  <button id="nextPage"
+          class="px-4 py-2 rounded-full glass hover:shadow-lg neon-hover">Next &raquo;</button>
+</div>
+
+<!-- Loader -->
+<div id="loader"
+     class="hidden container mx-auto text-center py-10 text-xl font-bold glass backdrop-blur-md p-4">Loading...</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="hidden toast">Item not found</div>
+
+<!-- Modal -->
+<div id="modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+  <div class="relative glass backdrop-blur-lg rounded-2xl overflow-hidden max-w-lg w-full shadow-2xl animate-fadeInUp" data-aos="zoom-in">
+    <img id="modalImage" class="w-full h-56 object-cover" src="" alt="">
+    <div class="p-6">
+      <h2 id="modalTitle" class="text-2xl font-semibold mb-2"></h2>
+      <p id="modalDescription" class="mb-4"></p>
+      <span id="modalDate" class="block text-sm text-gray-500 dark:text-gray-400"></span>
+      <button id="closeModalBtn"
+              class="absolute top-4 right-4 text-white bg-red-500 p-2 rounded-full hover:bg-red-600 transition neon-hover">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Feather Icons -->
+<script src="https://unpkg.com/feather-icons "></script>
+
+<!-- JS Logic -->
+<script src="news.js"></script>
+</body>
+</html>

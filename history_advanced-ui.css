@@ -1,0 +1,792 @@
+/* ====== Global Variables ====== */
+:root {
+  /* Color Gradients */
+  --primary: #e74c3c;
+  --secondary: #f39c12;
+  --accent: #3498db;
+
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s ease;
+  --transition-slow: 1s ease;
+}
+
+/* ===== Glassmorphism Cards ===== */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .glassmorphism {
+  background: rgba(17, 24, 39, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Hero Section Styles ===== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #f9fafb;
+}
+
+body.dark .hero-section {
+  background: #111827;
+}
+
+/* Decorative Circles */
+.decorative-circles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.circle-1 {
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(45deg, var(--primary), transparent);
+  animation: float 15s ease-in-out infinite;
+}
+
+.circle-2 {
+  bottom: -15%;
+  right: -15%;
+  width: 60%;
+  height: 60%;
+  background: linear-gradient(45deg, var(--secondary), transparent);
+  animation: float 20s ease-in-out infinite reverse;
+}
+
+.circle-3 {
+  top: 40%;
+  left: 25%;
+  width: 30%;
+  height: 30%;
+  background: linear-gradient(45deg, var(--accent), transparent);
+  animation: float 18s ease-in-out infinite 2s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10px, -10px); }
+}
+
+/* ===== School Badge ===== */
+.school-badge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 10px;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.school-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #000;
+  padding: 5px;
+}
+
+.school-badge::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+  border-radius: 50%;
+  animation: spin 8s linear infinite;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Title Container with Underline ===== */
+.title-container {
+  position: relative;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  animation: handwriting 2s forwards 1s;
+}
+
+@keyframes handwriting {
+  to {
+    width: 100%;
+  }
+}
+
+/* ===== Button Styles ===== */
+.cta-primary {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: all var(--transition-medium) ease;
+  box-shadow: 0 4px 20px rgba(255, 0, 85, 0.3);
+  position: relative;
+}
+
+.cta-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(255, 0, 85, 0.4);
+}
+
+.cta-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: all var(--transition-fast) ease;
+}
+
+.cta-primary:hover::before {
+  left: 100%;
+}
+
+/* ===== Particle Animations ===== */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.animate-float {
+  animation: float 15s ease infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== Timeline Animation ===== */
+.timeline-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Gallery Carousel ===== */
+.carousel-wrapper {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+.carousel-container {
+  display: flex;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  scroll-snap-align: start;
+  min-width: 90%;
+  max-width: 90%;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .carousel-item {
+    min-width: 45%;
+    max-width: 45%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-item {
+    min-width: 30%;
+    max-width: 30%;
+  }
+}
+
+/* ===== Marquee Text ===== */
+.marquee {
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ===== Loading / Skeleton UI ===== */
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading-dots {
+  display: inline-flex;
+}
+
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 0 2px;
+  animation: dotPulse 1.5s infinite ease-in-out;
+}
+
+.loading-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+/* ===== Progress Bar ===== */
+.progress-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e74c3c, #f39c12, #3498db);
+  transition: width 0.3s ease;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+}
+
+body.dark .theme-toggle {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle i {
+  font-size: 1.25rem;
+  color: #fff;
+  transition: all var(--transition-medium) ease;
+}
+
+.theme-toggle:hover i {
+  transform: rotate(30deg);
+}
+
+/* ===== Cursor Glow ===== */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 85, 0.15), transparent 70%);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  transition: transform 0.1s ease;
+}
+
+/* ===== Aurora Background ===== */
+.aurora-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, var(--primary), var(--secondary), var(--accent));
+  background-size: 400% 400%;
+  animation: auroraBG 10s ease infinite;
+}
+
+@keyframes auroraBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Image Hover Effects ===== */
+.relative-hover:hover img {
+  transform: scale(1.05);
+}
+
+img.transition-transform {
+  transition: transform 0.5s ease;
+}
+
+/* ===== Modal Styles ===== */
+.modal {
+  border: none;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Gradient Text ===== */
+.gradient-text {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Scroll Indicator ===== */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1s forwards 1.5s;
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.scroll-icon {
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  position: relative;
+}
+
+.scroll-icon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 9999px;
+  animation: scrollIconMove 1.5s infinite;
+}
+
+@keyframes scrollIconMove {
+  0% { transform: translateX(-50%) translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
+}
+
+/* ===== Social Icons ===== */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all var(--transition-fast) ease;
+}
+
+.social-icon:hover {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+}
+
+/* ===== Footer Aurora Background ===== */
+.footer-aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, var(--primary)/10, var(--secondary)/10, var(--accent)/10);
+  filter: blur(120px);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* ===== Fade In Up Animation ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+/* ===== Logo Glow Effect ===== */
+.logo-container {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  background: #000;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 25px rgba(255, 150, 0, 0.4);
+  transition: all var(--transition-medium) cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: logo-pulse 4s infinite alternate ease-in-out;
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(255, 30, 0, 0.6), 0 0 30px rgba(255, 180, 0, 0.5);
+  }
+}
+
+/* ===== Text Shine Effect ===== */
+.text-shine {
+  position: relative;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ===== Scroll Top Button ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  padding: 0.5rem 0.75rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px rgba(255, 0, 85, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Welcome Screen Loader ===== */
+#welcomeScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  transition: all 1s ease;
+}
+
+#welcomeScreen.fade-out {
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+/* ===== Skeleton Loader Animations ===== */
+#skeletonLoader {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: linear-gradient(to bottom, #0f172a, #090b1a);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader-content {
+  width: 100%;
+  max-width: 6xl;
+  padding: 3rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.skeleton-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  height: 300px;
+}
+
+/* ===== News Card Tooltip ===== */
+.category-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #111;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.category-icon:hover + .category-label {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-5px);
+}
+
+/* ===== Image Parallax Hover ===== */
+.image-parallax {
+  transition: transform 0.5s ease;
+}
+
+.image-parallax:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== Gradient Border Glow ===== */
+.border-glow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.border-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.border-glow:hover::before {
+  left: 100%;
+}
+
+/* ===== Text Highlight Glow ===== */
+.text-glow {
+  position: relative;
+}
+
+.text-glow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
+}
+
+.text-glow:hover::after {
+  width: 100%;
+}
+/* ====== Aurora Background ===== */
+.aurora-bg::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, #e74c3c, #f39c12, #3498db);
+  background-size: 400% 400%;
+  animation: auroraBG 10s ease infinite;
+  opacity: 0.05;
+}
+
+@keyframes auroraBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== Timeline Animation ===== */
+.timeline-item {
+  transform: translateY(40px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.timeline-item.visible {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 1s ease-out;
+}
+
+/* ===== Icon Glow on Hover ===== */
+.timeline-item i {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.timeline-item:hover i {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Image Zoom Effect ===== */
+.relative-hover:hover img {
+  transform: scale(1.05);
+}
+
+img.transition-transform {
+  transition: transform 0.5s ease;
+}
+
+/* ===== Enhanced Glassmorphism Cards ===== */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .glassmorphism {
+  background: rgba(17, 24, 39, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
