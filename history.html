@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>School History - Homagama Maha Vidyalaya</title>
 <!-- External Styles -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins :wght@400;600&display=swap" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css " />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon @3.5.0/fonts/remixicon.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
 
 <!-- Project Styles -->
 <link rel="stylesheet" href="history_advanced-ui.css">
@@ -15,10 +15,67 @@
 <link rel="stylesheet" href="Aurora Gradient Animation.css">
 
   <!-- Favicon -->
-  <link rel="icon" href="https://ik.imagekit.io/5fpzilm1y/logo.png?updatedAt=1747557297487 " type="image/x-icon">
+  <link rel="icon" href="https://ik.imagekit.io/5fpzilm1y/logo.png?updatedAt=1747557297487" type="image/x-icon">
 
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com "></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            'google': ['Google Sans', 'Roboto', 'sans-serif'],
+            'roboto': ['Roboto', 'sans-serif']
+          },
+          colors: {
+            'google-blue': '#4285F4',
+            'google-red': '#EA4335',
+            'google-yellow': '#FBBC05',
+            'google-green': '#34A853',
+            'google-gray': {
+              50: '#F8F9FA',
+              100: '#F1F3F4',
+              200: '#E8EAED',
+              300: '#DADCE0',
+              400: '#BDC1C6',
+              500: '#9AA0A6',
+              600: '#80868B',
+              700: '#5F6368',
+              800: '#3C4043',
+              900: '#202124'
+            }
+          },
+          boxShadow: {
+            'pixel-1': '0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15)',
+            'pixel-2': '0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15)',
+            'pixel-3': '0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15)',
+            'pixel-4': '0 2px 3px 0 rgba(60, 64, 67, 0.3), 0 6px 10px 4px rgba(60, 64, 67, 0.15)'
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.6s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white font-poppins">
 

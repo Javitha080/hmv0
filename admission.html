@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admissions | Excellence in Education</title>
   <meta name="description" content="Join our prestigious educational institution. Discover world-class facilities, expert faculty, and a nurturing environment for your child's growth.">
-
+  
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -27,6 +27,7 @@
   </script>
 
   <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- AOS Animation Library -->
@@ -38,6 +39,10 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Admission Page Specific Styles -->
+  <link rel="stylesheet" href="admission.css">
+  <link rel="stylesheet" href="index.css">
 
   <style>
     :root {
@@ -184,11 +189,16 @@
      @scroll.window="scrolled = window.pageYOffset > 50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
-      <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
-          <i class="fas fa-graduation-cap text-white text-xl"></i>
+      <div class="flex items-center">
+        <div class="logo-container mr-3">
+          <img src="https://ik.imagekit.io/5fpzilm1y/logo.png?updatedAt=1747557297487" alt="School Logo" class="h-10 w-10 rounded-full">
         </div>
-        <span class="text-xl font-display font-bold gradient-text">EduExcellence</span>
+        <div class="flex flex-col justify-center">
+          <h1 class="text-xl font-bold text-white leading-tight">
+            Homagama Maha Vidyalaya
+          </h1>
+          <span class="text-xs text-white/70 block">Excellence in Education</span>
+        </div>
       </div>
       
       <!-- Desktop Menu -->
@@ -434,8 +444,8 @@
         
         <div class="mt-6 pt-6 border-t border-white/10">
           <div class="text-center">
-            <span class="text-2xl font-bold gradient-text">₹25,000</span>
-            <span class="text-white/60 text-sm block">Annual Fee</span>
+            <span class="text-2xl font-bold gradient-text">25,000</span>
+            <span class="text-white/60 text-sm block">Fee</span>
           </div>
         </div>
       </div>
@@ -473,8 +483,8 @@
         
         <div class="mt-6 pt-6 border-t border-white/10">
           <div class="text-center">
-            <span class="text-2xl font-bold gradient-text">₹30,000</span>
-            <span class="text-white/60 text-sm block">Annual Fee</span>
+            <span class="text-2xl font-bold gradient-text">30,000</span>
+            <span class="text-white/60 text-sm block">Fee</span>
           </div>
         </div>
       </div>
@@ -512,8 +522,8 @@
         
         <div class="mt-6 pt-6 border-t border-white/10">
           <div class="text-center">
-            <span class="text-2xl font-bold gradient-text">₹35,000</span>
-            <span class="text-white/60 text-sm block">Annual Fee</span>
+            <span class="text-2xl font-bold gradient-text">35,000</span>
+            <span class="text-white/60 text-sm block">Fee</span>
           </div>
         </div>
       </div>
@@ -544,65 +554,375 @@
 </section>
 
 <!-- Documents Section -->
-<section id="documents" class="py-20 px-6">
-  <div class="max-w-5xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
-    <h2 class="text-3xl font-bold mb-6 neon-gradient">📂 Required Documents</h2>
-    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-      <li>Birth Certificate / Aadhar Card</li>
-      <li>Previous Academic Records</li>
-      <li>Transfer Certificate (if applicable)</li>
-      <li>Caste Certificate (if applicable)</li>
-      <li>Residence Proof</li>
-      <li>Passport-size Photographs</li>
-      <li>Vaccination Certificate (for Nursery/KG)</li>
-    </ul>
+<section id="documents" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-file-alt mr-2"></i>
+        Required Documents
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Document Checklist
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Ensure you have all necessary documents ready for a smooth admission process
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Essential Documents -->
+      <div class="glass p-8 rounded-3xl card-hover" data-aos="fade-up" data-aos-delay="200">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-id-card text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Identity Documents</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Birth Certificate</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Aadhar Card</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Passport-size Photos (4)</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Academic Documents -->
+      <div class="glass p-8 rounded-3xl card-hover" data-aos="fade-up" data-aos-delay="400">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Academic Records</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Previous School Records</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Transfer Certificate</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Progress Report</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Additional Documents -->
+      <div class="glass p-8 rounded-3xl card-hover" data-aos="fade-up" data-aos-delay="600">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-folder-plus text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Additional Documents</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Residence Proof</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-check text-green-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Vaccination Certificate</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <div class="w-6 h-6 bg-orange-500/20 rounded-full flex items-center justify-center">
+              <i class="fas fa-star text-orange-400 text-xs"></i>
+            </div>
+            <span class="text-white/80 text-sm">Caste Certificate (if applicable)</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Document Upload Info -->
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="800">
+      <div class="glass p-8 rounded-3xl max-w-4xl mx-auto">
+        <h3 class="text-2xl font-bold text-white mb-6">
+          <i class="fas fa-cloud-upload-alt text-blue-400 mr-3"></i>
+          Document Submission Guidelines
+        </h3>
+        <div class="grid md:grid-cols-2 gap-8 text-left">
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center mt-1">
+                <i class="fas fa-file-pdf text-blue-400 text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Digital Format</h4>
+                <p class="text-white/70 text-sm">Upload clear scanned copies in PDF format (max 2MB per file)</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center mt-1">
+                <i class="fas fa-shield-alt text-green-400 text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Verification</h4>
+                <p class="text-white/70 text-sm">Original documents will be verified during admission</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center mt-1">
+                <i class="fas fa-clock text-purple-400 text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Processing Time</h4>
+                <p class="text-white/70 text-sm">Document verification takes 2-3 working days</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center mt-1">
+                <i class="fas fa-phone text-orange-400 text-sm"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white mb-1">Support</h4>
+                <p class="text-white/70 text-sm">Contact admission office for any document-related queries</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Application Process -->
-<section id="process" class="py-20 px-6 bg-indigo-950/30">
-  <div class="max-w-5xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
-    <h2 class="text-3xl font-bold mb-6 neon-gradient">📝 Application Process</h2>
-    <ol class="list-decimal pl-6 space-y-4 text-gray-300">
-      <li>Fill out the online application form.</li>
-      <li>Upload scanned copies of all required documents.</li>
-      <li>Attend entrance test or interview.</li>
-      <li>Receive admission offer via email/SMS.</li>
-      <li>Confirm seat by paying fees before deadline.</li>
-    </ol>
+<section id="process" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-route mr-2"></i>
+        Application Process
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Your Journey Starts Here
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Follow our simple 5-step process to secure your child's admission
+      </p>
+    </div>
+    
+    <div class="relative">
+      <!-- Process Steps -->
+      <div class="grid md:grid-cols-5 gap-8 relative">
+        <!-- Step 1 -->
+        <div class="text-center step-indicator" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow">
+              <i class="fas fa-edit text-white text-2xl"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
+              1
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">Apply Online</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Fill out our comprehensive online application form with all required details
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="text-center step-indicator" data-aos="fade-up" data-aos-delay="400">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow">
+              <i class="fas fa-cloud-upload-alt text-white text-2xl"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
+              2
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">Upload Documents</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Submit clear scanned copies of all required documents through our secure portal
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="text-center step-indicator" data-aos="fade-up" data-aos-delay="600">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow">
+              <i class="fas fa-user-check text-white text-2xl"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
+              3
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">Assessment</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Attend entrance test or interview as per the grade requirements
+          </p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="text-center step-indicator" data-aos="fade-up" data-aos-delay="800">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow">
+              <i class="fas fa-envelope-open text-white text-2xl"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
+              4
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">Admission Offer</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Receive your admission decision via email and SMS notification
+          </p>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="text-center" data-aos="fade-up" data-aos-delay="1000">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow">
+              <i class="fas fa-graduation-cap text-white text-2xl"></i>
+            </div>
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
+              5
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-3">Confirm Admission</h3>
+          <p class="text-white/70 text-sm leading-relaxed">
+            Secure your seat by paying the admission fee before the deadline
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Process Timeline -->
+    <div class="mt-16 text-center" data-aos="fade-up" data-aos-delay="1200">
+      <div class="glass p-8 rounded-3xl max-w-4xl mx-auto">
+        <h3 class="text-2xl font-bold text-white mb-6">
+          <i class="fas fa-calendar-alt text-blue-400 mr-3"></i>
+          Important Timelines
+        </h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-clock text-white text-xl"></i>
+            </div>
+            <h4 class="font-bold text-white mb-2">Application Period</h4>
+            <p class="text-white/70 text-sm">January 1st - March 31st</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-clipboard-check text-white text-xl"></i>
+            </div>
+            <h4 class="font-bold text-white mb-2">Assessment Dates</h4>
+            <p class="text-white/70 text-sm">April 1st - April 15th</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-check-circle text-white text-xl"></i>
+            </div>
+            <h4 class="font-bold text-white mb-2">Final Confirmation</h4>
+            <p class="text-white/70 text-sm">April 20th - April 30th</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FAQs Accordion -->
-<section id="faq" class="py-20 px-6">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8 neon-gradient text-center">❓ Frequently Asked Questions</h2>
-    <div class="space-y-4">
-      <div class="glass p-4 rounded-lg">
-        <button @click="openFaq = openFaq === 'q1' ? null : 'q1'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
-          Is there an entrance exam?
-          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q1' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+<section id="faq" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-question-circle mr-2"></i>
+        FAQs
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Got Questions? We Have Answers!
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        Find answers to common queries about our admission process and school policies
+      </p>
+    </div>
+    
+    <div class="space-y-6" x-data="{ openFaq: null }">
+      <!-- FAQ Item 1 -->
+      <div class="glass p-6 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="200">
+        <button @click="openFaq = openFaq === 'q1' ? null : 'q1'" class="w-full flex justify-between items-center text-left text-white hover:text-primary transition-colors duration-300">
+          <span class="text-lg font-semibold">Is there an entrance exam for admission?</span>
+          <i class="fas" :class="{ 'fa-chevron-up': openFaq === 'q1', 'fa-chevron-down': openFaq !== 'q1' }"></i>
         </button>
-        <div x-show="openFaq === 'q1'" x-collapse class="px-4 pb-4 text-gray-300">
-          Yes, entrance exams are conducted for admissions starting from Grade 1 onwards.
+        <div x-show="openFaq === 'q1'" x-collapse class="mt-4 text-white/70 text-sm leading-relaxed">
+          Yes, entrance exams are conducted for admissions to Grade 1 and above. For Nursery and Kindergarten, we have an informal interaction session with the child and parents.
         </div>
       </div>
-      <div class="glass p-4 rounded-lg">
-        <button @click="openFaq = openFaq === 'q2' ? null : 'q2'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
-          Can I apply if relocating?
-          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q2' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      
+      <!-- FAQ Item 2 -->
+      <div class="glass p-6 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="300">
+        <button @click="openFaq = openFaq === 'q2' ? null : 'q2'" class="w-full flex justify-between items-center text-left text-white hover:text-primary transition-colors duration-300">
+          <span class="text-lg font-semibold">What is the student-teacher ratio?</span>
+          <i class="fas" :class="{ 'fa-chevron-up': openFaq === 'q2', 'fa-chevron-down': openFaq !== 'q2' }"></i>
         </button>
-        <div x-show="openFaq === 'q2'" x-collapse class="px-4 pb-4 text-gray-300">
-          Yes, please mention your relocation date in the application.
+        <div x-show="openFaq === 'q2'" x-collapse class="mt-4 text-white/70 text-sm leading-relaxed">
+          We maintain a healthy student-teacher ratio of 20:1 for primary classes and 25:1 for secondary classes to ensure personalized attention for every student.
         </div>
       </div>
-      <div class="glass p-4 rounded-lg">
-        <button @click="openFaq = openFaq === 'q3' ? null : 'q3'" class="w-full flex justify-between items-center text-left px-4 py-3 rounded-lg hover:bg-white/10 transition">
-          What curriculum do you follow?
-          <svg class="w-5 h-5 transition-transform" :class="{ 'rotate-180': openFaq === 'q3' }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      
+      <!-- FAQ Item 3 -->
+      <div class="glass p-6 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="400">
+        <button @click="openFaq = openFaq === 'q3' ? null : 'q3'" class="w-full flex justify-between items-center text-left text-white hover:text-primary transition-colors duration-300">
+          <span class="text-lg font-semibold">What curriculum do you follow?</span>
+          <i class="fas" :class="{ 'fa-chevron-up': openFaq === 'q3', 'fa-chevron-down': openFaq !== 'q3' }"></i>
         </button>
-        <div x-show="openFaq === 'q3'" x-collapse class="px-4 pb-4 text-gray-300">
-          We follow the CBSE curriculum with a focus on holistic learning.
+        <div x-show="openFaq === 'q3'" x-collapse class="mt-4 text-white/70 text-sm leading-relaxed">
+          We follow the CBSE (Central Board of Secondary Education) curriculum, enhanced with modern teaching methodologies and a focus on holistic development.
+        </div>
+      </div>
+      
+      <!-- FAQ Item 4 -->
+      <div class="glass p-6 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="500">
+        <button @click="openFaq = openFaq === 'q4' ? null : 'q4'" class="w-full flex justify-between items-center text-left text-white hover:text-primary transition-colors duration-300">
+          <span class="text-lg font-semibold">Are there any extracurricular activities?</span>
+          <i class="fas" :class="{ 'fa-chevron-up': openFaq === 'q4', 'fa-chevron-down': openFaq !== 'q4' }"></i>
+        </button>
+        <div x-show="openFaq === 'q4'" x-collapse class="mt-4 text-white/70 text-sm leading-relaxed">
+          Absolutely! We offer a wide range of extracurricular activities including sports, arts, music, dance, coding, robotics, and various clubs to nurture diverse talents.
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div class="glass p-6 rounded-2xl card-hover" data-aos="fade-up" data-aos-delay="600">
+        <button @click="openFaq = openFaq === 'q5' ? null : 'q5'" class="w-full flex justify-between items-center text-left text-white hover:text-primary transition-colors duration-300">
+          <span class="text-lg font-semibold">Do you provide transportation?</span>
+          <i class="fas" :class="{ 'fa-chevron-up': openFaq === 'q5', 'fa-chevron-down': openFaq !== 'q5' }"></i>
+        </button>
+        <div x-show="openFaq === 'q5'" x-collapse class="mt-4 text-white/70 text-sm leading-relaxed">
+          Yes, we have a safe and reliable bus transportation system covering various routes across the city. Details and fees can be obtained from the admission office.
         </div>
       </div>
     </div>
@@ -610,32 +930,122 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-20 px-6 bg-indigo-950/30">
-  <div class="max-w-4xl mx-auto glass p-8 rounded-2xl shadow-2xl shadow-indigo-500/20">
-    <h2 class="text-3xl font-bold mb-6 neon-gradient">📞 Contact Us</h2>
-    <p class="mb-2"><strong>Email:</strong> admissions@[yourschool].com</p>
-    <p class="mb-2"><strong>Phone:</strong> +91 1234567890</p>
-    <p><strong>Address:</strong> 123 Education Lane, City</p>
+<section id="contact" class="py-24 px-6 relative">
+  <div class="section-divider"></div>
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16" data-aos="fade-up">
+      <span class="inline-block px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-medium mb-4">
+        <i class="fas fa-headset mr-2"></i>
+        Get in Touch
+      </span>
+      <h2 class="text-4xl md:text-5xl font-display font-bold gradient-text mb-6">
+        Contact Our Admissions Team
+      </h2>
+      <p class="text-xl text-white/80 max-w-3xl mx-auto">
+        We're here to help you with any questions about the admission process or our school
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Contact Form (Conceptual) -->
+      <div class="glass p-8 md:p-12 rounded-3xl card-hover" data-aos="fade-right" data-aos-delay="200">
+        <h3 class="text-2xl font-bold text-white mb-8">Send Us a Message</h3>
+        <form action="#" method="POST" class="space-y-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-white/80 mb-2">Full Name</label>
+            <input type="text" name="name" id="name" autocomplete="name" class="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-primary focus:border-primary transition-all duration-300 placeholder-white/50" placeholder="Your Name">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email Address</label>
+            <input type="email" name="email" id="email" autocomplete="email" class="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-primary focus:border-primary transition-all duration-300 placeholder-white/50" placeholder="you@example.com">
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-white/80 mb-2">Message</label>
+            <textarea id="message" name="message" rows="4" class="w-full bg-white/5 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-primary focus:border-primary transition-all duration-300 placeholder-white/50" placeholder="Your inquiry..."></textarea>
+          </div>
+          <div>
+            <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-secondary hover:to-primary text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
+              <i class="fas fa-paper-plane"></i>
+              <span>Send Message</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Contact Details -->
+      <div class="space-y-8" data-aos="fade-left" data-aos-delay="400">
+        <div class="flex items-start space-x-6 glass p-6 rounded-2xl card-hover">
+          <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center text-white text-2xl">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Our Address</h4>
+            <p class="text-white/80 leading-relaxed">
+              Aturugiriya Rd, Homagama, Sri Lanka
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex items-start space-x-6 glass p-6 rounded-2xl card-hover">
+          <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center text-white text-2xl">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Email Us</h4>
+            <a href="mailto:admissions@brightfutures.edu" class="text-primary hover:text-secondary transition-colors duration-300 block">admissions@brightfutures.edu</a>
+            <a href="mailto:info@brightfutures.edu" class="text-primary hover:text-secondary transition-colors duration-300 block">info@brightfutures.edu</a>
+          </div>
+        </div>
+        
+        <div class="flex items-start space-x-6 glass p-6 rounded-2xl card-hover">
+          <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-white text-2xl">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-white mb-2">Call Us</h4>
+            <a href="tel:+911234567890" class="text-primary hover:text-secondary transition-colors duration-300 block">+91 123 456 7890 (Admissions)</a>
+            <a href="tel:+919876543210" class="text-primary hover:text-secondary transition-colors duration-300 block">+91 987 654 3210 (General)</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Footer -->
-<footer class="text-center py-6 text-gray-400">
-  <p>© 2025 [Your School Name]. All rights reserved.</p>
+<footer class="py-16 px-6 bg-gray-900/50 border-t border-white/10">
+  <div class="max-w-7xl mx-auto text-center">
+    <div class="mb-8">
+      <a href="index.html" class="inline-block mb-6">
+        <img src="logo.png" alt="Bright Futures School Logo" class="h-16 w-auto mx-auto">
+      </a>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
+        <a href="#hero" class="text-white/70 hover:text-primary transition-colors duration-300">Home</a>
+        <a href="#about" class="text-white/70 hover:text-primary transition-colors duration-300">About</a>
+        <a href="#eligibility" class="text-white/70 hover:text-primary transition-colors duration-300">Eligibility</a>
+        <a href="#documents" class="text-white/70 hover:text-primary transition-colors duration-300">Documents</a>
+        <a href="#process" class="text-white/70 hover:text-primary transition-colors duration-300">Process</a>
+        <a href="#faq" class="text-white/70 hover:text-primary transition-colors duration-300">FAQ</a>
+        <a href="#contact" class="text-white/70 hover:text-primary transition-colors duration-300">Contact</a>
+      </nav>
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300 text-2xl"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300 text-2xl"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300 text-2xl"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    <p class="text-white/50 text-sm">
+      &copy; 2025 Homagama Maha Vidyalaya. All rights reserved.
+    </p>
+    <p class="text-white/30 text-xs mt-2">
+      Aturugiriya Rd, Homagama, Sri Lanka
+    </p>
+  </div>
 </footer>
 
-<script>
-  // Initialize Vanilla Tilt
-  const cards = document.querySelectorAll(".tilt-card");
-  cards.forEach(card => {
-    VanillaTilt.init(card, {
-      max: 15,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.3
-    });
-  });
-</script>
-
+  <!-- Admission Page Specific Script -->
+  <script src="admission.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
