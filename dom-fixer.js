@@ -220,18 +220,18 @@ class DOMFixer {
   // fixMobileMenu() {
   //   const mobileMenuButton = document.getElementById('mobileMenuButton');
   //   const mobileMenu = document.getElementById('mobileMenu');
-  //  
+  //
   //   if (mobileMenuButton && mobileMenu) {
   //     // Ensure proper ARIA attributes
   //     mobileMenuButton.setAttribute('aria-expanded', 'false');
   //     mobileMenuButton.setAttribute('aria-controls', 'mobileMenu');
   //     mobileMenu.setAttribute('aria-hidden', 'true');
-  //    
+  //
   //     // Fix menu toggle functionality
   //     mobileMenuButton.addEventListener('click', (e) => {
   //       e.preventDefault();
   //       const isOpen = mobileMenu.classList.contains('active');
-  //      
+  //
   //       if (isOpen) {
   //         mobileMenu.classList.remove('active');
   //         mobileMenuButton.setAttribute('aria-expanded', 'false');
@@ -244,7 +244,7 @@ class DOMFixer {
   //         document.body.style.overflow = 'hidden';
   //       }
   //     });
-  //    
+  //
   //     // Close menu when clicking outside
   //     document.addEventListener('click', (e) => {
   //       if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
@@ -254,7 +254,7 @@ class DOMFixer {
   //         document.body.style.overflow = '';
   //       }
   //     });
-  //    
+  //
   //     // Close menu on escape key
   //     document.addEventListener('keydown', (e) => {
   //       if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
@@ -274,7 +274,7 @@ class DOMFixer {
   // fixScrollBehavior() {
   //   // Ensure smooth scrolling is enabled
   //   document.documentElement.style.scrollBehavior = 'smooth';
-  //  
+  //
   //   // Fix back to top button
   //   const backToTop = document.getElementById('scrollToTop');
   //   if (backToTop) {
@@ -287,7 +287,7 @@ class DOMFixer {
   //         backToTop.style.transform = 'translateY(20px)';
   //       }
   //     });
-  //    
+  //
   //     backToTop.addEventListener('click', (e) => {
   //       e.preventDefault();
   //       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -301,11 +301,11 @@ class DOMFixer {
   // fixDarkModeToggle() {
   //   const darkModeToggle = document.getElementById('darkModeToggle');
   //   const mobileDarkModeToggle = document.getElementById('mobileDarkModeToggle');
-  //  
+  //
   //   const toggleDarkMode = () => {
   //     const isDark = document.documentElement.classList.toggle('dark');
   //     localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-  //    
+  //
   //     // Update icons
   //     const icons = document.querySelectorAll('#darkModeIcon, #mobileDarkModeIcon');
   //     icons.forEach(icon => {
@@ -316,15 +316,15 @@ class DOMFixer {
   //       }
   //     });
   //   };
-  //  
+  //
   //   if (darkModeToggle) {
   //     darkModeToggle.addEventListener('click', toggleDarkMode);
   //   }
-  //  
+  //
   //   if (mobileDarkModeToggle) {
   //     mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
   //   }
-  //  
+  //
   //   // Initialize dark mode from localStorage
   //   if (localStorage.getItem('darkMode') === 'enabled') {
   //     document.documentElement.classList.add('dark');
@@ -361,7 +361,7 @@ class DOMFixer {
     //       menu.style.visibility = 'visible';
     //       menu.style.transform = 'translateY(0)';
     //     });
-    //    
+    //
     //     dropdown.addEventListener('mouseleave', () => {
     //       menu.style.opacity = '0';
     //       menu.style.visibility = 'hidden';

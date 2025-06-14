@@ -3,24 +3,24 @@ function initializeNewsFilters() {
   try {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const newsCards = document.querySelectorAll(".news-card");
-    
+
     if (filterButtons.length === 0 || newsCards.length === 0) {
       console.warn('News filter elements not found, skipping initialization');
       return;
     }
-    
+
     filterButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
         e.preventDefault();
-        
+
         filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
-        
+
         const category = button.getAttribute("data-category");
-        
+
         newsCards.forEach((card) => {
           const shouldShow = category === "all" || card.classList.contains(category);
-          
+
           if (shouldShow) {
             card.style.display = "block";
             card.style.opacity = "1";
@@ -35,7 +35,7 @@ function initializeNewsFilters() {
         });
       });
     });
-    
+
     console.log('News filters initialized successfully');
   } catch (error) {
     console.error('Error initializing news filters:', error);
@@ -126,56 +126,102 @@ floatingLabels.forEach((input) => {
 
 // GSAP Scroll Animations
 function initGSAPAnimations() {
-  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  const societyElements = document.querySelectorAll("#society .animate");
-  societyElements.forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reset",
-        onEnter: () => ScrollTrigger.refresh(),
-        onLeaveBack: () => ScrollTrigger.refresh(),
-        scrub: 0.5,
-      },
-    });
-  });
-  gsap.utils.toArray(".animate:not(#society .animate)").forEach((el, i) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reset",
-      },
-    });
-  });
-   gsap.utils.toArray(".glassmorphism, .tilt-effect").forEach((el) => {
-    gsap.from(el, {
-      opacity: 0,
-      y: 50,
-      scrollTrigger: {
-        trigger: el,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-  });
-  gsap.from("#typedText", { // Added from the removed DOMContentLoaded listener
+  if (typeof gsap === 'undefined') {
+    console.warn('GSAP library not loaded. Animations disabled.');
+    return;
+  }
+  if (typeof ScrollTrigger === 'undefined') {
+    console.warn('GSAP ScrollTrigger plugin not loaded. Scroll-triggered animations disabled.');
+    // We can still run immediate animations if ScrollTrigger is missing
+  } else {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill()); // Kill existing triggers first
+  }
+
+  // --- Immediate Animations for #home section ---
+  gsap.from("#typedText", {
     opacity: 0,
     y: -20,
     duration: 1.2,
     ease: "power3.out",
+    delay: 0.2,
   });
+
+  const homeElementsToAnimate = [
+    document.querySelector('#home .relative.inline-block p.text-xl'), // Subtitle container's p tag
+    ...document.querySelectorAll('#home .flex.flex-wrap.justify-center.gap-6 > a'), // CTA Buttons
+    ...document.querySelectorAll('#home .mt-16.flex.flex-wrap.justify-center.gap-8 > div'), // School Stats divs
+    document.querySelector('#home .absolute.bottom-10 .glassmorphism') // Glassmorphism Intro Card
+  ].filter(el => el);
+
+  homeElementsToAnimate.forEach((el, i) => {
+    gsap.from(el, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+      delay: 0.5 + (i * 0.15) // Staggered delay after typedText
+    });
+  });
+
+  // --- Scroll-Triggered Animations for other sections ---
+  if (typeof ScrollTrigger !== 'undefined') {
+    // Society section specific scroll-triggered animations
+    const societyElements = document.querySelectorAll("#society .animate");
+    societyElements.forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reset",
+          onEnter: () => ScrollTrigger.refresh(),
+          onLeaveBack: () => ScrollTrigger.refresh(),
+          scrub: 0.5,
+        },
+      });
+    });
+
+    // Generic scroll-triggered animations for .animate (excluding #society and #home elements handled above)
+    gsap.utils.toArray(".animate:not(#society .animate):not(#home .relative.inline-block p.text-xl):not(#home .flex.flex-wrap.justify-center.gap-6 > a):not(#home .mt-16.flex.flex-wrap.justify-center.gap-8 > div)").forEach((el, i) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reset",
+        },
+      });
+    });
+
+    // Generic scroll-triggered animations for .glassmorphism and .tilt-effect (excluding #home elements handled above)
+    gsap.utils.toArray(".glassmorphism:not(#home .absolute.bottom-10 .glassmorphism), .tilt-effect").forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 50,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          end: "bottom 20%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    });
+  } else {
+    // Fallback for non-scroll-triggered elements if ScrollTrigger is not available
+    // Make them visible immediately but without scroll effects
+    document.querySelectorAll("#society .animate, .animate:not(#home p.text-xl):not(#home .flex.flex-wrap.justify-center.gap-6 > a):not(#home .mt-16.flex.flex-wrap.justify-center.gap-8 > div), .glassmorphism:not(#home .absolute.bottom-10 .glassmorphism), .tilt-effect").forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = 'translateY(0)';
+    });
+  }
 }
+
 
 // Tilt Effect for Cards
 function initTiltEffects() {
@@ -218,18 +264,15 @@ function initScrollAnimations() {
 
 // Three.js Particle Background for Hero Section (assumed, based on ID #heroParticles)
 function initWelcomeParticles() {
-  const container = document.getElementById("heroParticles"); // Targets hero section particles
+  const container = document.getElementById("heroParticles");
   if (!container) {
-    // console.warn("Hero particles container (#heroParticles) not found for Three.js.");
     return;
   }
 
-  // Prevent re-initialization if already done
   if (container.dataset.initialized === 'true') {
     return;
   }
   container.dataset.initialized = 'true';
-
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -244,18 +287,18 @@ function initWelcomeParticles() {
 
   const geometry = new THREE.SphereGeometry(0.1, 16, 16);
   const material = new THREE.MeshBasicMaterial({
-    color: 0xe74c3c, // Example color, can be themed
+    color: 0xe74c3c,
     transparent: true,
     opacity: 0.6,
   });
 
   const particles = [];
   for (let i = 0; i < 100; i++) {
-    const sphere = new THREE.Mesh(geometry, material.clone()); // Use clone for individual particle properties if needed
+    const sphere = new THREE.Mesh(geometry, material.clone());
     sphere.position.set(
-      (Math.random() - 0.5) * 20, // Spread particles across a plane
       (Math.random() - 0.5) * 20,
-      (Math.random() - 0.5) * 5  // Reduce depth to keep them somewhat flat
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 5
     );
     scene.add(sphere);
     particles.push(sphere);
@@ -266,8 +309,8 @@ function initWelcomeParticles() {
   function animateThreeJS() {
     requestAnimationFrame(animateThreeJS);
     particles.forEach((p) => {
-      p.position.y -= 0.01; // Move particles
-      if (p.position.y < -10) p.position.y = 10; // Reset position
+      p.position.y -= 0.01;
+      if (p.position.y < -10) p.position.y = 10;
     });
     renderer.render(scene, camera);
   }
@@ -292,7 +335,7 @@ function initTypedText() {
     console.warn("TypeIt element (#typedText) not found in DOM.");
     return;
   }
-  if (typedElement.dataset.initialized === 'true') return; // Prevent re-initialization
+  if (typedElement.dataset.initialized === 'true') return;
   typedElement.dataset.initialized = 'true';
 
 
@@ -321,7 +364,7 @@ function initTypedText() {
     html: true,
     afterStep: (instance) => {
       if (cursorContainer) {
-        const progress = typedElement.textContent.length / 300; 
+        const progress = typedElement.textContent.length / 300;
         const cursorLine = cursorContainer.querySelector('.typing-cursor-line');
         if (cursorLine) {
           cursorLine.style.width = `${Math.min(100, progress * 100)}%`;
@@ -331,7 +374,7 @@ function initTypedText() {
     afterComplete: (instance) => instance.pause(15000),
     afterString: (step, instance) => instance.pause(800)
   }).go();
-  
+
   return typeItInstance;
 }
 
@@ -350,20 +393,19 @@ function handleScriptError(event) {
   }
 }
 
-// Comprehensive DOM and Component Initialization (WebsiteInitializer class remains largely the same, dark mode and mobile menu init calls are already commented out)
+// Comprehensive DOM and Component Initialization
 class WebsiteInitializer {
   constructor() {
     this.initialized = false;
     this.components = new Map();
     this.retryCount = 0;
     this.maxRetries = 3;
-    // Removed direct this.init() call, will be called by the new consolidated DOMContentLoaded
   }
-  
+
   async init() {
     try {
       console.log('Starting website initialization (from WebsiteInitializer)...');
-      await this.waitForDOM(); // Should resolve immediately if called after DOMContentLoaded
+      await this.waitForDOM();
       await this.initializeCore();
       await this.initializeUI();
       await this.initializeFeatures();
@@ -383,39 +425,35 @@ class WebsiteInitializer {
       }
     }
   }
-  
+
   waitForDOM() {
     return new Promise((resolve) => {
       if (document.readyState === 'loading') {
-        // This should ideally not be hit if called correctly after DOMContentLoaded
         document.addEventListener('DOMContentLoaded', resolve);
       } else {
         resolve();
       }
     });
   }
-  
+
   async initializeCore() {
     if (typeof WebsiteRouter !== 'undefined') { try { this.components.set('router', new WebsiteRouter()); console.log('Router initialized'); } catch (e) { console.error('Router init failed:', e);}}
     if (typeof DOMFixer !== 'undefined') { try { this.components.set('domFixer', new DOMFixer()); console.log('DOM Fixer initialized'); } catch (e) { console.error('DOM Fixer init failed:', e);}}
     if (typeof ErrorHandler !== 'undefined') { try { this.components.set('errorHandler', new ErrorHandler()); console.log('Error Handler initialized'); } catch (e) { console.error('Error Handler init failed:', e);}}
   }
-  
+
   async initializeUI() {
-    // initializeMobileMenu(); // Already commented out
     try { this.initializeDarkMode(); console.log('Dark mode initialized (from WebsiteInitializer)'); } catch (e) { console.error('Dark mode init failed (from WebsiteInitializer):', e); }
     if (typeof ThemeManager !== 'undefined') { try { this.components.set('themeManager', new ThemeManager()); console.log('Theme Manager initialized'); } catch (e) { console.error('Theme Manager init failed:', e);}}
   }
-  
+
   async initializeFeatures() {
     try { initializeNewsFilters(); console.log('News filters initialized'); } catch (e) { console.error('News filters init failed:', e);}
     try { this.initializeScrollEffects(); console.log('Scroll effects initialized'); } catch (e) { console.error('Scroll effects init failed:', e);}
-    // Animations are now called from the main loader logic after content display
-    // try { this.initializeAnimations(); console.log('Animations initialized'); } catch (e) { console.error('Animations init failed:', e);}
   }
-  
-  initializeDarkMode() { /* Already commented out in previous step */ }
-  
+
+  initializeDarkMode() { /* Already commented out */ }
+
   initializeScrollEffects() {
     const backToTopBtn = document.getElementById("backToTop") || document.getElementById("scrollToTop");
     if (backToTopBtn) {
@@ -446,9 +484,9 @@ class WebsiteInitializer {
       document.addEventListener("mouseleave", () => { cursorGlow.style.opacity = "0"; });
     }
   }
-  
-  initializeAnimations() { /* Now called from main loader logic */ }
-  
+
+  initializeAnimations() { /* Called from main loader logic */ }
+
   setupObservers() {
     if ('MutationObserver' in window) {
       const mutationObserver = new MutationObserver((mutations) => {
@@ -463,7 +501,7 @@ class WebsiteInitializer {
       mutationObserver.observe(document.body, { childList: true, subtree: true });
     }
   }
-  
+
   processNewElement(element) {
     try {
       const images = element.querySelectorAll('img:not([loading])');
@@ -474,7 +512,7 @@ class WebsiteInitializer {
       }
     } catch (e) { console.error('Error processing new element:', e); }
   }
-  
+
   throttle(func, limit) {
     let inThrottle;
     return function() {
@@ -487,7 +525,7 @@ class WebsiteInitializer {
       }
     };
   }
-  
+
   fallbackInitialization() {
     console.log('Running fallback initialization...');
     try {
@@ -499,7 +537,7 @@ class WebsiteInitializer {
       console.log('Fallback initialization completed');
     } catch (e) { console.error('Fallback initialization failed:', e); }
   }
-  
+
   destroy() {
     this.components.forEach((component, name) => {
       if (component && typeof component.destroy === 'function') {
@@ -517,9 +555,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const skeletonLoader = document.getElementById("skeletonLoader");
   const mainContent = document.getElementById("mainContent");
   const enterButton = document.getElementById("enterButton");
-  const particlesContainer = document.getElementById("particles"); // For skeleton loader background
+  const particlesContainer = document.getElementById("particles");
 
-  // Initialize skeleton loader particles immediately
   if (particlesContainer) {
     const particleCount = 30;
     for (let i = 0; i < particleCount; i++) {
@@ -539,74 +576,40 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.warn("Skeleton loader particles container (#particles) not found.");
   }
-  
-  // Function to display main content and initialize animations
-  function showMainContentAndInitialize() {
-    if (skeletonLoader) skeletonLoader.classList.remove("active"); // Hide skeleton loader
-    if (mainContent) mainContent.classList.remove("hidden");     // Show main content
 
-    // Initialize animations and features for the main content
-    // These are called only ONCE here.
-    initGSAPAnimations(); 
+  function showMainContentAndInitialize() {
+    if (skeletonLoader) skeletonLoader.classList.remove("active");
+    if (mainContent) mainContent.classList.remove("hidden");
+
+    initGSAPAnimations();
     initTiltEffects();
-    initWelcomeParticles(); // For hero section particles
+    initWelcomeParticles();
     initTypedText();
 
-    // Initialize section-specific animations (if they exist)
     if (typeof initNewsSection === "function") initNewsSection();
     if (typeof initStaffSection === "function") initStaffSection();
 
-    // Initialize WebsiteInitializer class (if not already)
-    // This ensures other non-animation initializations are also run.
     if (!window.websiteInitializerInstance) {
         window.websiteInitializerInstance = new WebsiteInitializer();
-        window.websiteInitializerInstance.init(); // Call init on the instance
+        window.websiteInitializerInstance.init();
     }
   }
 
   if (enterButton) {
-    // Main flow: User clicks enter button
     enterButton.addEventListener("click", () => {
-      if (welcomeScreen) welcomeScreen.classList.add("fade-out"); // Hide welcome screen
-      if (skeletonLoader) skeletonLoader.classList.add("active");  // Show skeleton loader
-      
-      // After a delay, hide skeleton and show main content
-      setTimeout(showMainContentAndInitialize, 2000); 
+      if (welcomeScreen) welcomeScreen.classList.add("fade-out");
+      if (skeletonLoader) skeletonLoader.classList.add("active");
+      setTimeout(showMainContentAndInitialize, 2000);
     });
-
-    // Also, handle the old welcomeScreen.style.opacity logic if it's part of enterButton's original design
-    // This seems to be a separate click listener for enterButton in the original code.
-    // We can merge it or ensure its effect is covered.
-    // The original code had:
-    // document.getElementById("enterButton").addEventListener("click", function () {
-    //   const welcomeScreen = document.getElementById("welcomeScreen");
-    //   welcomeScreen.style.opacity = "0";
-    //   setTimeout(() => {
-    //     welcomeScreen.style.display = "none";
-    //   }, 1000);
-    // });
-    // This part is slightly different from the fade-out class. The fade-out class might handle both opacity and display none via CSS.
-    // For now, relying on the class `fade-out` to handle this.
   } else {
-    // Fallback flow: No enter button, automatic transition
-    if (welcomeScreen) welcomeScreen.classList.add("fade-out"); 
+    if (welcomeScreen) welcomeScreen.classList.add("fade-out");
     if (skeletonLoader) skeletonLoader.classList.add("active");
-    
-    setTimeout(showMainContentAndInitialize, 2000); // Show after 2s of skeleton
+    setTimeout(showMainContentAndInitialize, 2000);
   }
 });
 
-// Global website initializer instance (can be used by other scripts if needed)
-// The instance is now created within the DOMContentLoaded to ensure it runs after elements are available.
-// let websiteInitializer; // Declared, instance created in DOMContentLoaded
-
-// Handle page unload
 window.addEventListener('beforeunload', () => {
   if (window.websiteInitializerInstance) {
     window.websiteInitializerInstance.destroy();
   }
 });
-
-// The final DOMContentLoaded that called initWelcomeParticles, initTypedText etc. is now removed
-// as these calls are consolidated into showMainContentAndInitialize.
-// The WebsiteInitializer class will still run its init method once.
