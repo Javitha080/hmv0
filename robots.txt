@@ -1,46 +1,14 @@
-# Robots.txt for Homagama Maha Vidyalaya Website
-# This file tells search engine crawlers which pages or files they can or can't request from your site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
 
 User-agent: *
 Allow: /
-
-# Sitemap location
-Sitemap: https://hmv0.netlify.app/sitemap.xml
-
-# Disallow admin areas (if any sensitive content)
-Disallow: /admin.html
-Disallow: /admin/
-Disallow: /private/
-
-# Allow all CSS, JS, and image files for proper rendering
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.svg$
-Allow: /*.ico$
-Allow: /*.webp$
-
-# Crawl delay (optional - adjust based on server capacity)
-# Crawl-delay: 1
-
-# Common directories to disallow (if they exist)
-Disallow: /cgi-bin/
-Disallow: /tmp/
-Disallow: /logs/
-Disallow: /.git/
-Disallow: /node_modules/
-Disallow: /vendor/
-
-# Allow search engines to index the main content
-Allow: /index.html
-Allow: /gallery.html
-Allow: /#home
-Allow: /#about
-Allow: /#staff
-Allow: /#gallery
-Allow: /#news
-Allow: /#contact
-Allow: /#societies
