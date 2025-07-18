@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "category": "event",
+    "title": "Annual Day Celebration",
+    "caption": "Students enjoying cultural performances",
+    "date": "Dec 15, 2024",
+    "src": "https://picsum.photos/id/1016/600/400",
+    "likes": 0,
+    "comments": []
+  },
+  {
+    "id": 2,
+    "category": "achievement",
+    "title": "Science Olympiad Winners",
+    "caption": "Gold medalists receiving awards",
+    "date": "Nov 20, 2024",
+    "src": "https://picsum.photos/id/1019/600/400",
+    "likes": 0,
+    "comments": []
+  }
+]
