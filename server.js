@@ -45,15 +45,13 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-const SECURE_ROUTE = 'ffa3eea53d653948ca6f2f1b195d1dc425940171f97ee0527e70e57fac170a00';
-
 // CMS Login Route
-app.get(`/${SECURE_ROUTE}/login`, (req, res) => {
+app.get('/cms-login', (req, res) => {
   res.sendFile(__dirname + '/login.html');
 });
 
 // Login POST handler
-app.post(`/${SECURE_ROUTE}/login`, bruteforce.prevent, (req, res) => {
+app.post('/login', bruteforce.prevent, (req, res) => {
   const { username, password } = req.body;
   const user = users[username];
 
@@ -72,18 +70,18 @@ app.post(`/${SECURE_ROUTE}/login`, bruteforce.prevent, (req, res) => {
 });
 
 // CMS Dashboard Route (Protected)
-app.get(`/${SECURE_ROUTE}`, (req, res) => {
+app.get('/cms', (req, res) => {
   if (req.session.user) {
     res.sendFile(__dirname + '/cms.html');
   } else {
-    res.redirect(`/${SECURE_ROUTE}/login`);
+    res.redirect('/cms-login');
   }
 });
 
 // Logout Route
 app.get('/logout', (req, res) => {
     req.session.destroy();
-    res.redirect(`/${SECURE_ROUTE}/login`);
+    res.redirect('/cms-login');
 });
 
 // --- Gallery API Routes ---
