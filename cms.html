@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .tab.active {
+      border-bottom: 2px solid #4c51bf;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="container mx-auto p-8">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold">CMS Dashboard</h1>
+      <div class="flex items-center space-x-4">
+        <button id="theme-toggle" class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700">
+          Toggle Theme
+        </button>
+        <a href="/logout" class="bg-red-500 text-white px-4 py-2 rounded-md">Logout</a>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs flex space-x-4 mb-8">
+      <button class="tab active" data-tab="gallery">Gallery</button>
+      <button class="tab" data-tab="news">News</button>
+    </div>
+
+    <!-- Gallery Tab -->
+    <div id="gallery" class="tab-content active">
+      <h2 class="text-2xl font-bold mb-4">Manage Gallery</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Add/Edit Form -->
+        <div>
+          <h3 class="text-xl font-bold mb-4" id="gallery-form-title">Add New Image</h3>
+          <form id="gallery-form" class="space-y-4">
+            <input type="hidden" id="gallery-id">
+            <div>
+              <label for="gallery-title" class="block text-sm font-medium mb-2">Title</label>
+              <input type="text" id="gallery-title" name="title" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="gallery-caption" class="block text-sm font-medium mb-2">Caption</label>
+              <input type="text" id="gallery-caption" name="caption" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="gallery-src" class="block text-sm font-medium mb-2">Image URL</label>
+              <input type="text" id="gallery-src" name="src" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="gallery-category" class="block text-sm font-medium mb-2">Category</label>
+              <select id="gallery-category" name="category" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+                <option value="event">Event</option>
+                <option value="achievement">Achievement</option>
+                <option value="activity">Activity</option>
+                <option value="video">Video</option>
+              </select>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
+            <button type="button" id="cancel-edit-gallery" class="bg-gray-500 text-white px-4 py-2 rounded-md" style="display: none;">Cancel Edit</button>
+          </form>
+        </div>
+        <!-- Image List -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Existing Images</h3>
+          <div id="gallery-list" class="space-y-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Tab -->
+    <div id="news" class="tab-content">
+      <h2 class="text-2xl font-bold mb-4">Manage News</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Add/Edit Form -->
+        <div>
+          <h3 class="text-xl font-bold mb-4" id="news-form-title">Add New Article</h3>
+          <form id="news-form" class="space-y-4">
+            <input type="hidden" id="news-id">
+            <div>
+              <label for="news-title" class="block text-sm font-medium mb-2">Title</label>
+              <input type="text" id="news-title" name="title" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="news-description" class="block text-sm font-medium mb-2">Description</label>
+              <textarea id="news-description" name="description" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md"></textarea>
+            </div>
+            <div>
+              <label for="news-image" class="block text-sm font-medium mb-2">Image URL</label>
+              <input type="text" id="news-image" name="image" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="news-date" class="block text-sm font-medium mb-2">Date</label>
+              <input type="date" id="news-date" name="date" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+            </div>
+            <div>
+              <label for="news-category" class="block text-sm font-medium mb-2">Category</label>
+              <select id="news-category" name="category" required class="w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md">
+                <option value="news">News</option>
+                <option value="event">Event</option>
+                <option value="education">Education</option>
+                <option value="sports">Sports</option>
+                <option value="workshop">Workshop</option>
+              </select>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
+            <button type="button" id="cancel-edit-news" class="bg-gray-500 text-white px-4 py-2 rounded-md" style="display: none;">Cancel Edit</button>
+          </form>
+        </div>
+        <!-- Article List -->
+        <div>
+          <h3 class="text-xl font-bold mb-4">Existing Articles</h3>
+          <div id="news-list" class="space-y-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+        });
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // --- Gallery CRUD ---
+    const galleryForm = document.getElementById('gallery-form');
+    const galleryList = document.getElementById('gallery-list');
+    const galleryFormTitle = document.getElementById('gallery-form-title');
+    const cancelEditGalleryBtn = document.getElementById('cancel-edit-gallery');
+
+    // Fetch and display gallery items
+    const fetchGallery = async () => {
+      const response = await fetch('/api/gallery');
+      const gallery = await response.json();
+      galleryList.innerHTML = '';
+      gallery.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between p-4 bg-gray-200 dark:bg-gray-800 rounded-md';
+        div.innerHTML = `
+          <div>
+            <p class="font-bold">${item.title}</p>
+            <p class="text-sm">${item.caption}</p>
+          </div>
+          <div class="flex space-x-2">
+            <button class="bg-yellow-500 text-white px-2 py-1 rounded-md edit-gallery" data-id="${item.id}">Edit</button>
+            <button class="bg-red-500 text-white px-2 py-1 rounded-md delete-gallery" data-id="${item.id}">Delete</button>
+          </div>
+        `;
+        galleryList.appendChild(div);
+      });
+    };
+
+    // Add or update gallery item
+    galleryForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('gallery-id').value;
+      const formData = new FormData(galleryForm);
+      const data = Object.fromEntries(formData.entries());
+
+      const url = id ? `/api/gallery/${id}` : '/api/gallery';
+      const method = id ? 'PUT' : 'POST';
+
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      galleryForm.reset();
+      document.getElementById('gallery-id').value = '';
+      galleryFormTitle.textContent = 'Add New Image';
+      cancelEditGalleryBtn.style.display = 'none';
+      fetchGallery();
+    });
+
+    // Edit and delete gallery items
+    galleryList.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('delete-gallery')) {
+        const id = e.target.dataset.id;
+        await fetch(`/api/gallery/${id}`, { method: 'DELETE' });
+        fetchGallery();
+      }
+
+      if (e.target.classList.contains('edit-gallery')) {
+        const id = e.target.dataset.id;
+        const response = await fetch('/api/gallery');
+        const gallery = await response.json();
+        const item = gallery.find(item => item.id == id);
+
+        document.getElementById('gallery-id').value = item.id;
+        document.getElementById('gallery-title').value = item.title;
+        document.getElementById('gallery-caption').value = item.caption;
+        document.getElementById('gallery-src').value = item.src;
+        document.getElementById('gallery-category').value = item.category;
+
+        galleryFormTitle.textContent = 'Edit Image';
+        cancelEditGalleryBtn.style.display = 'inline-block';
+      }
+    });
+
+    // Cancel edit
+    cancelEditGalleryBtn.addEventListener('click', () => {
+        galleryForm.reset();
+        document.getElementById('gallery-id').value = '';
+        galleryFormTitle.textContent = 'Add New Image';
+        cancelEditGalleryBtn.style.display = 'none';
+    });
+
+    // Initial fetch
+    fetchGallery();
+
+    // --- News CRUD ---
+    const newsForm = document.getElementById('news-form');
+    const newsList = document.getElementById('news-list');
+    const newsFormTitle = document.getElementById('news-form-title');
+    const cancelEditNewsBtn = document.getElementById('cancel-edit-news');
+
+    // Fetch and display news items
+    const fetchNews = async () => {
+      const response = await fetch('/api/news');
+      const news = await response.json();
+      newsList.innerHTML = '';
+      news.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between p-4 bg-gray-200 dark:bg-gray-800 rounded-md';
+        div.innerHTML = `
+          <div>
+            <p class="font-bold">${item.title}</p>
+            <p class="text-sm">${item.date}</p>
+          </div>
+          <div class="flex space-x-2">
+            <button class="bg-yellow-500 text-white px-2 py-1 rounded-md edit-news" data-id="${item.id}">Edit</button>
+            <button class="bg-red-500 text-white px-2 py-1 rounded-md delete-news" data-id="${item.id}">Delete</button>
+          </div>
+        `;
+        newsList.appendChild(div);
+      });
+    };
+
+    // Add or update news item
+    newsForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('news-id').value;
+      const formData = new FormData(newsForm);
+      const data = Object.fromEntries(formData.entries());
+
+      const url = id ? `/api/news/${id}` : '/api/news';
+      const method = id ? 'PUT' : 'POST';
+
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      newsForm.reset();
+      document.getElementById('news-id').value = '';
+      newsFormTitle.textContent = 'Add New Article';
+      cancelEditNewsBtn.style.display = 'none';
+      fetchNews();
+    });
+
+    // Edit and delete news items
+    newsList.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('delete-news')) {
+        const id = e.target.dataset.id;
+        await fetch(`/api/news/${id}`, { method: 'DELETE' });
+        fetchNews();
+      }
+
+      if (e.target.classList.contains('edit-news')) {
+        const id = e.target.dataset.id;
+        const response = await fetch('/api/news');
+        const news = await response.json();
+        const item = news.find(item => item.id == id);
+
+        document.getElementById('news-id').value = item.id;
+        document.getElementById('news-title').value = item.title;
+        document.getElementById('news-description').value = item.description;
+        document.getElementById('news-image').value = item.image;
+        document.getElementById('news-date').value = item.date;
+        document.getElementById('news-category').value = item.category;
+
+        newsFormTitle.textContent = 'Edit Article';
+        cancelEditNewsBtn.style.display = 'inline-block';
+      }
+    });
+
+    // Cancel edit
+    cancelEditNewsBtn.addEventListener('click', () => {
+        newsForm.reset();
+        document.getElementById('news-id').value = '';
+        newsFormTitle.textContent = 'Add New Article';
+        cancelEditNewsBtn.style.display = 'none';
+    });
+
+    // Initial fetch
+    fetchNews();
+  </script>
+</body>
+</html>
