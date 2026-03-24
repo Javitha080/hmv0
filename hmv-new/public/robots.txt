@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://homagamamahavidyalaya.dpdns.org/sitemap.xml

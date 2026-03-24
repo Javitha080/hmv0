@@ -65,9 +65,6 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-4">
-          <button className="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors hidden sm:block">
-            search
-          </button>
           <Link
             to="/contact"
             className="bg-primary hover:bg-primary-container text-white px-6 py-2 rounded-lg font-bold tracking-tight transition-all active:scale-95 duration-150 text-sm hidden sm:block"
