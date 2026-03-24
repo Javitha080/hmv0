@@ -27,10 +27,10 @@ export default function Hero() {
           Discover a community where your child's potential is nurtured with warmth, tradition, and innovation.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-          <button className="liquid-glass text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:bg-white/60 transition-all border border-white/40 font-outfit">
+          <button className="liquid-glass text-slate-900 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-all duration-300 ease-out border border-white/50 font-outfit">
             Begin The Discovery Tour
           </button>
-          <button className="bg-yellow-warm text-crimson-deep px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:scale-105 transition-all shadow-xl shadow-yellow-warm/20 font-outfit">
+          <button className="bg-yellow-warm text-crimson-deep px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg hover:scale-105 active:scale-95 transition-all duration-300 ease-out shadow-xl shadow-yellow-warm/30 hover:shadow-2xl hover:shadow-yellow-warm/50 font-outfit">
             View Prospectus
           </button>
         </div>

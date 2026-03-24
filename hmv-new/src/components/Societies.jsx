@@ -21,7 +21,7 @@ export default function Societies() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl shadow-lg"
+            className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer"
           >
             <img
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -44,7 +44,7 @@ export default function Societies() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="bg-primary p-6 sm:p-8 rounded-xl flex flex-col justify-between group hover:bg-primary-container transition-colors min-h-[200px]"
+            className="bg-primary p-6 sm:p-8 rounded-2xl flex flex-col justify-between group hover:bg-primary-container hover:shadow-2xl hover:shadow-primary/40 hover:-translate-y-2 transition-all duration-500 cursor-pointer min-h-[200px]"
           >
             <div className="text-white">
               <span className="material-symbols-outlined text-4xl mb-4">record_voice_over</span>
@@ -60,7 +60,7 @@ export default function Societies() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-surface-container-high p-6 sm:p-8 rounded-xl flex flex-col justify-between group hover:bg-secondary transition-all min-h-[200px]"
+            className="bg-surface-container-high p-6 sm:p-8 rounded-2xl flex flex-col justify-between group hover:bg-secondary hover:shadow-2xl hover:shadow-secondary/40 hover:-translate-y-2 transition-all duration-500 cursor-pointer min-h-[200px]"
           >
             <div className="text-on-surface group-hover:text-white">
               <span className="material-symbols-outlined text-4xl mb-4">volunteer_activism</span>
@@ -78,7 +78,7 @@ export default function Societies() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-2 bg-secondary-container p-8 sm:p-10 rounded-xl relative overflow-hidden group min-h-[200px]"
+            className="md:col-span-2 bg-secondary-container p-8 sm:p-10 rounded-2xl relative overflow-hidden group min-h-[200px] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 shadow-sm cursor-pointer"
           >
             <div className="relative z-10 flex h-full items-center justify-between">
               <div className="max-w-xs">

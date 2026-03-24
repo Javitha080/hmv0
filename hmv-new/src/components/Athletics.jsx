@@ -32,7 +32,7 @@ export default function Athletics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-7 group relative h-[400px] md:h-[600px] rounded-soft overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2"
+            className="lg:col-span-7 group relative h-[400px] md:h-[600px] rounded-soft overflow-hidden shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-15px_rgba(97,0,0,0.3)] cursor-pointer"
           >
             <img
               alt="Rugby Match"
@@ -65,7 +65,7 @@ export default function Athletics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative group bg-secondary-container rounded-soft p-8 sm:p-10 h-1/2 overflow-hidden shadow-xl hover:shadow-2xl transition-all border-l-8 border-primary min-h-[240px]"
+              className="relative group bg-secondary-container rounded-soft p-8 sm:p-10 h-1/2 overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 border-l-8 border-primary min-h-[240px] cursor-pointer"
             >
               <div className="relative z-10">
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mb-6 shadow-lg">
@@ -90,7 +90,7 @@ export default function Athletics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative group h-1/2 bg-surface-container-high rounded-soft overflow-hidden shadow-xl min-h-[240px]"
+              className="relative group h-1/2 bg-surface-container-high rounded-soft overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 min-h-[240px] cursor-pointer"
             >
               <img
                 alt="Track & Field"

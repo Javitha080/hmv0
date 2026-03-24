@@ -50,10 +50,10 @@ export default function News() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-white rounded-xl overflow-hidden shadow-sm group hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
+              className="bg-white rounded-2xl overflow-hidden shadow-lg border border-outline-variant/30 group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out cursor-pointer"
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-56 overflow-hidden relative">
                 <img
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
