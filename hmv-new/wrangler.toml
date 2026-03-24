@@ -1,8 +1,0 @@
-name = "hmv0"
-compatibility_date = "2024-03-24"
-pages_build_output_dir = "dist"
-
-[env.production]
-# Once deployed, you can map your custom domain in the Cloudflare Dashboard,
-# or if you use Cloudflare for DNS, you can configure it via custom_domains:
-# custom_domains = ["homagamamahavidyalaya.dpdns.org"]

@@ -1,5 +1,6 @@
 import { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './components/ThemeProvider';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -56,43 +57,45 @@ function App() {
   };
 
   return (
-    <Router>
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-surface-container"><div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          
-          {/* Public Pages */}
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/academics" element={<AcademicsPage />} />
-          <Route path="/clubs" element={<ClubsPage />} />
-          <Route path="/sports" element={<SportsPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/life-at-school" element={<LifeAtSchoolPage />} />
-          
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={
-            user ? <Navigate to="/admin" replace /> : <AdminLogin onLogin={(u) => setUser(u)} />
-          } />
-          
-          <Route path="/admin" element={
-            <ProtectedRoute>
-              <AdminLayout user={user} onLogout={() => setUser(null)} />
-            </ProtectedRoute>
-          }>
-            <Route index element={<Dashboard />} />
-            <Route path="news" element={<div className="text-white text-2xl font-serif">News CMS (Coming Soon)</div>} />
-            <Route path="gallery" element={<div className="text-white text-2xl font-serif">Gallery CMS (Coming Soon)</div>} />
-            <Route path="staff" element={<div className="text-white text-2xl font-serif">Staff CMS (Coming Soon)</div>} />
-            <Route path="societies" element={<div className="text-white text-2xl font-serif">Societies CMS (Coming Soon)</div>} />
-            <Route path="settings" element={<div className="text-white text-2xl font-serif">Settings (Coming Soon)</div>} />
-          </Route>
-          
-          {/* Catch-all 404 Route */}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-surface-container"><div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            
+            {/* Public Pages */}
+            <Route path="/history" element={<HistoryPage />} />
+            <Route path="/academics" element={<AcademicsPage />} />
+            <Route path="/clubs" element={<ClubsPage />} />
+            <Route path="/sports" element={<SportsPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/life-at-school" element={<LifeAtSchoolPage />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={
+              user ? <Navigate to="/admin" replace /> : <AdminLogin onLogin={(u) => setUser(u)} />
+            } />
+            
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <AdminLayout user={user} onLogout={() => setUser(null)} />
+              </ProtectedRoute>
+            }>
+              <Route index element={<Dashboard />} />
+              <Route path="news" element={<div className="text-white text-2xl font-serif">News CMS (Coming Soon)</div>} />
+              <Route path="gallery" element={<div className="text-white text-2xl font-serif">Gallery CMS (Coming Soon)</div>} />
+              <Route path="staff" element={<div className="text-white text-2xl font-serif">Staff CMS (Coming Soon)</div>} />
+              <Route path="societies" element={<div className="text-white text-2xl font-serif">Societies CMS (Coming Soon)</div>} />
+              <Route path="settings" element={<div className="text-white text-2xl font-serif">Settings (Coming Soon)</div>} />
+            </Route>
+            
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 }
 

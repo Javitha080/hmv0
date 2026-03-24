@@ -1,0 +1,29 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "hmv0",
+    "compatibility_date": "2024-03-24",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "workers_dev": true,
+    "preview_urls": true,
+    "upload_source_maps": true,
+    "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS",
+        "not_found_handling": "single-page-application"
+    },
+    "vars": {
+        "NODE_ENV": "production"
+    },
+    "routes": [
+        {
+            "pattern": "homagamamahavidyalaya.dpdns.org",
+            "custom_domain": true
+        },
+        {
+            "pattern": "www.homagamamahavidyalaya.dpdns.org",
+            "custom_domain": true
+        }
+    ]
+}
