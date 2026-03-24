@@ -57,7 +57,8 @@ export default function Footer() {
                     key={icon}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 rounded-2xl bg-white/60 dark:bg-white/5 flex items-center justify-center text-on-surface-variant dark:text-white/70 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white border border-white dark:border-white/10 transition-colors shadow-sm"
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="w-12 h-12 rounded-2xl bg-white/60 dark:bg-white/5 flex items-center justify-center text-on-surface-variant dark:text-white/70 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white border border-white dark:border-white/10 shadow-sm"
                   >
                     <span className="material-symbols-outlined text-xl">{icon}</span>
                   </motion.a>

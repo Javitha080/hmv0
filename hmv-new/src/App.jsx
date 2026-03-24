@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import OnlineLearning from './components/OnlineLearning';
 import Athletics from './components/Athletics';
 import HistoryBanner from './components/HistoryBanner';
+import CinematicLoader from './components/CinematicLoader';
+import NoiseOverlay from './components/NoiseOverlay';
 
 // Page Imports
 const HistoryPage = lazy(() => import('./pages/HistoryPage'));
@@ -58,9 +60,11 @@ function App() {
 
   return (
     <ThemeProvider>
+      <NoiseOverlay />
       <Router>
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-surface-container"><div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
-          <Routes>
+        <CinematicLoader>
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-surface-container"><div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
+            <Routes>
             <Route path="/" element={<LandingPage />} />
             
             {/* Public Pages */}
@@ -94,6 +98,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
+        </CinematicLoader>
       </Router>
     </ThemeProvider>
   );

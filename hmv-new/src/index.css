@@ -122,18 +122,33 @@
   }
   
   .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.2) 100%);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-    border-right-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 12px 40px -4px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 40px 0 rgba(97, 0, 0, 0.2);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .dark .glass-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.1) 100%);
+    box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.5);
   }
   .glass-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.12), inset 0 2px 2px rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 48px -8px rgba(97, 0, 0, 0.3);
   }
   
   .liquid-glass {
@@ -182,6 +197,58 @@
   .text-shadow-sm {
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
+
+  /* === Premium UI Overhaul Additions === */
+  
+  /* Liquid flowing border effect */
+  .liquid-border {
+    position: relative;
+  }
+  .liquid-border::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from var(--border-angle, 0deg), transparent 70%, rgba(255,255,255,0.8) 100%);
+    z-index: -1;
+    animation: liquid-flow 8s linear infinite;
+  }
+  
+  .dark .liquid-border::after {
+    background: conic-gradient(from var(--border-angle, 0deg), transparent 70%, rgba(139,0,0,0.6) 100%);
+  }
+
+  /* Glow Button Base */
+  .glow-button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  .glow-button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 40px -10px rgba(138, 43, 226, 0.6); /* Purple shadow */
+  }
+  .glow-button::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glow-button:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Bento Blob */
+  .bento-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: -1;
+    animation: drift 20s infinite alternate ease-in-out;
+  }
 }
 
 /* === Animations === */
@@ -221,4 +288,30 @@
   0%, 100% { transform: translate(0, 0) scale(1); }
   33% { transform: translate(20px, -20px) scale(1.1); }
   66% { transform: translate(-20px, 10px) scale(0.9); }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes liquid-flow {
+  0% { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 30px) scale(1.2); }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -126,15 +127,15 @@ export default function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3 relative z-10 shrink-0">
-            <Link
-              to="/contact"
-              className="hidden sm:flex items-center gap-2 h-10 px-6 rounded-full bg-primary text-white text-[9px] uppercase font-bold tracking-[0.15em] shadow-[0_0_20px_rgba(200,30,50,0.3)] hover:shadow-[0_0_30px_rgba(200,30,50,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 ease-out border border-white/20 overflow-hidden relative group"
-            >
-              {/* Shine effect on hover */}
-              <div className="absolute inset-0 w-full h-full -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100" />
-              <span className="material-symbols-outlined text-[14px] relative z-10">auto_awesome</span>
-              <span className="relative z-10">Portal</span>
-            </Link>
+            <MagneticButton>
+              <Link
+                to="/contact"
+                className="hidden sm:flex items-center gap-2 h-10 px-6 rounded-full bg-primary text-white text-[9px] uppercase font-bold tracking-[0.15em] transition-all duration-300 ease-out border border-white/20 relative group glow-button"
+              >
+                <span className="material-symbols-outlined text-[14px] relative z-10">auto_awesome</span>
+                <span className="relative z-10">Portal</span>
+              </Link>
+            </MagneticButton>
 
             {/* Mobile Menu Toggle */}
             <button
