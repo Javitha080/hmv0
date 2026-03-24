@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sports | Homagama Maha Vidyalaya</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#d9dadb",
+              "primary-fixed": "#ffdad4",
+              "on-secondary-fixed": "#221b00",
+              "tertiary": "#3b2a00",
+              "tertiary-fixed-dim": "#fabd00",
+              "outline": "#8e706b",
+              "on-background": "#191c1d",
+              "surface": "#f8f9fa",
+              "on-primary-container": "#ff907f",
+              "tertiary-fixed": "#ffdf9e",
+              "secondary": "#705d00",
+              "primary": "#610000",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#261a00",
+              "on-tertiary-container": "#dda700",
+              "surface-variant": "#e1e3e4",
+              "outline-variant": "#e3beb8",
+              "background": "#f8f9fa",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "inverse-on-surface": "#f0f1f2",
+              "error": "#ba1a1a",
+              "on-surface": "#191c1d",
+              "on-primary-fixed-variant": "#920703",
+              "primary-fixed-dim": "#ffb4a8",
+              "primary-container": "#8b0000",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#563f00",
+              "surface-container-high": "#e7e8e9",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e1e3e4",
+              "secondary-fixed-dim": "#e9c400",
+              "on-primary": "#ffffff",
+              "surface-container-low": "#f3f4f5",
+              "secondary-fixed": "#ffe16d",
+              "secondary-container": "#fcd400",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#5b4300",
+              "on-surface-variant": "#5a403c",
+              "on-secondary-fixed-variant": "#544600",
+              "on-secondary-container": "#6e5c00",
+              "inverse-surface": "#2e3132",
+              "surface-bright": "#f8f9fa",
+              "surface-container": "#edeeef",
+              "surface-tint": "#b52619",
+              "inverse-primary": "#ffb4a8",
+              "on-primary-fixed": "#410000"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .text-shadow-sm {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-xl shadow-red-900/5 transition-colors duration-300">
+<div class="flex justify-between items-center px-12 py-4 w-full max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif font-bold tracking-tight text-red-900 dark:text-red-500">
+                Homagama Maha Vidyalaya
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-700 dark:text-slate-300 font-medium hover:text-red-800 transition-all hover:bg-red-50/50 p-2 rounded" href="#">Home</a>
+<a class="text-slate-700 dark:text-slate-300 font-medium hover:text-red-800 transition-all hover:bg-red-50/50 p-2 rounded" href="#">Academics</a>
+<a class="text-slate-700 dark:text-slate-300 font-medium hover:text-red-800 transition-all hover:bg-red-50/50 p-2 rounded" href="#">News</a>
+<a class="text-slate-700 dark:text-slate-300 font-medium hover:text-red-800 transition-all hover:bg-red-50/50 p-2 rounded" href="#">Clubs</a>
+<a class="text-red-900 dark:text-red-400 font-bold border-b-2 border-red-900 pb-1" href="#">Sports</a>
+<a class="text-slate-700 dark:text-slate-300 font-medium hover:text-red-800 transition-all hover:bg-red-50/50 p-2 rounded" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full bg-surface-container-high border-none text-sm focus:ring-2 focus:ring-primary" placeholder="Search sports..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-semibold hover:bg-primary-container transition-all active:scale-95 duration-200">Contact</button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="Cinematic wide shot of a pristine green school sports field at sunset with traditional architecture in the background and warm golden lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmRi5wGgIFC3Rfnz32sHYhSbyhuYJXRo04s8lEMpUy9e9sFnhZygIiRPmZtQ0j-WdIv_yxKxeHwdiQCWZ_cCTZxcJdrtpDc0QFu7mYAaEwa5fKuWHtQrbnF6WK5g9rJRjRBrpJBvCCvuMfPEX_1gnCr5UORYz2aK9AuR6MNDIOonEv1egvakghJjXfQxaycecEfeB1QiwTu0lzg8CoPOvzO76uTDCk31emxNoMdnWeGBwnE7N1l_oDvFJVQe2tNrAS4xn8FCUB6Dk"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 max-w-screen-2xl mx-auto w-full grid grid-cols-12 gap-8">
+<div class="col-span-12 md:col-span-7">
+<h1 class="font-headline text-[5rem] leading-[1.1] text-white font-bold mb-6 italic tracking-tighter">
+                        Sports
+                    </h1>
+<p class="text-white/90 text-xl max-w-xl font-body leading-relaxed mb-10">
+                        Nurturing champions and building character. Our sports legacy spans decades of excellence, teamwork, and unyielding school spirit.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-md font-bold shadow-lg hover:brightness-110 transition-all">View Calendars</button>
+<button class="glass-card text-white border border-white/20 px-8 py-4 rounded-md font-bold hover:bg-white/10 transition-all">Join a Team</button>
+</div>
+</div>
+</div>
+<!-- Academy Badge (Custom Component) -->
+<div class="absolute bottom-12 right-12 glass-card p-8 rounded-xl shadow-2xl border border-white/30 hidden lg:block max-w-xs">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary text-4xl" data-icon="emoji_events" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<div>
+<div class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Latest Honor</div>
+<div class="font-headline text-lg font-bold text-primary">All-Island Champions '23</div>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Our Cricket 1st XI secured the national title with a historic performance last Saturday.</p>
+</div>
+</section>
+<!-- Dynamic Bento Grid: Disciplines -->
+<section class="py-24 px-12 max-w-screen-2xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div class="max-w-2xl">
+<h2 class="font-headline text-5xl font-bold text-primary mb-4 italic">Our Sporting Disciplines</h2>
+<div class="w-24 h-1 bg-secondary mb-6"></div>
+<p class="text-on-surface-variant text-lg">Diverse opportunities for every athlete to find their passion and excel at the highest level of inter-school competition.</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="#">
+                    Explore All Sports <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[700px]">
+<!-- Cricket: Featured Large -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-xl shadow-lg bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a cricket ball hitting a wicket under bright stadium lights with grass texture visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAXvAlS4uucj6Irb4PqDugjgfOH8rnSlLPV2Qfp9Wb_gdQNRsvdnCiKgmsQflYDNl1HGZ0OcR-RnRP4_op_RRPy3lbg1BgByWGo2CfPHIWcRnqVrGG2W4clN89V9lCgF2T337Eeqv5ax-A-71S321f7aUUiBa36Ba5EnHwvrfsQef-i8CbCSBVe8t3UmRaPKNo-7zzZl-GHINP3pRexXZhxguTjVIJAgMJ6rgzkN4rgSNnt5C09f6MQi6uI_e5qGj2qxVWhmUBgOk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="bg-secondary text-on-secondary px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-widest mb-3 inline-block">Premier Sport</span>
+<h3 class="font-headline text-4xl text-white font-bold mb-2 italic">Cricket</h3>
+<p class="text-white/80 line-clamp-2 max-w-md">Our legacy on the pitch is unmatched, producing international stars and legendary victories.</p>
+</div>
+</div>
+<!-- Rugby: Tall -->
+<div class="md:col-span-1 md:row-span-2 group relative overflow-hidden rounded-xl shadow-lg bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Action shot of rugby players in a scrum on a rainy field with dramatic mud splatters and intense facial expressions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgRioYulQoJK8lMiKtJ84uN5OqYsbQR1nkvE6y9I8dR9pZZA8b0b1feoEd3iWuvwgqvKq1r--uaaI5CNDtrr3Dvfzh-M-amV_yF9af-uKSpStVwWS5ouq6UWNnTSv2Say3ay6VOg9HDjaa2JZE8GSY7eDtOf4IyeXT9MKaUmpaq4t7XftLfIBD_I5mudU0__gfsWc-1P6Jp_4PQxxlStK_iMD534sPYqxb2jRukaHtt5vPqQW9wgru8jiup7WFiqjPdyr2ZWUlAa0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-3xl text-white font-bold mb-2 italic">Rugby</h3>
+<p class="text-white/80 text-sm">Power, precision, and passion define our Lions on the field.</p>
+</div>
+</div>
+<!-- Athletics: Square -->
+<div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl shadow-lg bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Runner on a starting block at a modern red athletics track during a bright day with clear lane lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy-eY6FJsqxrCZCpfiaHRS2u49wY-n6GP35XfWQXou3oMnX_OMlm9k3v4W9914qJhmbPY4LyPfiz2lmC1i1c7V4rrseLBqGBHupE6jwqkna8pDlh7Yj-qMfL4MUlf_Kg0mzvZEhUQ32m1ai1qIWbc1ITkJ2iYjz4nTEShx3AqEgjr45HSTH3QbA7gpZ5fULO5ytifsxVHzWUOltV_xI1p7o2IXM-Zp1IiqINItNzC5jDN0LJZo-KfWKNV5dQRbHIOLqKMK2ukwzZk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-2xl text-white font-bold italic">Athletics</h3>
+</div>
+</div>
+<!-- Swimming: Square -->
+<div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl shadow-lg bg-surface-container-low">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High angle view of a blue swimming pool with clear water ripples and lane markers under bright sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0azX77NiPdNntX07MeSPLdDFGCGDvGGT95-tCT7geZz0b9IVk24Lsn5VWd_6mlk4lF-wmMeOJc1Lym2f2PQsDqH7lgl_cEC7r2Q8qziAXK3yAVbH0D4k7qXx_ETwa3IwtfxnPSBmQ9Q-G-HLZl58F8R-tvUl6hIvYuoQjmyXg2Pd896Nno5o4NUuKHvUGVpOVhdJkHPyai9Zvsa92vSzsX8lk55uMIKFSHZx7qMj0uD6F9T8SpwhaqZOx1qQ92uCRFI1DRy6cBXg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-2xl text-white font-bold italic">Swimming</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Highlights & Matches Layout -->
+<section class="bg-surface-container-low py-24">
+<div class="px-12 max-w-screen-2xl mx-auto grid grid-cols-12 gap-16">
+<!-- Recent Achievements: Editorial List -->
+<div class="col-span-12 lg:col-span-7">
+<h2 class="font-headline text-4xl font-bold text-primary mb-12 italic">Recent Achievements</h2>
+<div class="space-y-10">
+<!-- Achievement 1 -->
+<div class="flex gap-8 group">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Close up of a golden trophy with intricate details on a dark blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ntMxiLLmpueErZRii_S-IDR4yBf0UEEYlmZk2GLQ4CVSDTY9i6B7ZnJvl9nm_wDF5zHRZ8y5T36aEPe_xEjO0qiaxhOsO0ye7kIwvhJkJNc_HGCNDvsRKPeVKwGQFO0WwrLRDXxtcoQDHnlv21KhoKdzUC3aAHpnM4BP3VCnVhzVgQgFq0vQdDBIm_T7kLmDaJP641qykJKUe4Ku1Fc4Y_mCHwlq8z7mWiEdiS60j9vm71lMDh4um6nugBlbKIPfeSEyYh_gMbg"/>
+</div>
+<div>
+<div class="text-secondary font-bold text-sm mb-1">MARCH 2024</div>
+<h4 class="font-headline text-2xl font-bold text-on-surface mb-2">Western Province Athletics Meet</h4>
+<p class="text-on-surface-variant leading-relaxed">Homagama MV secured 12 Gold medals, breaking 3 provincial records in the 100m and 400m hurdles categories.</p>
+</div>
+</div>
+<!-- Achievement 2 -->
+<div class="flex gap-8 group">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Traditional school shield emblem with mahogany wood and silver plating in soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPc908VfigJewEQh894mwVS_ZvwTixoZE1Xbpz0DUKeo1qHGxnu2ZPrKKNSXKCrMTPCm5gMQ_ytYN5CXup_rDT_IErfo0YqNjHuYpahvYd_hhK0tu_Ap5mzKMSgAff730vXwOYjA8GHE4HMQxBI84sor6_CR7sx1yTNl8RHguryEmV7gHnZosWZaGw8C01mGFvCzCNO4u4lKCUT7Hjfhiqvow8gkKKOPp2JJWZCHZqJN5E72K5EHvCbdjwMPjIeiYG6plGYlZyEFk"/>
+</div>
+<div>
+<div class="text-secondary font-bold text-sm mb-1">FEBRUARY 2024</div>
+<h4 class="font-headline text-2xl font-bold text-on-surface mb-2">Inter-School Cricket Big Match</h4>
+<p class="text-on-surface-variant leading-relaxed">A stunning victory against our rivals, reclaiming the 'Golden Willow' Trophy after a decade-long wait.</p>
+</div>
+</div>
+<!-- Achievement 3 -->
+<div class="flex gap-8 group">
+<div class="w-32 h-32 flex-shrink-0 overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Top view of an indoor swimming competition with blue lanes and athletes in motion" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWNWOu0ZKigBujkhpASNrbIwXGAra9jaMkR617ESOgDpNn6gTBycln_TiBblbohgHPi2_zbLICmyP3P0G33ZF6KHQLWyqv0FhNXt1WsNYJBG8dU_JIUHKWQYxQJAmw3hIUvL9dvYkdg9SaikVrDabjmV6UiHQcK4w_h28KMf7jMtydRQ_vuGhMxJQk5E7AE-4VFPZnDHLJ2Tft58Zaxx6MCtQK2mG7t1m1weluydn1wOBamNiMwlJ2kGweVkR_p2DsfNBW0u6QzLQ"/>
+</div>
+<div>
+<div class="text-secondary font-bold text-sm mb-1">JANUARY 2024</div>
+<h4 class="font-headline text-2xl font-bold text-on-surface mb-2">National Age-Group Swimming</h4>
+<p class="text-on-surface-variant leading-relaxed">Our junior relay team brought home silver at the National Aquatic Championships held at Sugathadasa.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Matches: High-Contrast Glass Sidebar -->
+<div class="col-span-12 lg:col-span-5">
+<div class="bg-primary-container p-10 rounded-2xl text-on-primary shadow-2xl relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary rounded-full opacity-20 blur-3xl"></div>
+<h2 class="font-headline text-3xl font-bold mb-8 italic">Upcoming Matches</h2>
+<div class="space-y-6">
+<!-- Match 1 -->
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-all cursor-pointer">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs font-bold uppercase tracking-widest bg-secondary text-on-secondary px-2 py-1 rounded">Cricket</span>
+<span class="text-sm font-medium">Apr 15, 2024</span>
+</div>
+<div class="flex items-center justify-between text-center gap-4">
+<div class="flex-1">
+<div class="font-headline font-bold text-lg mb-1">HMV</div>
+<div class="text-[10px] uppercase opacity-70 tracking-widest">Home</div>
+</div>
+<div class="text-secondary text-xl font-serif italic font-bold">VS</div>
+<div class="flex-1">
+<div class="font-headline font-bold text-lg mb-1">Ananda College</div>
+<div class="text-[10px] uppercase opacity-70 tracking-widest">Away</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-sm opacity-90">
+<span class="material-symbols-outlined text-sm">location_on</span> HMV Grounds, Homagama
+                                </div>
+</div>
+<!-- Match 2 -->
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/10 hover:bg-white/20 transition-all cursor-pointer">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs font-bold uppercase tracking-widest bg-secondary text-on-secondary px-2 py-1 rounded">Rugby</span>
+<span class="text-sm font-medium">Apr 22, 2024</span>
+</div>
+<div class="flex items-center justify-between text-center gap-4">
+<div class="flex-1">
+<div class="font-headline font-bold text-lg mb-1">HMV</div>
+<div class="text-[10px] uppercase opacity-70 tracking-widest">Away</div>
+</div>
+<div class="text-secondary text-xl font-serif italic font-bold">VS</div>
+<div class="flex-1">
+<div class="font-headline font-bold text-lg mb-1">Isipathana</div>
+<div class="text-[10px] uppercase opacity-70 tracking-widest">Home</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-center gap-2 text-sm opacity-90">
+<span class="material-symbols-outlined text-sm">location_on</span> CR &amp; FC Grounds
+                                </div>
+</div>
+</div>
+<button class="w-full mt-10 py-4 border-2 border-white/30 rounded-lg font-bold hover:bg-white hover:text-primary transition-all">Full Sports Calendar</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section: Academic Weight -->
+<section class="py-24 px-12 max-w-screen-2xl mx-auto border-t border-outline-variant/20">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="font-headline text-6xl font-bold text-primary mb-2">45+</div>
+<div class="text-on-surface-variant font-bold uppercase tracking-widest text-xs">National Titles</div>
+</div>
+<div>
+<div class="font-headline text-6xl font-bold text-primary mb-2">12</div>
+<div class="text-on-surface-variant font-bold uppercase tracking-widest text-xs">Major Sports</div>
+</div>
+<div>
+<div class="font-headline text-6xl font-bold text-primary mb-2">850</div>
+<div class="text-on-surface-variant font-bold uppercase tracking-widest text-xs">Active Athletes</div>
+</div>
+<div>
+<div class="font-headline text-6xl font-bold text-primary mb-2">15</div>
+<div class="text-on-surface-variant font-bold uppercase tracking-widest text-xs">Pro Coaches</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t-0">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-lg font-serif font-bold text-red-900 mb-4">Homagama Maha Vidyalaya</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    Excellence in education and athletics since 1925. Nurturing the next generation of Sri Lankan leaders.
+                </p>
+</div>
+<div>
+<h4 class="font-serif font-bold text-red-900 mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+<div class="flex flex-col gap-3">
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" href="#">Alumni Portal</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" href="#">Staff Login</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-red-700 dark:hover:text-red-300 transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div>
+<h4 class="font-serif font-bold text-red-900 mb-6 uppercase tracking-wider text-sm">Sports Contact</h4>
+<div class="flex flex-col gap-3 text-sm text-slate-600 dark:text-slate-400">
+<p>Director of Sports: +94 11 223 4455</p>
+<p>Sports Council: sports@hmv.edu.lk</p>
+<p>General Inquiries: info@hmv.edu.lk</p>
+</div>
+</div>
+<div>
+<h4 class="font-serif font-bold text-red-900 mb-6 uppercase tracking-wider text-sm">Follow the Lions</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-red-900/10 flex items-center justify-center text-red-900 hover:bg-red-900 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="public">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-red-900/10 flex items-center justify-center text-red-900 hover:bg-red-900 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="share">share</span>
+</a>
+</div>
+</div>
+</div>
+<div class="px-12 py-6 border-t border-slate-200 dark:border-slate-800 w-full max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-600 dark:text-slate-400 text-xs">© 2024 Homagama Maha Vidyalaya. All Rights Reserved.</p>
+<div class="flex gap-6">
+<span class="text-[10px] font-bold text-red-900 opacity-50 uppercase tracking-[0.2em]">Discipline</span>
+<span class="text-[10px] font-bold text-red-900 opacity-50 uppercase tracking-[0.2em]">Courage</span>
+<span class="text-[10px] font-bold text-red-900 opacity-50 uppercase tracking-[0.2em]">Honor</span>
+</div>
+</div>
+</footer>
+</body></html>

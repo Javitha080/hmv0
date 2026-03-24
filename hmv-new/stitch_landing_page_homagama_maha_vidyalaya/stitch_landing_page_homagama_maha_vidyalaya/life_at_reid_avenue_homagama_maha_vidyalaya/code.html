@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Life at Reid Avenue | Homagama Maha Vidyalaya</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-surface": "#2e3132",
+              "tertiary-fixed-dim": "#fabd00",
+              "tertiary-fixed": "#ffdf9e",
+              "on-background": "#191c1d",
+              "outline-variant": "#e3beb8",
+              "primary": "#610000",
+              "surface-container-high": "#e7e8e9",
+              "surface-dim": "#d9dadb",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#5a403c",
+              "on-primary-container": "#ff907f",
+              "surface-container": "#edeeef",
+              "on-primary-fixed-variant": "#920703",
+              "primary-container": "#8b0000",
+              "surface-tint": "#b52619",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "inverse-primary": "#ffb4a8",
+              "surface-container-low": "#f3f4f5",
+              "primary-fixed": "#ffdad4",
+              "surface": "#f8f9fa",
+              "on-primary-fixed": "#410000",
+              "on-surface": "#191c1d",
+              "surface-bright": "#f8f9fa",
+              "on-tertiary-container": "#dda700",
+              "inverse-on-surface": "#f0f1f2",
+              "secondary-container": "#fcd400",
+              "on-error-container": "#93000a",
+              "on-tertiary-fixed-variant": "#5b4300",
+              "surface-variant": "#e1e3e4",
+              "tertiary": "#3b2a00",
+              "tertiary-container": "#563f00",
+              "on-secondary-fixed": "#221b00",
+              "on-secondary-container": "#6e5c00",
+              "surface-container-highest": "#e1e3e4",
+              "outline": "#8e706b",
+              "primary-fixed-dim": "#ffb4a8",
+              "background": "#f8f9fa",
+              "on-secondary-fixed-variant": "#544600",
+              "on-tertiary": "#ffffff",
+              "secondary": "#705d00",
+              "secondary-fixed-dim": "#e9c400",
+              "secondary-fixed": "#ffe16d",
+              "on-tertiary-fixed": "#261a00",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 py-5 max-w-none bg-white/70 dark:bg-slate-950/70 backdrop-blur-2xl z-50 shadow-[0_40px_60px_-15px_rgba(97,0,0,0.08)]">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Official crest of Homagama Maha Vidyalaya featuring traditional academic symbols and local heritage motifs in gold and crimson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLa_iURV_yAC9d5NJ1EAtJUAKx8G0Qlbuj5ix_paD8ceXtsZOaLPx-IlkQPPr57jwqe3Qu5pmst_QIfWfsXmOKDfuxRG2P42yQedAJquLbElfzLESpf_I-hIvf83Cgf_x788MOybYh9ftvA4K-zh4zKZRLc2wMchlhzKC7AxXtzvhj53kHWO4PfQ9Xr9gGXEWi8FKBypjJ8y5VnfHCmYN_zi6s9ax2dtr-JoCSrUJvCz2WMo3x2x4JVbBfHtgSo-Jn7M5vdSy2fkU"/>
+</div>
+<h1 class="font-noto-serif text-xl font-bold text-red-900 dark:text-red-100">Homagama Maha Vidyalaya</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:bg-red-50/50 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-red-50/50 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Academics</a>
+<a class="text-red-900 dark:text-yellow-500 font-bold px-3 py-2 rounded-lg" href="#">Life at Reid Avenue</a>
+<a class="text-slate-600 dark:text-slate-400 hover:bg-red-50/50 transition-all duration-300 px-3 py-2 rounded-lg" href="#">Sports</a>
+<button class="material-symbols-outlined text-red-900 ml-4">menu</button>
+</nav>
+<button class="md:hidden material-symbols-outlined text-red-900">menu</button>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[751px] w-full flex items-center justify-center overflow-hidden px-6">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover scale-105" data-alt="Panoramic view of Homagama Maha Vidyalaya campus showing colonial architecture buildings and lush green corridors at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJrY5aSP-MUs8ZdJL0VQ1Z2U0vVYM-4S7DefKoottogQpcwk5MlGvJau8U92pSEDKVLft664I4HutWQINF8hvYOMygpxEW1kM2oQ7QbBL6Ej7VqPi-Bs4JJzPClwIH6MW6P3sBtBYHYu8Eis4YMBjlGUY6xWBr9QU5HzeGrYP3ma-PdGW9-yFMfHjvlsFNpeAvRww2LwtXJGFsaic6m9z4g48C61KiGkAogU6-Gonme8Tb_gVpqy1Rq5CST6wRGLcSW_vaRy1gaVI"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/20 to-primary/40"></div>
+</div>
+<div class="glass-card z-10 max-w-3xl p-10 md:p-16 rounded-3xl text-center shadow-2xl border border-white/20">
+<h2 class="font-headline text-5xl md:text-7xl font-extrabold text-primary tracking-tight mb-6">Life at Reid Avenue</h2>
+<p class="text-lg md:text-xl text-on-surface-variant font-medium max-w-xl mx-auto leading-relaxed">
+                    Where tradition meets the future. Explore the vibrant culture, enduring spirit, and the daily heartbeat of Sri Lanka's finest academic community.
+                </p>
+<div class="mt-10 flex flex-wrap justify-center gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold shadow-lg hover:scale-105 transition-transform duration-300">Explore Campus</button>
+<button class="bg-white/50 backdrop-blur-md text-primary px-8 py-4 rounded-xl font-bold border border-primary/10 hover:bg-white/80 transition-all">Watch the Film</button>
+</div>
+</div>
+</section>
+<!-- Stats Section (The Editorial Feel) -->
+<section class="py-24 px-8 bg-surface-container-low">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="text-center">
+<span class="block font-headline text-5xl font-bold text-primary mb-2">100+</span>
+<span class="text-sm font-bold uppercase tracking-widest text-secondary">Years of Legacy</span>
+</div>
+<div class="text-center">
+<span class="block font-headline text-5xl font-bold text-primary mb-2">45</span>
+<span class="text-sm font-bold uppercase tracking-widest text-secondary">Student Clubs</span>
+</div>
+<div class="text-center">
+<span class="block font-headline text-5xl font-bold text-primary mb-2">12</span>
+<span class="text-sm font-bold uppercase tracking-widest text-secondary">Annual Traditions</span>
+</div>
+<div class="text-center">
+<span class="block font-headline text-5xl font-bold text-primary mb-2">3k+</span>
+<span class="text-sm font-bold uppercase tracking-widest text-secondary">Global Alumni</span>
+</div>
+</div>
+</section>
+<!-- Campus Highlights (Asymmetric Bento Grid) -->
+<section class="py-32 px-6 md:px-12 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<span class="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Our Environment</span>
+<h3 class="font-headline text-4xl md:text-6xl text-primary font-bold">The Heart of the Institution</h3>
+</div>
+<p class="md:text-right text-on-surface-variant max-w-sm">A sanctuary for learning, blending historic masonry with state-of-the-art technological hubs.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[800px]">
+<div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-surface-container shadow-xl">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Students walking through a historic stone archway of an academic building with dappled sunlight on the pavement" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKN_bsyNalI8yQh4v9YOJPPgJqpS_z4a7QoWlQpOJlGZ0sTpbXkKCjg8fFPfqnG3P9tc7txo9kkUWsIZ-L5nF9j5PsaQdrcQ1tfpAr3AkAOQjWGbqWBv_4ZNf29XgXHCes-WjP3p6pThYcHcvBc1Z-_phl2sCEN3hQGSMuiFrvlHVlNGFbjwNuhCteGqIKdOl9EMzgVpSkdmVInbeh54zaMD0OL4DAL6lZC8IFzsJ8fbDAcdQWyKcyYWVN_QjgLyAk0bMvyZQC5Qk"/>
+<div class="absolute bottom-0 inset-x-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
+<h4 class="text-white text-3xl font-headline font-bold">The Main Quadrangle</h4>
+<p class="text-white/80 mt-2">The center of student life since 1924.</p>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-8">
+<div class="flex-1 group relative overflow-hidden rounded-3xl bg-surface-container shadow-xl">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A modern library interior with tall shelves, comfortable seating, and large windows overlooking green gardens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLVCbQbD8SUJCacJZY9IRtyX9va1awHqcUWAaSI9rl7efTjQBUIYAMs6nicXa0UhCZyeXmIenve_xij4vldOlQH9TJ19oje_8DJXNYwpmzK6Dw7yPrZYWekUY4AkOOJIwaKIU5gXqJZaN2D5w9khR0wi61mTYVKzqzNevbthBE0Ev6sCuqQLVBwALAFLkIf_k2BgMNT0mAnO7YySXSPQLb4D34AKvzyxiULHzzkNjPgrWMJAaJFbGoKpgZ5-fgGboyuCpueXxqBvI"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-0 p-6">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded text-xs font-bold uppercase">Modern Hub</span>
+<h4 class="text-white text-xl font-bold mt-2">Knowledge Commons</h4>
+</div>
+</div>
+<div class="flex-1 group relative overflow-hidden rounded-3xl bg-primary text-white p-8 flex flex-col justify-end">
+<span class="material-symbols-outlined text-4xl mb-4 text-secondary-container">school</span>
+<h4 class="text-2xl font-headline font-bold mb-4">Scholarly Ambience</h4>
+<p class="text-primary-fixed leading-relaxed">Every corridor tells a story of excellence and perseverance.</p>
+</div>
+</div>
+<div class="md:col-span-4 group relative overflow-hidden rounded-3xl bg-surface-container shadow-xl min-h-[300px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="High-tech laboratory with students in white coats working on scientific equipment under bright cool lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAES4brvy6vW8zHQqGR-PtQsztfyE5V0yA6rO1wpxxvI72YJWhVW7kstORJALi851u9aDtk_TR5Ftht5S7M8byyX6MVzPLivLVx6kuugaFzJEGn61iKwlOQsZ0_EfL5vjOnIL3uLB5-Q7GElzrAT-5JJ_HLUR8kZbbI1-UiiTYjOwsDc2Mfp581p9_3XYePIhtTZHlth2zt5jVB5Q3Sr8OYjaxApI4JuEGM8P7BE-gLRXML-JNT4Borczzu2jSc93lhOPnzUehRVCI"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-bold tracking-widest underline">VIEW LABS</span>
+</div>
+</div>
+<div class="md:col-span-8 group relative overflow-hidden rounded-3xl bg-surface-container-high shadow-inner flex items-center p-12">
+<div class="max-w-md">
+<h4 class="text-primary text-3xl font-headline font-bold mb-4">Sustainability Gardens</h4>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Our campus is a living ecosystem where students lead organic farming and biodiversity projects alongside their studies.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 group/link" href="#">
+                                Learn about our Green Initiatives
+                                <span class="material-symbols-outlined transition-transform group-hover/link:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Student Experiences (Overlapping Layers) -->
+<section class="py-32 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 relative">
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div>
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Student Voices</span>
+<h3 class="font-headline text-5xl text-on-surface font-bold leading-tight mb-8">Beyond the Classroom walls.</h3>
+<div class="space-y-12">
+<div class="flex gap-6 items-start">
+<div class="w-16 h-16 rounded-full bg-secondary-container shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">groups</span>
+</div>
+<div>
+<h5 class="text-xl font-bold text-primary mb-2">Brotherhood &amp; Unity</h5>
+<p class="text-on-surface-variant">The friendships formed at Reid Avenue last a lifetime. Our house system fosters a healthy spirit of competition and camaraderie.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-16 h-16 rounded-full bg-primary-container shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">palette</span>
+</div>
+<div>
+<h5 class="text-xl font-bold text-primary mb-2">Arts &amp; Expression</h5>
+<p class="text-on-surface-variant">From classical orchestras to modern drama, the school provides a stage for every creative soul to find their voice.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+<div class="glass-card p-4 rounded-3xl shadow-2xl relative z-20">
+<img class="rounded-2xl w-full aspect-[4/5] object-cover" data-alt="A group of diverse students laughing together in a sunlit courtyard wearing school uniforms" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU334v5jzDuX6iSrrKDo3jRUCxTupYVrcoq9k_Pm9zpfwRaXELzKs6aJth_T9V-DoKhXy5buIitiKoKkjTCIkJTO8RML-Ooq8oDQcDHEGOWwSssXns3Cvxbyms86ajEJxFjEtrGP0u2Wvz3-XcQLu69l9bsV79DRdImOIE4_Khc1ioCe1qxrU86JeTWZ3C832cMN6bl03Tyo3VcPgWCAJr6hyiTugq9LpFoH6XFzulxkiKAMn7_CRM8xiLqoUx4NM06OpjujRyq9w"/>
+<div class="mt-6 p-4">
+<p class="italic text-lg text-primary font-headline">"Reid Avenue isn't just a school; it's a feeling of belonging that stays with you forever."</p>
+<div class="mt-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest"></div>
+<div>
+<p class="font-bold text-sm">Amara Perera</p>
+<p class="text-xs text-on-surface-variant">Senior Prefect, Class of 2024</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="py-32 px-6">
+<div class="max-w-7xl mx-auto text-center mb-16">
+<h3 class="font-headline text-4xl font-bold text-primary">The Reid Avenue Gallery</h3>
+<div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="space-y-4">
+<img class="w-full rounded-2xl aspect-square object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Close up of a traditional oil lamp being lit during a school ceremony with soft candlelight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpl-jq0qB2aip1RBQUchUD3hgxo0mO1v3RMa5J25oKTacHF3tSL4-rjvBvBTF-DiFbqv9ThR-wpIGkYPdNNffOXfhh7LhsZt3N-iSswbqYbeFLRCr9eo_-Z7GSXbfxEH4wYOfb4dG4kGRV-WN3zwPL9DeN-MzadnSQhrC-Xk7Aoljg3FoGge08ufSC8Z6TKXal1NL220oRX0WeOlM1HeLZXJ4XYF8I9KkTjR-OjarwHY6TkbooYCQs3b3fseAtHi8asGrgFa62Qe8"/>
+<img class="w-full rounded-2xl aspect-[3/4] object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Cricket match in progress on a lush green oval with white pavilions in the distance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgxkDhGF5bWGBwgQDBa3HrcC10AzTGAdE5P5X8tg0D-nxEz4Z6QloQsAd-u9HNdzhEjymV7mVsFt_ZDrBUNPpnY-cA6w2KbLo0euBDwMtEuXPiVFZV5Fg0NTaKdSrlXaH4PY45XWxF1q23sMC9efCOfKBroNSDfP45QAzJ9SYlvRYH9OHRWdO39EHpr6FB9pgjZx6gRY_A29rmBg58tr-XEhV66b16J_Uemn7_APy4HhWNXTX0LB5oTFRjEW8nNL5qNmKdzfWV2mY"/>
+</div>
+<div class="space-y-4 pt-12">
+<img class="w-full rounded-2xl aspect-[3/2] object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Students engaged in a science experiment using colorful liquids in a modern laboratory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRpwuL3gEm8IViEjZHxK-fOZRFO7S3knHq1fD6Pjw_x_iqjF4ygnNP2OfyJZlwdREeQI__l4YXIOqIaQPqkS2zbeWlIPEl5wLBbhR2phFkekC4tYYxwW9_iP0sO9tNgBiJhzFKyJMW6op6BAuOzNavBPUfbjbV852FkDrDlgNhmPnNqWVfAOMokiBitfIrbY_NAFxOnUpLAEkDpGo9EgT9tLsaYdFuE6Kit7R1JIbOMae-VePw5wJ9wIZGKOGjCz5N8Rh_R38rcNc"/>
+<img class="w-full rounded-2xl aspect-square object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Trophies and academic awards displayed on a glass shelf in the school's heritage hall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP3S56W_9_PKBscmT9XIHv6a_Ql1nbnQxZkxeGDrh2honB5ukHWiLe_7sh4Ugf7z5Mu2scCUKXWULHe1fMfGFy4oD-TE-rFbxKdPYGwy0t2fH3TYjO-wTCHKAufi1YifYEu8rHE6LbR7JFjqgrhim0yFbgQMdOJu8-mCP7QhIHgzxrje-ALV1IlKai6S3Kba8S_HxZs6pYC18fziSXOEbHKHzyh5MNhA5CRstSVUhBFBu4LwiDBUGcHccOQuX2ONUtgGfXv9nSKZw"/>
+</div>
+<div class="space-y-4">
+<img class="w-full rounded-2xl aspect-[3/4] object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Students performing a traditional dance in colorful costumes on an outdoor stage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdTNBBeP7mOPEOhhYKLKxsBfe1gs9bJO7QRi6cqwA_Sc-_4FbwwppDils3srvP7fI63BP-wJPXQ-BPi6B6d5VuOJa6VY8fyORaSLgNaeVRt1JRqrv3JJDgLSTn3WUGJmklR4eEwuEtDWzN0k24tT9oTSI-e0YzpBWnmHwTjyKKuBrdeEJk2V8XdwopHsM1bJVSqrWY8LlAP1s0VQoIAU8jl2WVX0XffyIR1x-0yrm8Yv_M97m6Yf0cRQp5lfsf4ZRw2gCle-Ouc0"/>
+<img class="w-full rounded-2xl aspect-square object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="Top down view of students studying in a quiet library with sunlight streaming through large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6qGBC-HHMUVMX3cXsHqEAoQUkqT4awHh3KyZxQJuF_E0ohrjFV4I9rKw0RmjfgXT9G0qsi_yxnDMJDnnaWLtkGPhu0LK9EnzSVfvBtb5wDJEwXAnH_hpYMaULWJhkx9jRER-g9lrEfxTaI6JwJcnxVgrS8NoHk8Wv3uOQ3b7UWhxcPBeiWiDsvL4HuagqiGS8xweUS1JasSES6muKNetY7FEGizSAuwcNIRpDZpkFgV4xU0ywrnPlER-J1mG5TxWcxOeJwBb8UeU"/>
+</div>
+<div class="space-y-4 pt-8">
+<img class="w-full rounded-2xl aspect-square object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="A candid shot of a student smiling while working on a robotics project with mechanical parts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7bjyeb_VWQpahlEADQEERtCWcPjYosOemQumCXGsaG82FExE19WcEIBRvHl05bHLfVEg0IkKGYlwo-GCndmCBwRe9HerinBTOGf6KX2THaigdss9rjry2VrJ7Ba1-944pBvLFDrVJ04LZAkVa3krqaRuwo3eDd6kKdn23Qc9pQUHtK9q9diATvdci87vuHIQ939NTGcn54j0JqQQebHT0h0cJKl9dxF5TiaNam78LLQrU6DLe4lqSs_7u7mHGmTn2SaUd48tR7nw"/>
+<img class="w-full rounded-2xl aspect-[4/5] object-cover shadow-lg grayscale hover:grayscale-0 transition-all duration-500" data-alt="The grand entrance gate of the school with the name plate visible against a bright blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZVVCViTOYpORxQJ19OEelsEpOkJSAdECVhmQ5-Uo-GyqSYAK3kUGK7be3-rGnHNTIjygxVBSdUUzvZZ4_xMXJrLden6mS6988hG9xWM5m88rMZjFeo0-SIenZrdQA970s0HXl11Y4jx5QxgADoj36HxPAi31fbkiCwktAFCgPUO9CUey9FMgspR7kb7k_Wj4Yaw_qYuFqfqdJMfk_G1Bt9ECRx5_WnxUtvRFtlbbkfs7nSdHw24CTPHkWTTQ8uPQIp_2y5TkRZHg"/>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-primary to-primary-container p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[30rem] absolute -top-40 -left-20">school</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline text-4xl md:text-5xl font-bold text-white mb-6">Be Part of the Legacy</h3>
+<p class="text-on-primary-container text-lg max-w-2xl mx-auto mb-10">Admissions are now open for the upcoming academic year. Join a community that values character, courage, and scholarly excellence.</p>
+<div class="flex flex-wrap justify-center gap-4">
+<button class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-xl font-bold text-lg hover:bg-yellow-400 transition-colors">Apply Today</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">Download Prospectus</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-50/50 dark:bg-slate-950/50 backdrop-blur-md">
+<div class="flex flex-col items-center md:items-start">
+<h4 class="font-noto-serif font-bold text-red-900 dark:text-red-100 text-2xl mb-2">Homagama Maha Vidyalaya</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm max-w-xs text-center md:text-left">Founded on tradition, built for the future. Shaping the leaders of tomorrow since 1924.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-700 font-manrope text-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-700 font-manrope text-sm transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-700 font-manrope text-sm transition-colors" href="#">Alumni Portal</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-red-700 font-manrope text-sm transition-colors" href="#">Site Map</a>
+</div>
+<div class="text-center md:text-right">
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 Homagama Maha Vidyalaya. All Rights Reserved.</p>
+<div class="flex justify-center md:justify-end gap-4 mt-4">
+<span class="material-symbols-outlined text-red-900 cursor-pointer hover:scale-110 transition-transform">social_leaderboard</span>
+<span class="material-symbols-outlined text-red-900 cursor-pointer hover:scale-110 transition-transform">photo_camera</span>
+<span class="material-symbols-outlined text-red-900 cursor-pointer hover:scale-110 transition-transform">public</span>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation for Mobile -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 glass-card border-t border-primary/5 px-6 py-4 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">school</span>
+<span class="text-[10px] font-bold uppercase">Learn</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-red-900">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="text-[10px] font-bold uppercase">Life</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">sports_soccer</span>
+<span class="text-[10px] font-bold uppercase">Sports</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] font-bold uppercase">Contact</span>
+</button>
+</div>
+</body></html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Homagama Maha Vidyalaya | Academic Excellence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@400;500;700&amp;family=Playfair+Display:wght@400;700;900&amp;family=Outfit:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-container": "#edeeef",
+                "primary-container": "#8b0000",
+                "secondary-container": "#fcd400",
+                "on-background": "#191c1d",
+                "tertiary": "#3b2a00",
+                "on-secondary-container": "#6e5c00",
+                "on-primary-container": "#ff907f",
+                "on-error": "#ffffff",
+                "primary-fixed": "#ffdad4",
+                "primary": "#610000",
+                "error": "#ba1a1a",
+                "inverse-primary": "#ffb4a8",
+                "surface-container-high": "#e7e8e9",
+                "surface-bright": "#f8f9fa",
+                "on-surface-variant": "#5a403c",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#920703",
+                "on-primary": "#ffffff",
+                "surface-tint": "#b52619",
+                "secondary-fixed": "#ffe16d",
+                "on-tertiary-fixed": "#261a00",
+                "surface-dim": "#d9dadb",
+                "outline": "#8e706b",
+                "secondary-fixed-dim": "#e9c400",
+                "primary-fixed-dim": "#ffb4a8",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "background": "#f8f9fa",
+                "surface-variant": "#e1e3e4",
+                "tertiary-container": "#563f00",
+                "tertiary-fixed": "#ffdf9e",
+                "on-secondary-fixed-variant": "#544600",
+                "on-secondary-fixed": "#221b00",
+                "on-tertiary-fixed-variant": "#5b4300",
+                "surface": "#f8f9fa",
+                "tertiary-fixed-dim": "#fabd00",
+                "inverse-on-surface": "#f0f1f2",
+                "surface-container-highest": "#e1e3e4",
+                "on-tertiary-container": "#dda700",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2e3132",
+                "on-primary-fixed": "#410000",
+                "on-surface": "#191c1d",
+                "outline-variant": "#e3beb8",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-low": "#f3f4f5",
+                "secondary": "#705d00",
+                "crimson-deep": "#8b0000",
+                "crimson-soft": "#b52619",
+                "yellow-warm": "#fcd400",
+                "yellow-pale": "#fff9e6",
+                "neutral-warm": "#fdfaf7",
+                "glass-white": "rgba(255, 255, 255, 0.45)",
+                "glass-crimson": "rgba(139, 0, 0, 0.08)"
+              },
+              fontFamily: {
+                "headline": ["Noto Serif"],
+                "body": ["Manrope"],
+                "label": ["Manrope"],
+                "display": ["Playfair Display", "serif"],
+                "outfit": ["Outfit", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem", "liquid": "2rem", "soft": "1.25rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(139, 0, 0, 0.05);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        .mobile-nav-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary/30">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-xl flex justify-between items-center px-4 py-3 mobile-nav-shadow">
+<div class="text-lg font-serif font-bold text-[#610000] leading-tight">
+        Homagama<br/>Maha Vidyalaya
+    </div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-slate-700 p-2">search</button>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm tracking-tight">
+            Portal
+        </button>
+<button class="material-symbols-outlined text-slate-700 p-2">menu</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Campus landscape" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"/>
+<div class="absolute inset-0 bg-black/30"></div>
+</div>
+<div class="relative z-10 text-center px-6 mt-12">
+<h1 class="font-display text-5xl font-black text-white mb-6 text-glow leading-tight">
+            Welcome Home,<br/>to Excellence.
+        </h1>
+<p class="text-lg text-white/90 mb-10 font-light text-glow font-outfit">
+            Nurturing potential with warmth, tradition, and innovation.
+        </p>
+<div class="flex flex-col gap-4 px-4">
+<button class="liquid-glass text-slate-900 px-8 py-4 rounded-full font-bold text-base border border-white/40 font-outfit shadow-lg">
+                Discovery Tour
+            </button>
+<button class="bg-yellow-warm text-crimson-deep px-8 py-4 rounded-full font-bold text-base shadow-xl shadow-yellow-warm/20 font-outfit">
+                View Prospectus
+            </button>
+</div>
+</div>
+<div class="absolute bottom-8 left-0 right-0 px-6 z-20">
+<div class="liquid-glass p-4 rounded-soft shadow-xl border border-white/30 backdrop-blur-md">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-crimson-soft/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-crimson-deep text-lg">person_search</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 text-xs font-outfit">Sarah Mitchell</h4>
+<p class="text-[10px] text-slate-500 font-outfit">Parent, Grade 9</p>
+</div>
+</div>
+<p class="text-[11px] text-slate-700 italic leading-snug font-outfit">
+                "The atmosphere here is unlike any other. It truly feels like a second family."
+            </p>
+</div>
+</div>
+</header>
+<!-- Introduction Section -->
+<section class="py-20 px-6 bg-surface">
+<div class="text-center">
+<h2 class="font-headline text-3xl font-bold text-primary mb-8 tracking-tight leading-tight">
+            An Experience That Lasts a Lifetime
+        </h2>
+<p class="text-base text-slate-600 leading-relaxed mb-8">
+            Founded on integrity and intellectual curiosity, Homagama Maha Vidyalaya is a sanctuary where the leaders of tomorrow find their voice through rigorous academics and vibrant extracurricular life.
+        </p>
+<a class="inline-block font-bold text-secondary text-base border-b-4 border-secondary-container pb-1" href="#">
+            Explore Life at Reid Avenue
+        </a>
+</div>
+</section>
+<!-- Latest Updates -->
+<section class="py-20 bg-surface-container-low px-6">
+<div class="flex flex-col gap-4 mb-10">
+<h2 class="text-3xl font-bold text-primary">Latest Updates</h2>
+<a class="text-secondary font-bold flex items-center gap-2 text-sm" href="#">
+            View All News <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="flex flex-col gap-8">
+<!-- News Item 1 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-sm">
+<div class="h-48 overflow-hidden">
+<img alt="Annual Prize Giving" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD9keh-PAGM1DeW4kW35xoXS9pOstiaTsO-B8uTYE13xcVQb-p9dbnwpVjKxTwUl2bpYaPTaChuhByv61KFGo-r1FZIqSTQxCMRlEqjSgo0EmXt1rzCF1p8OuF2EMLRmBjMnttyuRR59C7D1dunBy15YO3hP2CGMnTfjB8cVyBbr0bdLsbalwhZ1J1N6rAdO2Po34lV65BRONiiuyfLc3sCIlC3N9AczBQ8QEEwtdVV-BF4nD8uazHc-wik5LFHdfRKH0eIB-SMng"/>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold text-white bg-primary px-2 py-0.5 rounded-full">ACADEMIC</span>
+<span class="text-[10px] text-on-surface-variant">May 15, 2024</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-3 leading-snug">84th Annual Prize Giving Ceremony Announced</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed mb-4">Celebrating exceptional academic achievements across all grades.</p>
+<a class="text-primary font-bold text-xs flex items-center gap-1" href="#">Read More <span class="material-symbols-outlined text-xs">chevron_right</span></a>
+</div>
+</div>
+<!-- News Item 2 -->
+<div class="bg-white rounded-xl overflow-hidden shadow-sm">
+<div class="h-48 overflow-hidden">
+<img alt="Athletic Meet" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLjbQ3vjMWdOuY-4e6fRCefk7YLquWtu7hDp9I91iYl3yhKGoE948fVC-gZtdLK5C5gVhD6zb67H_Bexs3yeQsxumZTEPsmd_q4l49nl1nlhiNkcE287ayPCbcKL2Ziz_bTc-ie6BxeuqMO7mINLe703b5RJTwRIouob7fEkUUO28SjmKmt7cKH3C-DSRAiMctMZ1prqfFwI1c8I-xi3Tz3dRrxas3sS1QUxG6Wc4_kTXIf8o9iTtRucv6vobfa08Lvtu-6GoX9x4"/>
+</div>
+<div class="p-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-[10px] font-bold text-white bg-primary px-2 py-0.5 rounded-full">SPORTS</span>
+<span class="text-[10px] text-on-surface-variant">May 10, 2024</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-3 leading-snug">Inter-House Athletic Meet Records</h3>
+<p class="text-on-surface-variant text-xs leading-relaxed mb-4">New records set in sprint and high jump as houses compete.</p>
+<a class="text-primary font-bold text-xs flex items-center gap-1" href="#">Read More <span class="material-symbols-outlined text-xs">chevron_right</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Online Learning Section -->
+<section class="py-20 px-6 overflow-hidden">
+<div class="flex flex-col gap-12">
+<div>
+<h3 class="font-headline text-[10px] uppercase tracking-[0.3em] text-secondary font-bold mb-3">Digital Transformation</h3>
+<h2 class="font-headline text-3xl font-bold text-primary mb-6">Learning Online</h2>
+<p class="text-base text-on-surface-variant leading-relaxed mb-8">
+                Our LMS ensures education never stops. Access lectures and collaborate through our integrated digital portal.
+            </p>
+<div class="flex flex-col gap-3 mb-8">
+<div class="flex items-center gap-3 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    24/7 Access to Resources
+                </div>
+<div class="flex items-center gap-3 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                    Interactive Live Classrooms
+                </div>
+</div>
+<button class="w-full bg-primary text-white px-8 py-4 rounded-lg font-bold shadow-lg">
+                Access Portal
+            </button>
+</div>
+<div class="relative">
+<div class="absolute -inset-2 bg-secondary/10 rounded-full blur-2xl -z-10"></div>
+<div class="relative bg-white p-1 rounded-xl shadow-xl border border-outline-variant/30">
+<img alt="Laptop dashboard" class="rounded-lg w-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbdJRabQ2AjdCyjhBYeyyyIAvMQQGw13lVZPvz6BWkB8NFuLwGdUz26l39tmuzBc40_7HNXfi8DZH6cYfir0sQX0kxtvFBr_1U_NbAyIXVbdE8D0PhgzpAp4cwNFfEX7vlhm7tNVbuPzwAdnqo6prS9qMg0_t5k7bN20otBuwXJ6UT2ojM7hZX3wA7AcPx4Lv2Be0iUqWipShLF8-EnALD0lutf8VFLKTyU9ou-XE2GrQ6P3P8ZrYS5UwyTkPpUxVBDpL6fNyLEOU"/>
+<div class="absolute -bottom-4 left-4 right-4 glass-panel p-3 rounded-lg shadow-lg flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface">Engagement</p>
+<p class="text-lg font-headline font-bold text-primary">98.5%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Academics Showcase -->
+<section class="py-20 px-6 bg-surface-container">
+<div class="flex flex-col gap-12">
+<div class="relative h-[400px]">
+<div class="absolute right-0 top-0 w-[85%] h-[300px] shadow-lg rounded-lg overflow-hidden opacity-60">
+<img alt="Library" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5BrcAf1PRUDuCREDz2lMs974bCjvmwNBWOru9LoYys2Wt6cBq5rmL9moJM9iWcnXDf_utbXOHgsliNV_duGmDGKkrK1fMl5IcW6PpSPl_GKtyI9mjlUFxuhnt350r8SezN_-rthEDAB0RKOjKxeZm-hGIKO9yAAlgSpzj7iK9cJigF-JPWZzPPbrh6xv-CCjfCs03vQdz3MCUS-NCAZ6nkwbvVm8cOcIY_Q9DZMJSMHRV-WM4jaOGit26U_r3H3w20E-9TQKi91Q"/>
+</div>
+<div class="absolute left-0 bottom-0 w-[85%] h-[300px] shadow-xl rounded-lg overflow-hidden border-4 border-white z-10">
+<img alt="Lab student" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj3vHFlrmz1GtJ8-ofVSaJsyUqpjs73ILZ8g4HgBfMnRUfsxOpLTfYQQlAObHpioOc30CrXYGBLWyJP1Y-XshP6mqLggcYRN8DhspWJq5G4OIFNrfvLxKU74mGwsKjItgt1IEsoxQMQpi-r4b9DOvMFxDQNSnSptygQ0Z0x7pfFeY6yv9SQSbZL6Mw-3s58A-R5oFtKVKnhDTC2eXnhs0D-LOscDQKKZWrVVVSV7hCFWOUF7uOQSBqE7EkMA5DFjPQzfyKhoQzTV8"/>
+</div>
+</div>
+<div>
+<h3 class="font-headline text-[10px] uppercase tracking-[0.3em] text-secondary font-bold mb-3">Intellectual Rigor</h3>
+<h2 class="font-headline text-3xl font-bold text-primary mb-6">Academics</h2>
+<p class="text-base text-on-surface-variant leading-relaxed mb-8">
+                Challenging students to think critically and creatively from classical humanities to cutting-edge STEM subjects.
+            </p>
+<div class="space-y-6 mb-10">
+<div class="flex items-start gap-4">
+<div class="text-primary"><span class="material-symbols-outlined">school</span></div>
+<div>
+<h4 class="font-bold text-base text-on-surface leading-tight mb-1">Advanced Level Excellence</h4>
+<p class="text-xs text-on-surface-variant">Specialized streams in Sciences, Commerce, and Arts.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-primary"><span class="material-symbols-outlined">psychology</span></div>
+<div>
+<h4 class="font-bold text-base text-on-surface leading-tight mb-1">Research &amp; Innovation</h4>
+<p class="text-xs text-on-surface-variant">Encouraging inquiry through state-of-the-art facilities.</p>
+</div>
+</div>
+</div>
+<a class="w-full inline-flex items-center justify-center gap-3 bg-white text-primary px-8 py-4 rounded-lg font-bold border-2 border-primary" href="#">
+                Our Curriculum <span class="material-symbols-outlined">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Athletics & Excellence (Redesigned Mobile) -->
+<section class="py-20 bg-surface px-6">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-primary mb-3">Athletics &amp; Excellence</h2>
+<p class="text-sm text-on-surface-variant">Shaping sportsmen with humility and grace.</p>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Hero Card -->
+<div class="relative group h-[350px] overflow-hidden rounded-xl shadow-lg">
+<img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uh-o5YiJ1A-kMFwa7Fun3fDHaOvrgTExYeIN1ArNRRALxFCTZYuz5KN_FMuP5Ezev335jd3pGRwrUa_f5XQD82_dfK2aFhGIPAzd6nQNuoVJTwyaIMZjamPazgx2Pxy7-rDtdTBZqc5TeLUocAJUAn_FIF7Zoc5vAfuWua3wxZZQurjylf7f0UprlVfrqFvurezKxmlCDwKb75X0sjIlIanTo0qHAmpRPH3uBCGJRPM5PRgXZYr2LPxwSqjqzJD1wabq6n9OaAE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-2xl font-bold text-white mb-2 leading-tight">Championship Spirit</h3>
+<p class="text-white/70 text-xs mb-4">Reaching ever greater heights through discipline.</p>
+<span class="inline-flex items-center text-secondary-container font-bold text-[10px] uppercase tracking-wider">
+                    EXPLORE SPORTS <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Rugger -->
+<div class="bg-primary p-6 rounded-xl flex justify-between items-center group">
+<div class="text-white">
+<span class="material-symbols-outlined text-3xl mb-2">sports_rugby</span>
+<h3 class="text-lg font-bold">Rugger</h3>
+<p class="text-white/60 text-[10px]">A legacy of grit and determination.</p>
+</div>
+<span class="material-symbols-outlined text-white/30">arrow_forward_ios</span>
+</div>
+<!-- Track & Field -->
+<div class="bg-surface-container-high p-6 rounded-xl flex justify-between items-center group">
+<div class="text-on-surface">
+<span class="material-symbols-outlined text-3xl mb-2">directions_run</span>
+<h3 class="text-lg font-bold">Track &amp; Field</h3>
+<p class="text-on-surface-variant text-[10px]">Forging champions on the field.</p>
+</div>
+<span class="material-symbols-outlined text-on-surface/30">arrow_forward_ios</span>
+</div>
+<!-- Cricket Legacy -->
+<div class="bg-secondary-container p-8 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold text-primary mb-2">Cricket Legacy</h3>
+<p class="text-primary/70 text-xs mb-6">Continuing the rich tradition of excellence in the gentleman's game.</p>
+<button class="bg-primary text-white px-6 py-3 rounded-md font-bold text-xs">Match Fixtures</button>
+</div>
+<span class="material-symbols-outlined text-[80px] opacity-10 absolute -right-4 -bottom-4 text-primary">sports_cricket</span>
+</div>
+</div>
+</section>
+<!-- Clubs & Societies -->
+<section class="py-20 bg-surface-container-low px-6">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-primary mb-3">Clubs &amp; Societies</h2>
+<p class="text-sm text-on-surface-variant">Interests beyond the syllabus.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="relative h-[300px] overflow-hidden rounded-xl shadow-lg">
+<img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTT545n_-VbsuaXp38MTovsA80wuk_R8fHNggOnuKI5Nr0ZzxpoNKk1umRYDohCMesoBW1jt_FtNFoyZkP53EFDUUWEECUCkhd1W6gemTdlEBV8LRT_43kJk_WR6oAjREbPE4fh7peYcrh3JTYq6SpvC2tSuc66rB9L1C-NtBbInBluVwVvxyVyxd6E0XnpXCQRn3B4n4yDundrnOWGYK0MtX2SRAN-xhH50fKRvVmunKMeQIKHrbcqsZWqU49AMCmkJI_6IL8eTc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="text-xl font-bold text-white mb-2">Music &amp; Fine Arts</h3>
+<span class="inline-flex items-center text-secondary-container font-bold text-[10px] uppercase tracking-wider">
+                    JOIN CLUB <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</span>
+</div>
+</div>
+<div class="bg-primary p-6 rounded-xl flex justify-between items-center text-white">
+<div>
+<span class="material-symbols-outlined text-3xl mb-1">record_voice_over</span>
+<h3 class="font-bold">Debating</h3>
+</div>
+<span class="material-symbols-outlined text-white/30">arrow_forward_ios</span>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl flex justify-between items-center text-on-surface">
+<div>
+<span class="material-symbols-outlined text-3xl mb-1">volunteer_activism</span>
+<h3 class="font-bold">Social Service</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface/30">arrow_forward_ios</span>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section class="relative h-[450px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="History" class="w-full h-full object-cover grayscale opacity-40" src="https://lh3.googleusercontent.com/aida/ADBb0uj3D6qQzxeAH2-lep0tcIXZ_f3dB1ZQEQrvqIeNAg7yCAGD4iOyYNLgZ6KK84dVRdIN-cDnoBGbLmDt1sp75kJt-YT5d9AbJFyIs1SjFV0z7X5jeK9nDiWekzYo8mlur9Ro7oD0DS9edLJ6zSj5p4Ktw7yTUmohFACxEOaraWanN90gIwoeRbGJXEdHoJl7aZxOB2QK46wlqSIgYQNLOr4vK668aIcP3OL_0rWzK9-4gMeEYOIZa80RuUKYiFHEqQFXjKZi9Ve4bg"/>
+<div class="absolute inset-0 bg-primary/30"></div>
+</div>
+<div class="relative z-10 text-center px-6">
+<h2 class="font-headline text-4xl font-bold text-white mb-6 drop-shadow-md">190 Years and Counting</h2>
+<p class="text-sm text-white/90 leading-relaxed mb-8 max-w-xs mx-auto font-medium">
+            From modest beginnings to a prominent institution, our history spans nearly two centuries.
+        </p>
+<a class="inline-block bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold text-base shadow-lg" href="#">
+            Explore History
+        </a>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 pt-16 pb-12 px-6">
+<div class="flex flex-col items-center">
+<div class="mb-10">
+<img alt="Crest" class="h-32 w-auto opacity-80" src="https://lh3.googleusercontent.com/aida/ADBb0uiWwCg-QdfHZcj8lYy_rzIubglArkysXphtP5-2Ow1n2dtkQj5PVsihtFAC96n1ouvk7fsCaqBkZZvf8oJKIUGDP07a9As2z2ybYSZuqfSKiQl3WGwormYpA-c4Rkk15Y48mXAao58BbkELKDnOx_8rXJ78cqb3oKYKhZ5Ew8iEebbeRDg0l2GVqzfv3Sy3Ow4cAKED6RyrSzRdJJV4-rQ2TgbG7WExr2dj8dL-GWkydtWfjLPR9-iXbsTVKb57PwQfcNo9d-amwg"/>
+</div>
+<div class="flex gap-6 mb-10">
+<span class="material-symbols-outlined text-primary text-2xl">public</span>
+<span class="material-symbols-outlined text-primary text-2xl">share</span>
+<span class="material-symbols-outlined text-primary text-2xl">mail</span>
+</div>
+<div class="grid grid-cols-2 gap-x-8 gap-y-4 text-center text-xs font-medium text-on-surface-variant mb-12">
+<a href="#">Contact Us</a>
+<a href="#">Access LMS</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Old Boys</a>
+<a href="#">CSR</a>
+<a href="#">Rules</a>
+</div>
+<div class="w-full h-px bg-outline-variant/20 mb-8"></div>
+<div class="text-center space-y-2">
+<p class="text-on-surface-variant text-[10px]">© 2024 Homagama Maha Vidyalaya</p>
+<p class="text-[8px] tracking-[0.2em] text-on-surface-variant/50 uppercase">Nurturing Excellence Since 1950</p>
+</div>
+</div>
+</footer>
+</body></html>
