@@ -33,7 +33,7 @@ export default function SportsPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[500px] sm:h-[650px] flex items-end overflow-hidden">
+      <section className="relative h-screen w-full flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             className="w-full h-full object-cover"

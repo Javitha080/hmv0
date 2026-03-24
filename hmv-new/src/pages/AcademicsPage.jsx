@@ -20,7 +20,7 @@ export default function AcademicsPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[500px] sm:h-[700px] w-full flex items-center justify-center text-center px-4">
+      <section className="relative h-screen w-full flex items-center justify-center text-center px-4">
         <div className="absolute inset-0 z-0">
           <img
             alt="School building"

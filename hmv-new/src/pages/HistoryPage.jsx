@@ -20,7 +20,7 @@ export default function HistoryPage() {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[500px] sm:h-[700px] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/30">
           <img
             className="w-full h-full object-cover mix-blend-multiply opacity-60"
