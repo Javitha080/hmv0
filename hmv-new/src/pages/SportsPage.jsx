@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const sports = [
   { name: "Cricket", desc: "Our legacy on the pitch is unmatched, producing international stars and legendary victories.", tag: "Premier Sport", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLjbQ3vjMWdOuY-4e6fRCefk7YLquWtu7hDp9I91iYl3yhKGoE948fVC-gZtdLK5C5gVhD6zb67H_Bexs3yeQsxumZTEPsmd_q4l49nl1nlhiNkcE287ayPCbcKL2Ziz_bTc-ie6BxeuqMO7mINLe703b5RJTwRIouob7fEkUUO28SjmKmt7cKH3C-DSRAiMctMZ1prqfFwI1c8I-xi3Tz3dRrxas3sS1QUxG6Wc4_kTXIf8o9iTtRucv6vobfa08Lvtu-6GoX9x4", large: true },
@@ -32,27 +33,22 @@ export default function SportsPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-            alt="Sports field"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-yellow-warm/10" />
-        </div>
-        <div className="relative z-10 p-8 sm:p-16 max-w-4xl">
-          <h1 className="font-display text-6xl sm:text-7xl md:text-8xl text-white font-bold italic mb-4">Sports</h1>
-          <p className="text-white/80 text-lg max-w-lg leading-relaxed mb-8">
-            Nurturing champions and building character. Our sports legacy spans decades of excellence, teamwork, and unyielding school spirit.
-          </p>
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-white/20 backdrop-blur text-white px-6 py-3 rounded-lg font-bold hover:bg-white/30 transition-all border border-white/20">View Calendars</button>
-            <button className="bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-container transition-all">Join a Team</button>
+      <PageHero 
+        badge="Nurturing Champions"
+        title="Sports"
+        subtitle="Our sports legacy spans decades of excellence, teamwork, and unyielding school spirit."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuDLjbQ3vjMWdOuY-4e6fRCefk7YLquWtu7hDp9I91iYl3yhKGoE948fVC-gZtdLK5C5gVhD6zb67H_Bexs3yeQsxumZTEPsmd_q4l49nl1nlhiNkcE287ayPCbcKL2Ziz_bTc-ie6BxeuqMO7mINLe703b5RJTwRIouob7fEkUUO28SjmKmt7cKH3C-DSRAiMctMZ1prqfFwI1c8I-xi3Tz3dRrxas3sS1QUxG6Wc4_kTXIf8o9iTtRucv6vobfa08Lvtu-6GoX9x4"
+        primaryAction={
+          <div className="flex gap-4 flex-wrap mt-6">
+            <button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm uppercase tracking-wider hover:bg-white/20 hover:scale-105 active:scale-95 transition-all">
+              View Calendars
+            </button>
+            <button className="h-14 px-8 rounded-full bg-white text-black font-bold text-sm uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+              Join a Team
+            </button>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Sporting Disciplines */}
       <section className="py-16 sm:py-24">

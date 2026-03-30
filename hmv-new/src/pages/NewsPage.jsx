@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const categories = ["All Stories", "Academic", "Sports", "Student Life", "Alumni"];
 
@@ -29,31 +30,17 @@ export default function NewsPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-            alt="Campus"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-        </div>
-        <div className="relative z-10 p-8 sm:p-16 max-w-3xl">
-          <span className="bg-yellow-warm text-crimson-deep px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-4 inline-block">
-            Academic Excellence
-          </span>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white font-bold mb-4 leading-tight">
-            The Centennial Vision: Shaping Future Leaders
-          </h1>
-          <p className="text-white/80 text-base sm:text-lg mb-6 max-w-xl">
-            Reflecting on a century of scholarly tradition as we unveil our innovative curriculum for the next decade of academic brilliance.
-          </p>
-          <button className="bg-white/20 backdrop-blur text-white px-6 py-3 rounded-lg font-bold border border-white/20 hover:bg-white/30 transition-all">
+      <PageHero 
+        badge="Academic Excellence"
+        title="The Centennial Vision"
+        subtitle="Reflecting on a century of scholarly tradition as we unveil our innovative curriculum for the next decade of academic brilliance."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
+        primaryAction={
+          <button className="h-14 mt-6 px-8 rounded-full bg-white text-black font-bold text-sm uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]">
             Read Full Story
           </button>
-        </div>
-      </section>
+        }
+      />
 
       {/* Category Tabs + Content */}
       <section className="py-12 sm:py-16">

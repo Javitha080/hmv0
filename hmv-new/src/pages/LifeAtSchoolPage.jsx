@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const campusSpots = [
   { name: "Main Quadrangle", desc: "The historic heart of the school where morning assemblies, ceremonies, and traditions unfold under the shade of century-old trees.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0" },
@@ -25,47 +26,29 @@ export default function LifeAtSchoolPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-            alt="Campus"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
-        </div>
-        <div className="relative z-10 p-8 sm:p-16 w-full">
-          <span className="bg-yellow-warm text-crimson-deep px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-4 inline-block">
-            Est. 1889
-          </span>
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl text-white font-bold mb-2">
-            Life at<br /><span className="italic text-yellow-warm">Reid Avenue</span>
-          </h1>
-          <div className="liquid-glass mt-6 p-4 rounded-xl max-w-2xl">
-            <p className="text-white/80 text-sm sm:text-base">
-              Beyond the classrooms lies a legacy of excellence, brotherhood, and character. Discover the vibrant pulse of Homagama Maha Vidyalaya. Where tradition meets future-forward thinking.
-            </p>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="mt-8 flex flex-wrap gap-4 sm:gap-0 rounded-xl overflow-hidden">
+      <PageHero 
+        badge="Est. 1889"
+        title="Life at Reid Avenue"
+        subtitle="Beyond the classrooms lies a legacy of excellence, brotherhood, and character. Discover the vibrant pulse of Homagama Maha Vidyalaya. Where tradition meets future-forward thinking."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
+        primaryAction={
+          <div className="flex flex-wrap gap-4 sm:gap-0 rounded-xl overflow-hidden mt-8 max-w-3xl border border-white/20">
             {[
               { value: "50+", label: "Active Societies" },
               { value: "20+", label: "Sports Teams" },
               { value: "100", label: "Years of Legacy" },
             ].map((s, i) => (
-              <div key={s.label} className={`px-6 py-4 ${i < 2 ? "bg-white/10 backdrop-blur" : ""} flex-1 min-w-[120px] text-center`}>
-                <span className="block text-2xl font-bold text-white">{s.value}</span>
-                <span className="text-xs text-white/60 uppercase tracking-wider">{s.label}</span>
+              <div key={s.label} className={`px-6 py-4 ${i < 2 ? "bg-white/10 backdrop-blur-md" : "bg-black/40 backdrop-blur-md"} flex-1 min-w-[120px] text-center border-r border-white/10 last:border-0`}>
+                <span className="block text-2xl font-bold text-white mb-1">{s.value}</span>
+                <span className="text-[10px] text-white/60 uppercase tracking-widest font-bold">{s.label}</span>
               </div>
             ))}
-            <a href="/contact" className="bg-yellow-warm text-crimson-deep px-6 py-4 font-bold text-sm flex items-center justify-center flex-1 min-w-[160px] hover:brightness-110 transition-all">
+            <a href="/contact" className="bg-white text-black px-6 py-4 font-bold text-sm tracking-wide uppercase flex items-center justify-center flex-1 min-w-[160px] hover:scale-105 active:scale-95 transition-transform duration-300">
               Join the Excellence
             </a>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Campus Spots */}
       <section className="py-16 sm:py-24">

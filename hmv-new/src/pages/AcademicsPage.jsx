@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const educationLevels = [
   { tag: "Foundation", title: "Primary Education", desc: "Focus on foundational literacy, numeracy, and social skills through activity-based learning. We emphasize character building and the joy of discovery in these critical early years (Grade 1 - 5).", features: ["Grade 1-5", "Integrated Curriculum", "Creative Arts focus"], img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDoCo6ZYBPAru3z6aoAa3b3vb_zp0xW-HKrZdUC2n7x4q9O-1nGIBsAl1KWkK4J4X55_ypGa6AJRye2gQr9Ih6gvTTL27ujCw2FCJL95i6B6WylHBMPDQzvg4nyA93EveYS2i0N4djFB4CIkMzXLkjCo9O2Rrq8Ma1lXuBuVlTPVnjGqUQK0603hKgDdQ_NWMJrkZD9bDmvh0gCQwb_IKdnZv3YYnporZwPTIzlYXzsLi1BQlF7tERKSaN3pFEpR0QTakgyd6dVNM8" },
@@ -19,30 +20,22 @@ export default function AcademicsPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center justify-center text-center px-4">
-        <div className="absolute inset-0 z-0">
-          <img
-            alt="School building"
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-          />
-          <div className="absolute inset-0 bg-crimson-deep/30 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-4xl">
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white mb-6 tracking-tight leading-[0.9] drop-shadow-2xl font-display">
-            ACADEMIC<br />EXCELLENCE
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white font-light tracking-wide max-w-2xl mx-auto drop-shadow-md font-outfit">
-            Tradition meets innovation in a data-driven modular environment.
-          </p>
-          <div className="mt-10 flex gap-4 justify-center flex-col sm:flex-row">
-            <button className="academic-gradient text-white px-8 py-4 rounded-md font-bold text-lg shadow-lg hover:shadow-primary/20 transition-all">View Prospectus</button>
-            <button className="glass-card text-primary px-8 py-4 rounded-md font-bold text-lg hover:bg-white/40 transition-all">Contact Registrar</button>
+      <PageHero 
+        badge="Core Academics"
+        title="Academic Excellence"
+        subtitle="Tradition meets innovation in a data-driven modular environment."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
+        primaryAction={
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <button className="h-14 px-8 rounded-full bg-white text-black font-bold text-sm uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+              View Prospectus
+            </button>
+            <button className="h-14 px-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm uppercase tracking-wider hover:bg-white/20 hover:scale-105 active:scale-95 transition-all">
+              Contact Registrar
+            </button>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Bento Curriculum */}
       <section className="py-16 sm:py-24 bg-surface-container overflow-hidden relative">

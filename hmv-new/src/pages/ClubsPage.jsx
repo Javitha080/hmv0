@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const clubs = [
   { name: "Music & Fine Arts", desc: "Nurturing artistic expression through orchestral performances, choral groups, and traditional dance ensembles.", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTT545n_-VbsuaXp38MTovsA80wuk_R8fHNggOnuKI5Nr0ZzxpoNKk1umRYDohCMesoBW1jt_FtNFoyZkP53EFDUUWEECUCkhd1W6gemTdlEBV8LRT_43kJk_WR6oAjREbPE4fh7peYcrh3JTYq6SpvC2tSuc66rB9L1C-NtBbInBluVwVvxyVyxd6E0XnpXCQRn3B4n4yDundrnOWGYK0MtX2SRAN-xhH50fKRvVmunKMeQIKHrbcqsZWqU49AMCmkJI_6IL8eTc", icon: "music_note", large: true },
@@ -15,35 +16,21 @@ export default function ClubsPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-            alt="School building"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
-        </div>
-        <div className="relative z-10 p-8 sm:p-16 max-w-4xl">
-          <span className="bg-yellow-warm text-crimson-deep px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-4 inline-block">
-            Extra-Curricular Excellence
-          </span>
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl text-white font-bold mb-6">
-            Clubs &<br /><span className="text-yellow-warm">Societies</span>
-          </h1>
-          <p className="text-white/80 text-lg max-w-xl leading-relaxed">
-            Where passion meets purpose. Our vibrant student organizations cultivate leadership, creativity, and technical prowess beyond the traditional classroom.
-          </p>
-          <div className="mt-8 liquid-glass px-6 py-3 rounded-full inline-flex items-center gap-3">
-            <span className="material-symbols-outlined text-yellow-warm">emoji_events</span>
+      <PageHero 
+        badge="Extra-Curricular Excellence"
+        title="Clubs & Societies"
+        subtitle="Where passion meets purpose. Our vibrant student organizations cultivate leadership, creativity, and technical prowess beyond the traditional classroom."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
+        primaryAction={
+          <div className="mt-8 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-4 rounded-full inline-flex items-center gap-4">
+            <span className="material-symbols-outlined text-yellow-warm text-2xl">emoji_events</span>
             <div>
-              <span className="text-xs text-white/60 uppercase tracking-wider">Enrollment 2024</span>
-              <p className="text-white font-bold">50+ Active Organizations</p>
+              <span className="block text-[10px] text-white/60 uppercase tracking-widest font-bold">Enrollment 2024</span>
+              <p className="text-white font-bold text-sm">50+ Active Organizations</p>
             </div>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Discover Community */}
       <section className="py-16 sm:py-24">

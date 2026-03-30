@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PageHero from "../components/PageHero";
 
 const milestones = [
   { year: "1962", title: "Elevation to Maha Vidyalaya Status", desc: "Recognizing the rapid growth in academic standards and student population, the school was officially elevated to 'Maha Vidyalaya' status, expanding its secondary education programs.", side: "left", color: "primary" },
@@ -19,26 +20,12 @@ export default function HistoryPage() {
     <main className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/30">
-          <img
-            className="w-full h-full object-cover mix-blend-multiply opacity-60"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
-            alt="Historic school building"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-        <div className="relative z-10 text-center px-4 max-w-4xl">
-          <span className="text-secondary-container font-bold tracking-[0.3em] uppercase text-sm mb-4 block">Est. 1889</span>
-          <h1 className="font-headline text-6xl sm:text-7xl md:text-8xl text-white font-extrabold tracking-tight leading-[1.1] mb-6 drop-shadow-2xl">
-            Our History
-          </h1>
-          <p className="text-white/90 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-            A legacy of academic excellence and cultural heritage spanning over seven decades in the heart of Homagama.
-          </p>
-        </div>
-      </section>
+      <PageHero 
+        badge="Est. 1889"
+        title="Our History"
+        subtitle="A legacy of academic excellence and cultural heritage spanning over seven decades in the heart of Homagama."
+        image="https://lh3.googleusercontent.com/aida-public/AB6AXuAtqMjjrzzc6HzDCqq3nEvwLdPGjsQBGDq-IlVgUhmd4KFc-WhmqzW_1cE09ntng0SJ-y85a4yVUDBUOoGloTIKJVEvGhCZQsjR31pBoe2YbSTFUWK_nTruMQaPgcngOLsEqtrJMeqbp8mhiEyOBlsfjBio_nV1_YbTphfk5cLtv3w8E26kqXKprLo-RWMJvDWCzIJd4Q9ZFcdlU5JIOZUgZs79YOCEswfJb-XRxqP_GIRxYkOHaVS_LtvOQRDmu1SA1kK89ywx3S0"
+      />
 
       {/* Foundation Section */}
       <section className="py-16 sm:py-24 px-6 lg:px-12 max-w-screen-2xl mx-auto">
