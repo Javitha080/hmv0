@@ -14,7 +14,7 @@ export default function PageHero({ title, subtitle, badge, image, primaryAction 
   return (
     <section 
       ref={ref}
-      className="relative w-full h-[65vh] min-h-[500px] flex items-center justify-center overflow-hidden bg-black"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Background Image with Parallax */}
       <motion.div 

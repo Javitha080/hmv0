@@ -1,6 +1,7 @@
 import { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeProvider';
+import ErrorBoundary from './components/ErrorBoundary';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -29,6 +30,11 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const AdminLogin = lazy(() => import('./admin/AdminLogin'));
 const AdminLayout = lazy(() => import('./admin/AdminLayout'));
 const Dashboard = lazy(() => import('./admin/Dashboard'));
+const NewsCMS = lazy(() => import('./admin/NewsCMS'));
+const GalleryCMS = lazy(() => import('./admin/GalleryCMS'));
+const StaffCMS = lazy(() => import('./admin/StaffCMS'));
+const SocietiesCMS = lazy(() => import('./admin/SocietiesCMS'));
+const SettingsPage = lazy(() => import('./admin/SettingsPage'));
 
 function LandingPage() {
   return (
@@ -48,25 +54,26 @@ function LandingPage() {
   );
 }
 
+function ProtectedRoute({ children, isAuthenticated }) {
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+}
+
 function App() {
   const [user, setUser] = useState(null);
 
-  const ProtectedRoute = ({ children }) => {
-    if (!user) {
-      return <Navigate to="/admin/login" replace />;
-    }
-    return children;
-  };
-
   return (
     <ThemeProvider>
+      <ErrorBoundary>
       <NoiseOverlay />
       <Router>
         <CinematicLoader>
           <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-surface-container"><div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div></div>}>
             <Routes>
             <Route path="/" element={<LandingPage />} />
-            
+
             {/* Public Pages */}
             <Route path="/history" element={<HistoryPage />} />
             <Route path="/academics" element={<AcademicsPage />} />
@@ -75,31 +82,32 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/life-at-school" element={<LifeAtSchoolPage />} />
-            
+
             {/* Admin Routes */}
             <Route path="/admin/login" element={
               user ? <Navigate to="/admin" replace /> : <AdminLogin onLogin={(u) => setUser(u)} />
             } />
-            
+
             <Route path="/admin" element={
-              <ProtectedRoute>
+              <ProtectedRoute isAuthenticated={!!user}>
                 <AdminLayout user={user} onLogout={() => setUser(null)} />
               </ProtectedRoute>
             }>
               <Route index element={<Dashboard />} />
-              <Route path="news" element={<div className="text-white text-2xl font-serif">News CMS (Coming Soon)</div>} />
-              <Route path="gallery" element={<div className="text-white text-2xl font-serif">Gallery CMS (Coming Soon)</div>} />
-              <Route path="staff" element={<div className="text-white text-2xl font-serif">Staff CMS (Coming Soon)</div>} />
-              <Route path="societies" element={<div className="text-white text-2xl font-serif">Societies CMS (Coming Soon)</div>} />
-              <Route path="settings" element={<div className="text-white text-2xl font-serif">Settings (Coming Soon)</div>} />
+              <Route path="news" element={<NewsCMS />} />
+              <Route path="gallery" element={<GalleryCMS />} />
+              <Route path="staff" element={<StaffCMS />} />
+              <Route path="societies" element={<SocietiesCMS />} />
+              <Route path="settings" element={<SettingsPage />} />
             </Route>
-            
+
             {/* Catch-all 404 Route */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
         </CinematicLoader>
       </Router>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }

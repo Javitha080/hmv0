@@ -1,9 +1,8 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#050505] text-white pt-24 pb-12 w-full overflow-hidden border-t border-white/10 mt-auto">
+    <footer className="relative bg-black/40 backdrop-blur-[40px] text-white pt-24 pb-12 mx-2 md:mx-4 mb-4 rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border border-white/10 mt-auto shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
       {/* Subtle Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary/20 blur-[120px] rounded-[100%] pointer-events-none opacity-50" />
       
